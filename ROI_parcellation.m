@@ -33,8 +33,8 @@ if LEFT == 1
         filename=strcat(outdir_L,'/',PART,'_L_',num2str(k+1),'.nii');
     if ~exist(filename)
         matrix1 = matrix*matrix';
-        matrix1 = matrix1-diag(diag(matrix1));   
-        [index C sumd D] = sc2(k+1,matrix1);
+        matrix1 = matrix1-diag(diag(matrix1));
+        index=sc3(k+1,matrix1);   
         image_f=nii.img;
         image_f(:,:,:)=0;
     for j = 1:length(coordinates)
