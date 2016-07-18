@@ -16,11 +16,12 @@ function ROI_group_refer_xmm(PWD,PREFIX,PART,SUB_LIST,MAX_CL_NUM,METHOD,VOX_SIZE
 	end
 
 	defnii = load_untouch_nii(strcat(PWD,'/',SUB{1},'/',PREFIX,'_',SUB{1},'_',PART,'_',LR,'_',METHOD,'/',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',PART,'_',LR,'_',num2str(2),'_MNI.nii.gz'));
-	sumimg = sparse(size(defnii.img));
+	sumimg = zeros(size(defnii.img),'single');
 	for j = 1:subnum 
 		  disp(strcat(SUB{j},'_',LR));
 		  datanii = load_untouch_nii(strcat(PWD,'/',SUB{j},'/',PREFIX,'_',SUB{j},'_',PART,'_',LR,'_',METHOD,'/',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',PART,'_',LR,'_',num2str(2),'_MNI.nii.gz'));
 		  datanii.img(datanii.img>0) = 1;
+		  datanii.img=single(datanii.img);
 		  sumimg = sumimg + datanii.img;
 	end
 
