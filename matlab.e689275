@@ -1,5 +1,0 @@
-which: no shopt in (/tmp/689275.1.long.q:/home/hli/bin:/usr/local/bin:/opt/sge/bin/lx24-amd64:/DATA/233/hli/bin:/home/hli/bin:/usr/local/bin:/%opt/sge/bin/lx24-amd64:/DATA/233/hli/software/C3D/bin:/DATA/233/hli/software/ANTS/bin:/home/hli/anaconda/bin:/opt/sge/bin/lx24-amd64:/DATA/233/hli/toolbox/minc/bin:/DATA/233/hli/toolbox/minc/pipeline:/mnt/software/freesurfer5.3/bin:/mnt/software/freesurfer5.3/fsfast/bin:/mnt/software/freesurfer5.3/tktools:/mnt/software/fsl5.0/bin:/mnt/software/freesurfer5.3/mni/bin:/DATA/233/hli/toolbox/caret/bin_linux64:/mnt/software/mricron:/mnt/software/fsl5.0/bin:/opt/sge/bin/lx24-amd64:/usr/lib64/qt-3.3/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/home/hli/bin:/usr/lib/x86_64-linux-gnu/:/mnt/software/afni64:/mnt/software/matlab/bin:/home/hli/bin:/DATA/233/hli/MAGeTbrain/bin:/home/hli/bin)
-{??? Error: File: /DATA/233/hli/ATPP_test/symmetry_group.m Line: 55 Column: 1
-Illegal use of reserved keyword "else".
-} 
-
