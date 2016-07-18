@@ -1,0 +1,1 @@
+/DATA/233/hli/Data/HCP_40 HCP /DATA/233/hli/Data/HCP_40/sub_HCP.txt PT /DATA/233/hli/PT_1mm 8 3

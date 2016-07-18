@@ -1,0 +1,66 @@
+clster_num: 2
+mcv: 0.782305, std_cv: 0.152038
+mdice: 0.811831, std_dice: 0.071228
+nmi: 0.550029,std_nmi: 0.177761
+mvi: 0.889494,std_vi: 0.346973
+
+clster_num: 3
+mcv: 0.650201, std_cv: 0.124780
+mdice: 0.633854, std_dice: 0.141133
+nmi: 0.465242,std_nmi: 0.114292
+mvi: 1.663886,std_vi: 0.357040
+
+clster_num: 4
+mcv: 0.697808, std_cv: 0.086442
+mdice: 0.639957, std_dice: 0.118742
+nmi: 0.544937,std_nmi: 0.074377
+mvi: 1.795412,std_vi: 0.291946
+
+clster_num: 5
+mcv: 0.715299, std_cv: 0.067985
+mdice: 0.632256, std_dice: 0.100355
+nmi: 0.587338,std_nmi: 0.062915
+mvi: 1.882376,std_vi: 0.280984
+
+clster_num: 6
+mcv: 0.731097, std_cv: 0.053712
+mdice: 0.653867, std_dice: 0.078741
+nmi: 0.615867,std_nmi: 0.048019
+mvi: 1.961967,std_vi: 0.240491
+
+clster_num: 7
+mcv: 0.713466, std_cv: 0.043677
+mdice: 0.609554, std_dice: 0.071515
+nmi: 0.620053,std_nmi: 0.040937
+mvi: 2.084892,std_vi: 0.225438
+
+clster_num: 8
+mcv: 0.702257, std_cv: 0.044550
+mdice: 0.595859, std_dice: 0.071264
+nmi: 0.620462,std_nmi: 0.041791
+mvi: 2.221217,std_vi: 0.242523
+
+clster_num: 9
+mcv: 0.690920, std_cv: 0.039107
+mdice: 0.571558, std_dice: 0.059894
+nmi: 0.620693,std_nmi: 0.037306
+mvi: 2.350823,std_vi: 0.229952
+
+clster_num: 10
+mcv: 0.680353, std_cv: 0.040839
+mdice: 0.555414, std_dice: 0.067687
+nmi: 0.619276,std_nmi: 0.037598
+mvi: 2.486731,std_vi: 0.243663
+
+clster_num: 11
+mcv: 0.667773, std_cv: 0.033005
+mdice: 0.539766, std_dice: 0.051891
+nmi: 0.618328,std_nmi: 0.033318
+mvi: 2.587051,std_vi: 0.223151
+
+clster_num: 12
+mcv: 0.659056, std_cv: 0.033833
+mdice: 0.524235, std_dice: 0.053520
+nmi: 0.619259,std_nmi: 0.032493
+mvi: 2.675931,std_vi: 0.229045
+

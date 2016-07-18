@@ -1,0 +1,1 @@
+/DATA/233/hli/Data/chengdu CD /DATA/233/hli/BA_cd/sub_CD_40.txt pSTS /DATA/233/hli/BA_cd/pSTS 6 3

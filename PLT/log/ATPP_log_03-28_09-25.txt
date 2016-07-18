@@ -1,0 +1,708 @@
+tee: PLT/log/progress_check.txt: No such file or directory
+!!! /DATA/233/hli/PLT_CD@mic204__2016-03-28_09:03:12 !!!
+tee: PLT/log/progress_check.txt: No such file or directory
+09:03:12  === 12_indice_plot start! ===
+which: no shopt in (/opt/sge/bin/lx24-amd64:/mnt/software/fsl5.0/bin:/usr/local/bin:/bin:/usr/bin:/usr/lib/x86_64-linux-gnu/:/mnt/software/afni64:/mnt/software/matlab/bin)
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2009 The MathWorks, Inc.
+                Version 7.8.0.347 (R2009a) 64-bit (glnxa64)
+                             February 12, 2009
+
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/matlab/optimfun.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/simulink/blocks/library.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/simulink/blocks/obsolete.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/simulink/simdemos/dataclasses.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/simulink/simdemos/industrial.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/shared/glue.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/shared/glue/studio.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/simulink/simulink/dataclasses.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/rtw/targets/AUTOSAR/AUTOSAR/dataclasses.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/extensions/processor/tic2000/tic2000demos.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/stm/stm.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/coder/codegendemos.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/coder/emlcodermex.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/shared/testmeaslib/general.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/idelink.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/idelink/foundation.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/idelink/foundation/util.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/idelink/foundation/errorhandler.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/idelink/foundation/xmakefile.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/idelink/foundation/hookpoints.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/stats/stats.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/stats/classreg.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/curvefit/splines.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/coder/float2fixed.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/rtw/targets/asap2/asap2/dataclasses.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/rtw/targets/common/can/blocks/dataclasses.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/rtw/rtw/misra.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/simulinkcoder.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/extensions/operatingsystem/vxworks/blks.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/extensions/operatingsystem/vxworks/blks/mex.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/extensions/operatingsystem/vxworks/blks/masks.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/extensions/operatingsystem/vxworks/src.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/shared/system/coreblocks.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/simulink/simulink/slproject.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/targetdemos.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/extensions/processor/tic6000/tic6000demos/dataclasses.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/extensions/processor/tic6000/tic6000demos.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/extensions/processor/tic5000.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/extensions/processor/tic5000/blks.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/extensions/processor/tic5000/blks/mex.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/extensions/processor/tic5000/blks/masks.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/shared/curvefitlib.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/foundation.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/foundation/utils.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/foundation/utils/resource_config.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/foundation/blks.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/foundation/blks/mex.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/foundation/blks/masks.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/extensions/processor/shared.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/extensions/processor/shared/ti.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/extensions/processor/shared/ti/mdlinfo.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/extensions/processor/shared/ti/utils.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/extensions/processor/shared/ti/blks.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/extensions/processor/shared/ti/blks/mex.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/extensions/processor/shared/ti/blks/masks.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/shared/etargets/etargets.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/shared/etargets/etargets/demoutils.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/shared/multimedia.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/extensions/processor/intelhost/tfl.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/coder/profile.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/matlab/system.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/shared/system/coder.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/rtw/targets/shared.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/rtw/coder_foundation/tfl.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/rtw/coder_foundation/build.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/stats/statsdemos.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/simulink/blocks/sb2sl.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/matlab/apps.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/shared/controllib/requirements.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/rtw/targets/ecoder/ecoderdemos/dataclasses.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/embeddedcoder.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/extensions/processor/blackfin/blackfindemos.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/idelink/idelinkdemos.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/idelink/extensions/adivdsp/vdspdemos.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/idelink/extensions/eclipseide/eclipseidedemos.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/idelink/extensions/iarew/iarewdemos.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/idelink/extensions/ticcs/ccsdemos.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/idelink/extensions/ticcs/ccsdemos/util.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/shared/instrument.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/extensions/processor/blackfin.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/extensions/processor/blackfin/blks.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/extensions/processor/blackfin/blks/mex.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/extensions/processor/blackfin/blks/masks.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/shared/controllib/graphics.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/shared/controllib/graphics/utils.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/shared/controllib/graphics/plotoptions.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/coder/rtiostream.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/simulink/simulink/performance.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/simulink/simulink/performance/performancea.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/simulink/simulink/upgradeadvisor.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/shared/configset.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/curvefit/curvefitdemos.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/shared/asynciolib.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/shared/dsp/simulink/dsp.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/shared/dspblks/dspblks.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/shared/dspblks/dspmex.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/help/toolbox/sldo/examples.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/extensions/operatingsystem/linux/blks.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/extensions/operatingsystem/linux/blks/masks.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/extensions/operatingsystem/linux/blks/mex.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/extensions/operatingsystem/linux/src.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/shared/system/fixedpoint.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/simulink/simulink/iodata/iomap.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/coder/matlabcoder.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/shared/rptgen.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/sam/m3i.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/coder/coder.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/sldo/sldoguis.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/nnet/nnet/nnadapt.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/nnet/nnet/nndatafun.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/nnet/nnet/nnderivative.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/nnet/nnet/nndivision.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/nnet/nnet/nninitlayer.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/nnet/nnet/nninitnetwork.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/nnet/nnet/nninitweight.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/nnet/nnet/nnnetfun.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/shared/measure.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/extensions/processor/tic2000.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/extensions/processor/tic2000/rtw.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/extensions/processor/tic2000/utils.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/extensions/processor/tic2000/blks.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/extensions/processor/tic2000/blks/mex.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/extensions/processor/tic2000/blks/masks.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/shared/slvnv.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/extensions/operatingsystem/windows/blks.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/extensions/operatingsystem/windows/blks/masks.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/extensions/operatingsystem/windows/blks/mex.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/shared/system/simulink.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/shared/controllib/general.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/shared/can/canblks.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/shared/can/canmasks.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/shared/can/canmex.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/extensions/processor/tic6000.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/extensions/processor/tic6000/rtw.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/extensions/processor/tic6000/tfl.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/extensions/processor/tic6000/utils.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/extensions/processor/tic6000/blks.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/extensions/processor/tic6000/blks/mex.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/extensions/processor/tic6000/blks/sysobj_mex.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/extensions/processor/tic6000/blks/masks.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/shared/testmeaslib/simulink.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/shared/comparisons.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/shared/simulink.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/shared/coder/coder.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/shared/testmeaslib/graphics.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/shared/system/sfun.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/stm/stmdemos.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/coder/coverage.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/realtime.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/realtime/realtime.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/realtime/realtime/rtw.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/idelink/extensions/adivdsp.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/idelink/extensions/adivdsp/mdlinfo.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/idelink/extensions/adivdsp/tfl.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/idelink/extensions/adivdsp/vdspblks.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/idelink/extensions/adivdsp/rtw.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/idelink/extensions/eclipseide.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/idelink/extensions/eclipseide/mdlinfo.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/idelink/extensions/eclipseide/registry.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/idelink/extensions/eclipseide/tfl.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/idelink/extensions/iarew.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/idelink/extensions/iarew/blks.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/idelink/extensions/iarew/mdlinfo.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/idelink/extensions/iarew/templates.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/idelink/extensions/ticcs.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/idelink/extensions/ticcs/ccsblks.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/idelink/extensions/ticcs/ccslinkblks.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/idelink/extensions/ticcs/ccslinkblks/rtdxsimblks.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/idelink/extensions/ticcs/lic.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/idelink/extensions/ticcs/mdlinfo.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/idelink/extensions/ticcs/tfl.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/idelink/extensions/ticcs/util.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/idelink/extensions/ticcs/rtw.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/idelink/extensions/ticcs/envChecker.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/idelink/extensions/wrworkbench.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/idelink/extensions/wrworkbench/mdlinfo.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/idelink/extensions/wrworkbench/registry.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/idelink/extensions/wrworkbench/wrworkbenchblks.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/idelink/foundation/pjtgenerator.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/idelink/foundation/pjtgenerator/rtw.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/idelink/foundation/pjtgenerator/tgtpref2.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/idelink/foundation/pjtgenerator/profiler.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/idelink/foundation/pjtgenerator/mdlinfo.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/idelink/foundation/pjtgenerator/blks.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/idelink/foundation/pjtgenerator/blks/masks.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/idelink/foundation/pjtgenerator/blks/tlc_c.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/shared/cgir_fe.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/shared/hwconnectinstaller.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/shared/controllib/engine.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/shared/controllib/engine/numerics.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/shared/controllib/engine/options.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/shared/controllib/engine/optim.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/target/extensions/processor/tic5000/tic5000demos.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/slvnv/slvnvdemos.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/distcomp/cluster.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/distcomp/gpu.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/distcomp/array.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/globaloptim/globaloptimdemos.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/vision/vision.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/vision/visionutilities.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/vision/visionutilities/visioninit.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/vision/visionutilities/visionmex.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/fuzzy/fuzzyutil.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/map/mapgeodesy.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/map/mapdata.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/map/mapdata/sdts.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/shared/dsp/vision/matlab/utilities.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/shared/dsp/vision/simulink/utilities.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/shared/dsp/vision/matlab/utilities/mex.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/shared/dsp/vision/simulink/utilities/mex.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/shared/dsp/vision/matlab/utilities/init.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/shared/dsp/vision/matlab/vision.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/shared/dsp/vision/simulink/vision.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/shared/maputils.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/compiler/compilerdemos.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/geoweb/geoweb.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/help/toolbox/dsp/examples.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/dsp/filterdesign.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/dsp/dsp.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/dsp/dsputilities.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/dsp/dsputilities/dspinit.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/dsp/dsputilities/dspmex.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/globaloptim.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/globaloptim/globaloptim.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/help/toolbox/vision/examples.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/vision/visiondemos.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/dsp/dspdemos.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/shared/testconsole.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/shared/eda/board.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/comm/commutilities/comminit.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/comm/commutilities/commmex.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/comm/commutilities.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/comm/commdeprecated.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/help/toolbox/control/examples.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/pde/pdedemos.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/symbolic/symbolic.} 
+{Warning: Name is nonexistent or not a directory:
+/mnt/software/matlab/toolbox/symbolic/symbolicdemos.} 
+ 
+  To get started, type one of these: helpwin, helpdesk, or demo.
+  For product information, visit www.mathworks.com.
+ 
+{??? Error using ==> load
+Unable to read file
+PLT/validation_7_1.25mm//DATA/233/hli/PLT_CD_L_index_split_half.mat: No such
+file or directory.
+
+Error in ==> indice_plot>plot_split_half at 94
+	load(file);
+
+Error in ==> indice_plot at 17
+	        plot_split_half(PWD,PART,SUB_LIST,VOX_SIZE,MAX_CL_NUM,1);
+} 
+>> >> ??? # 13) transform subregions from MNI space to DTI space
+    |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> >> ??? if [[ ${SWITCH[@]/_13_/} != ${SWITCH[@]} ]]; then
+          |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+{??? Error using ==> echo
+ M-file not found.
+} 
+>> ??? T="$(date +%s)"
+      |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> ??? ${PIPELINE}/13_subregion_toDTI_spm.sh ${PIPELINE} ${WD} ${PART} ${SUB_LIST} ${CL_NUM} ${TEMPLATE} ${VOX_SIZE} ${MPM_THRES} ${POOLSIZE} ${SPM} ${LEFT} ${RIGHT}
+    |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> ??? T="$(($(date +%s)-T))"
+      |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> {??? Error using ==> echo
+ M-file not found.
+} 
+>> {??? Undefined function or method 'printf' for input arguments of type 'char'.
+} 
+>>  
+ans =
+ 
+    embedded.fi: 0-by-0
+ 
+[]
+
+          DataTypeMode: Fixed-point: binary point scaling
+            Signedness: Signed
+            WordLength: 16
+        FractionLength: 15
+
+             RoundMode: nearest
+          OverflowMode: saturate
+           ProductMode: FullPrecision
+  MaxProductWordLength: 128
+               SumMode: FullPrecision
+      MaxSumWordLength: 128
+         CastBeforeSum: true
+>> >> ??? # 14) generate probabilistic tractography for each subregion
+    |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> ??? #    default 5000 samples for each voxel, WITHOUT distance correction
+    |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> ??? if [[ ${SWITCH[@]/_14_/} != ${SWITCH[@]} ]]; then
+          |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> {??? Error using ==> echo
+ M-file not found.
+} 
+>> ??? T="$(date +%s)"
+      |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> ??? ${PIPELINE}/14_subregion_probtrackx.sh ${WD} ${DATA_DIR} ${PART} ${SUB_LIST} ${CL_NUM} ${VOX_SIZE} ${MPM_THRES} ${N_SAMPLES} ${DIS_COR} ${LEN_STEP} ${N_STEPS} ${CUR_THRES} ${LEFT} ${RIGHT}
+    |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> ??? T="$(($(date +%s)-T))"
+      |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> {??? Error using ==> echo
+ M-file not found.
+} 
+>> {??? Undefined function or method 'printf' for input arguments of type 'char'.
+} 
+>>  
+ans =
+ 
+    embedded.fi: 0-by-0
+ 
+[]
+
+          DataTypeMode: Fixed-point: binary point scaling
+            Signedness: Signed
+            WordLength: 16
+        FractionLength: 15
+
+             RoundMode: nearest
+          OverflowMode: saturate
+           ProductMode: FullPrecision
+  MaxProductWordLength: 128
+               SumMode: FullPrecision
+      MaxSumWordLength: 128
+         CastBeforeSum: true
+>> >> ??? # 15) transform probtrackxs from DTI space to MNI space
+    |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> ??? if [[ ${SWITCH[@]/_15_/} != ${SWITCH[@]} ]]; then
+          |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> {??? Error using ==> echo
+ M-file not found.
+} 
+>> ??? T="$(date +%s)"
+      |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> ??? ${PIPELINE}/13_probtrackx_toMNI_spm.sh ${PIPELINE} ${WD} ${PART} ${SUB_LIST} ${CL_NUM} ${TEMPLATE} ${VOX_SIZE} ${MPM_THRES} ${N_SAMPLES} ${P} ${POOLSIZE} ${SPM} ${LEFT} ${RIGHT}
+    |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> ??? T="$(($(date +%s)-T))"
+      |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> {??? Error using ==> echo
+ M-file not found.
+} 
+>> {??? Undefined function or method 'printf' for input arguments of type 'char'.
+} 
+>>  
+ans =
+ 
+    embedded.fi: 0-by-0
+ 
+[]
+
+          DataTypeMode: Fixed-point: binary point scaling
+            Signedness: Signed
+            WordLength: 16
+        FractionLength: 15
+
+             RoundMode: nearest
+          OverflowMode: saturate
+           ProductMode: FullPrecision
+  MaxProductWordLength: 128
+               SumMode: FullPrecision
+      MaxSumWordLength: 128
+         CastBeforeSum: true
+>> >> ??? # 16) generate the probabilistic maps of probtrackxs
+    |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> ??? if [[ ${SWITCH[@]/_16_/} != ${SWITCH[@]} ]]; then
+          |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> {??? Error using ==> echo
+ M-file not found.
+} 
+>> ??? T="$(date +%s)"
+      |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> ??? ${PIPELINE}/16_probtrackx_pm.sh ${WD} ${PART} ${SUB_LIST} ${CL_NUM} ${PM_THRES} ${LEFT} ${RIGHT}
+    |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> ??? T="$(($(date +%s)-T))"
+      |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> {??? Error using ==> echo
+ M-file not found.
+} 
+>> {??? Undefined function or method 'printf' for input arguments of type 'char'.
+} 
+>>  
+ans =
+ 
+    embedded.fi: 0-by-0
+ 
+[]
+
+          DataTypeMode: Fixed-point: binary point scaling
+            Signedness: Signed
+            WordLength: 16
+        FractionLength: 15
+
+             RoundMode: nearest
+          OverflowMode: saturate
+           ProductMode: FullPrecision
+  MaxProductWordLength: 128
+               SumMode: FullPrecision
+      MaxSumWordLength: 128
+         CastBeforeSum: true
+>> >> {??? Error using ==> echo
+ M-file not found.
+} 
+>> {??? Error using ==> echo
+Too many input arguments.
+} 
+>> {??? Error using ==> echo
+ M-file not found.
+} 
+>> tee: PLT/log/progress_check.txt: No such file or directory
+09:03:23  === 12_indice_plot done! ===
+tee: PLT/log/progress_check.txtTime elapsed: 00:00:00:11
+
+: No such file or directory

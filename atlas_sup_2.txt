@@ -1,0 +1,4 @@
+/DATA/233/hli/Data/HCP_40 HCP /DATA/233/hli/BA_fs/sub_HCP.txt /DATA/233/hli/BA_fs/Th Th 10 6
+/DATA/233/hli/Data/HCP_40 HCP /DATA/233/hli/BA_fs/sub_HCP.txt /DATA/233/hli/BA_fs/IFG IFG 12 6
+/DATA/233/hli/Data/HCP_40 HCP /DATA/233/hli/BA_fs/sub_HCP.txt /DATA/233/hli/BA_fs/OrG OrG 12 6
+/DATA/233/hli/Data/HCP_40 HCP /DATA/233/hli/BA_fs/sub_HCP.txt /DATA/233/hli/BA_fs/Ins Ins 12 6

@@ -1,0 +1,1 @@
+/DATA/233/hli/Data/HCP_40 HCP /DATA/233/hli/BA_fs/sub_HCP.txt /DATA/233/hli/BA_fs/pSTS pSTS 6 3

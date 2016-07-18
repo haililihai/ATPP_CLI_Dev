@@ -1,0 +1,11 @@
+which: no shopt in (/tmp/689276.1.long.q:/home/hli/bin:/usr/local/bin:/opt/sge/bin/lx24-amd64:/DATA/233/hli/bin:/home/hli/bin:/usr/local/bin:/%opt/sge/bin/lx24-amd64:/DATA/233/hli/software/C3D/bin:/DATA/233/hli/software/ANTS/bin:/home/hli/anaconda/bin:/opt/sge/bin/lx24-amd64:/DATA/233/hli/toolbox/minc/bin:/DATA/233/hli/toolbox/minc/pipeline:/mnt/software/freesurfer5.3/bin:/mnt/software/freesurfer5.3/fsfast/bin:/mnt/software/freesurfer5.3/tktools:/mnt/software/fsl5.0/bin:/mnt/software/freesurfer5.3/mni/bin:/DATA/233/hli/toolbox/caret/bin_linux64:/mnt/software/mricron:/mnt/software/fsl5.0/bin:/opt/sge/bin/lx24-amd64:/usr/lib64/qt-3.3/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/home/hli/bin:/usr/lib/x86_64-linux-gnu/:/mnt/software/afni64:/mnt/software/matlab/bin:/home/hli/bin:/DATA/233/hli/MAGeTbrain/bin:/home/hli/bin)
+{??? Error using ==> load_nii_hdr at 32
+Cannot find file
+"/DATA/233/hli/BA_fs/Ins/group_40_1.25mm/1.25mm_Ins_R_5_25_group.nii".
+
+Error in ==> load_untouch_nii at 154
+   [nii.hdr,nii.filetype,nii.fileprefix,nii.machine] = load_nii_hdr(filename);
+
+Error in ==> symmetry_group at 14
+    nii_R=load_untouch_nii(strcat(PWD,'/',PART,'/','group_',num2str(num),'_',num2str(VOX),'mm/',num2str(VOX),'mm_',PART,'_R_',num2str(CL_NUM),'_',num2str(THRES*100),'_group.nii'));} 
+
