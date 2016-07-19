@@ -26,23 +26,24 @@ if LEFT == 1
     coordinates = coordinates(panduan,:);
     matrix = matrix(panduan,:);
 
+	matrix1 = matrix*matrix';
+    matrix1 = matrix1-diag(diag(matrix1));
+
     nii = load_untouch_nii(strcat(PWD,'/',SUB{i},'/',PREFIX,'_',SUB{i},'_',PART,'_L_DTI.nii.gz'));
-    
+    image_f=nii.img;
+
 	for k=1:N % haili,20150408, k=1:N
 		display(strcat(SUB{i},'_',PART,'_L_',num2str(k+1),' processing...'));
         filename=strcat(outdir_L,'/',PART,'_L_',num2str(k+1),'.nii');
-    if ~exist(filename)
-        matrix1 = matrix*matrix';
-        matrix1 = matrix1-diag(diag(matrix1));
-        index=sc3(k+1,matrix1);   
-        image_f=nii.img;
-        image_f(:,:,:)=0;
-    for j = 1:length(coordinates)
-        image_f(coordinates(j,1)+1,coordinates(j,2)+1,coordinates(j,3)+1)=index(j);
-    end
-        nii.img=image_f;
-		save_untouch_nii(nii,filename);
-    end
+		if ~exist(filename)
+			index=sc3(k+1,matrix1);   
+			image_f(:,:,:)=0;
+			for j = 1:length(coordinates)
+				image_f(coordinates(j,1)+1,coordinates(j,2)+1,coordinates(j,3)+1)=index(j);
+			end
+			nii.img=image_f;
+			save_untouch_nii(nii,filename);
+		end
     end
 	disp(strcat(SUB{i},'_',PART,'_L',' Done!'));
 end
@@ -59,23 +60,24 @@ if RIGHT == 1
     coordinates = coordinates(panduan,:);
     matrix = matrix(panduan,:);
 
+    matrix1 = matrix*matrix';
+    matrix1 = matrix1-diag(diag(matrix1));   
+
     nii = load_untouch_nii(strcat(PWD,'/',SUB{i},'/',PREFIX,'_',SUB{i},'_',PART,'_R_DTI.nii.gz'));
+    image_f=nii.img;
     
 	for k=1:N % k=1:N
 		display(strcat(SUB{i},'_',PART,'_R_',num2str(k+1),' processing...'));
         filename=strcat(outdir_R,'/',PART,'_R_',num2str(k+1),'.nii');
-    if ~exist(filename)
-        matrix1 = matrix*matrix';
-        matrix1 = matrix1-diag(diag(matrix1));   
-        [index C sumd D] = sc2(k+1,matrix1);
-        image_f=nii.img;
-        image_f(:,:,:)=0;
-    for j = 1:length(coordinates)
-        image_f(coordinates(j,1)+1,coordinates(j,2)+1,coordinates(j,3)+1)=index(j);
-    end
-        nii.img=image_f;
-		save_untouch_nii(nii,filename);
-    end
+		if ~exist(filename)
+			index=sc3(k+1,matrix1);   
+			image_f(:,:,:)=0;
+			for j = 1:length(coordinates)
+				image_f(coordinates(j,1)+1,coordinates(j,2)+1,coordinates(j,3)+1)=index(j);
+			end
+			nii.img=image_f;
+			save_untouch_nii(nii,filename);
+		end
     end
 end
     disp(strcat(SUB{i},'_',PART,'_R',' Done!'));
