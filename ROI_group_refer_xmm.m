@@ -43,11 +43,11 @@ function ROI_group_refer_xmm(PWD,PREFIX,PART,SUB_LIST,MAX_CL_NUM,METHOD,VOX_SIZE
 for CL_NUM=2:MAX_CL_NUM
 if ~exist(strcat(grouproipath,num2str(VOX_SIZE),'mm_',PART,'_',LR,'_',num2str(CL_NUM),'_',num2str(GROUP_THRES_REAL*100),'_group.nii'))
     disp(strcat(PART,'_',LR,' cluster number_',num2str(CL_NUM),' is running...'));
-    groupmatrix = zeros(ROISIZE,ROISIZE,'uint8');
+    groupmatrix = zeros(ROISIZE,ROISIZE);
     for j = 1:length(SUB)
 		datanii = load_untouch_nii(strcat(PWD,'/',SUB{j},'/',PREFIX,'_',SUB{j},'_',PART,'_',LR,'_',METHOD,'/',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',PART,'_',LR,'_',num2str(CL_NUM),'_MNI.nii.gz'));
 		dataimg = datanii.img;
-		kimatrix=zeros(ROISIZE,ROISIZE,'unit8');
+		kimatrix=zeros(ROISIZE,ROISIZE);
 		for ki=1:CL_NUM
 			kimatrix(:)=0;
 			kind = find(dataimg==ki);
@@ -58,7 +58,7 @@ if ~exist(strcat(grouproipath,num2str(VOX_SIZE),'mm_',PART,'_',LR,'_',num2str(CL
     end
     groupmatrix=groupmatrix-diag(diag(groupmatrix));
     index=sc3(CL_NUM,groupmatrix);
-    img_f = sparse(size(defnii.img));
+    img_f = zeros(size(defnii.img));
     a=1:1:length(index);
     img_f(roiindex(a)) = index(a);
     defnii.img = img_f;
