@@ -94,7 +94,16 @@ P=0.0004
 
 # 16_probtrackx_pm, the threshold
 PM_THRES=0.25
- 
+
+# 11_validation, the switch of various validity indices, default 1
+split_half=1;
+pairwise=1;
+leave_one_out=1;
+cont=1;
+hi_vi=1;
+silhouette=1;
+tpd=1;
+
 
 
 #===============================================================================

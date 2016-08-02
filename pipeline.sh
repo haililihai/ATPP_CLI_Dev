@@ -149,7 +149,7 @@ fi
 if [[ ${SWITCH[@]/_11_/} != ${SWITCH[@]} ]]; then
 echo "$(date +%T)  === 11_validation start! ===" |tee -a ${WD}/log/progress_check.txt
 T="$(date +%s)"
-${PIPELINE}/11_validation.sh ${PIPELINE} ${WD} ${PREFIX} ${PART} ${SUB_LIST} ${METHOD} ${VOX_SIZE} ${MAX_CL_NUM} ${N_ITER} ${GROUP_THRES} ${MPM_THRES} ${LEFT} ${RIGHT}
+${PIPELINE}/11_validation.sh ${PIPELINE} ${WD} ${PREFIX} ${PART} ${SUB_LIST} ${METHOD} ${VOX_SIZE} ${MAX_CL_NUM} ${N_ITER} ${POOL_SIZE} ${GROUP_THRES} ${MPM_THRES} ${LEFT} ${RIGHT} ${split_half} ${pairwise} ${leave_one_out} ${cont} ${hi_vi} ${silhouette} ${tpd}
 T="$(($(date +%s)-T))"
 echo "$(date +%T)  === 11_validation done! ===" |tee -a ${WD}/log/progress_check.txt
 printf "Time elapsed: %02d:%02d:%02d:%02d\n\n" "$((T/86400))" "$((T/3600%24))" "$((T/60%60))" "$((T%60))" |tee -a ${WD}/log/progress_check.txt
@@ -159,7 +159,7 @@ fi
 if [[ ${SWITCH[@]/_12_/} != ${SWITCH[@]} ]]; then
 echo "$(date +%T)  === 12_indice_plot start! ===" |tee -a ${WD}/log/progress_check.txt
 T="$(date +%s)"
-${PIPELINE}/12_indice_plot.sh ${PIPELINE} ${WD} ${PART} ${SUB_LIST} ${VOX_SIZE} ${MAX_CL_NUM} ${LEFT} ${RIGHT}
+${PIPELINE}/12_indice_plot.sh ${PIPELINE} ${WD} ${PART} ${SUB_LIST} ${VOX_SIZE} ${MAX_CL_NUM} ${LEFT} ${RIGHT} ${split_half} ${pairwise} ${leave_one_out} ${cont} ${hi_vi} ${silhouette} ${tpd}
 T="$(($(date +%s)-T))"
 echo "$(date +%T)  === 12_indice_plot done! ===" |tee -a ${WD}/log/progress_check.txt
 printf "Time elapsed: %02d:%02d:%02d:%02d\n\n" "$((T/86400))" "$((T/3600%24))" "$((T/60%60))" "$((T%60))" |tee -a ${WD}/log/progress_check.txt

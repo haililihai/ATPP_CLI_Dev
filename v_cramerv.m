@@ -1,14 +1,24 @@
-function [es,esCi,chi2]=my_cramerv(table,confLevel)
+function [es,esCi,chi2]=my_cramerv(x,y,confLevel)
 % this function computes Cramer's V, including exact analytical CI
 % ** NOTE: in the case of 2 by 2 tables Cramer's V is identical to phi
 % except possibly for the sign), which will be taken care of in the last
 % lines
 % adapted from the Measures of Effect Size Toolbox, Harald Hentschke
 
+if size(x,1)>1
+    x=reshape(x,1,length(x(:)));
+end
+if size(y,1)>1
+    y=reshape(y,1,length(y(:)));
+end
+
+tabxy=crosstab(x,y);
+table=tabxy./numel(x); % probability
+
 CONF=0.95;
 if ~exist('confLevel','var') | isempty(confLevel)
     confLevel=CONF;
-    disp(strcat('default confLevel is: ',num2str(CONF)));
+    %disp(strcat('default confLevel is: ',num2str(CONF)));
 end
 
 [nRow nCol]=size(table);
