@@ -1,4 +1,4 @@
-function validation_split_half(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_NUM,POOL_SIZE,N_ITER,GROUP_THRES,MPM_THRES,LorR)
+function validation_split_half(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_NUM,POOLSIZE,N_ITER,GROUP_THRES,MPM_THRES,LorR)
 % split half strategy
 
     if LorR == 1
@@ -31,7 +31,7 @@ function validation_split_half(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_N
     
     % before MATLAB R2013b
     if matlabpool('size')==0
-        matlabpool(POOL_SIZE);
+        matlabpool(POOLSIZE);
     end; 
 
     for kc=2:MAX_CL_NUM

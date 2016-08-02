@@ -1,4 +1,4 @@
-function validation_indi_silhouette(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_NUM,POOL_SIZE,MPM_THRES,LorR)
+function validation_indi_silhouette(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_NUM,POOLSIZE,MPM_THRES,LorR)
     if LorR == 1
         LR='L';
     elseif LorR == 0
@@ -14,7 +14,7 @@ function validation_indi_silhouette(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX
 
     % before MATLAB R2013b
     if matlabpool('size')==0
-        matlabpool(POOL_SIZE);
+        matlabpool(POOLSIZE);
     end; 
 
     % individual-level silhouette

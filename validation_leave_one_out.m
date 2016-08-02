@@ -1,4 +1,4 @@
-function validation_leave_one_out(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_NUM,POOL_SIZE,GROUP_THRES,MPM_THRES,LorR)
+function validation_leave_one_out(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_NUM,POOLSIZE,GROUP_THRES,MPM_THRES,LorR)
 
     if LorR == 1
         LR='L';
@@ -25,7 +25,7 @@ function validation_leave_one_out(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_C
 
     % before MATLAB R2013b
     if matlabpool('size')==0
-        matlabpool(POOL_SIZE);
+        matlabpool(POOLSIZE);
     end; 
 
     for kc=2:MAX_CL_NUM

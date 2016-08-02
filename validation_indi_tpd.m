@@ -1,4 +1,4 @@
-function validation_indi_tpd(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_NUM,POOL_SIZE,GROUP_THRES,MPM_THRES)
+function validation_indi_tpd(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_NUM,POOLSIZE,GROUP_THRES,MPM_THRES)
 
     sub=textread(SUB_LIST,'%s');
     sub_num=length(sub);
@@ -19,7 +19,7 @@ function validation_indi_tpd(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_NUM
 
     % before MATLAB R2013b
     if matlabpool('size')==0
-        matlabpool(POOL_SIZE);
+        matlabpool(POOLSIZE);
     end; 
 
     indi_tpd=zeros(sub_num,MAX_CL_NUM);

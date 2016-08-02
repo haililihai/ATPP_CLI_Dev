@@ -1,4 +1,4 @@
-function validation_indi_hi_vi(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_NUM,POOL_SIZE,GROUP_THRES,MPM_THRES,LorR)
+function validation_indi_hi_vi(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_NUM,POOLSIZE,GROUP_THRES,MPM_THRES,LorR)
 
     if LorR == 1
         LR='L';
@@ -20,7 +20,7 @@ function validation_indi_hi_vi(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_N
 
     % before MATLAB R2013b
     if matlabpool('size')==0
-        matlabpool(POOL_SIZE);
+        matlabpool(POOLSIZE);
     end; 
 
     indi_hi=zeros(sub_num,MAX_CL_NUM);
