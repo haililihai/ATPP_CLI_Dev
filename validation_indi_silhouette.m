@@ -18,7 +18,7 @@ function validation_indi_silhouette(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX
     end; 
 
     % individual-level silhouette
-    indi_sil=zeros(MAX_CL_NUM,sub_num);
+    indi_sil=zeros(sub_num,MAX_CL_NUM);
     parfor ti=1:sub_num
         matrix_file=strcat(PWD,'/',sub{ti},'/',PREFIX,'_',sub{ti},'_',PART,'_',LR,'_matrix/connection_matrix.mat');
         con_matrix=load(matrix_file);
@@ -36,7 +36,7 @@ function validation_indi_silhouette(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX
                 label(n,1)=tempimg(con_matrix.xyz(n,1)+1,con_matrix.xyz(n,2)+1,con_matrix.xyz(n,3)+1);
             end
             s=silhouette([],label,distance);
-            indi_sil(kc,ti)=nanmean(s);
+            indi_sil(ti,kc)=nanmean(s);
             disp(['indi_silhouette: ',PART,'_',LR,' kc=',num2str(kc),' ',num2str(ti)]);
         end
     end
@@ -47,7 +47,7 @@ function validation_indi_silhouette(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX
 
     fp=fopen(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',PART,'_',LR,'_index_indi_silhouette.txt'),'at');
     if fp for kc=2:MAX_CL_NUM
-            fprintf(fp,'cluster_num: %d\navg_indi_silhouette: %f\nstd_indi_silhouette: %f\nmedian_indi_silhouette: %f\n\n',kc,nanmean(indi_sil(kc,:)),nanstd(indi_sil(kc,:)),nanmedian(indi_sil(kc,:)));
+            fprintf(fp,'cluster_num: %d\navg_indi_silhouette: %f\nstd_indi_silhouette: %f\nmedian_indi_silhouette: %f\n\n',kc,nanmean(indi_sil(:,kc)),nanstd(indi_sil(:,kc)),nanmedian(indi_sil(:,kc)));
         end
     end
     fclose(fp);

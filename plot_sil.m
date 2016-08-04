@@ -15,8 +15,8 @@ function plot_sil(PWD,PART,SUB_LIST,VOX_SIZE,MAX_CL_NUM,LorR)
     load(file2);
     x=2:MAX_CL_NUM;
 
-    m_indi_sil=nanmean(indi_sil,2);
-    std_indi_sil=nanstd(indi_sil,0,2);
+    m_indi_sil=nanmean(indi_sil,1);
+    std_indi_sil=nanstd(indi_sil,0,1);
 
     hold on;
     plot(x,group_sil(2:end),'-r','Marker','*');
