@@ -47,7 +47,7 @@ function validation_indi_hi_vi(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_N
                 xi(i,1) = max(xmatrix(i,:))/sum(xmatrix(i,:));
             end
             indi_hi(ti,kc) = nanmean(xi);
-            [nminfo,group_vi(ti,kc)]=v_nmi(mpmimg1,mpmimg2);
+            [nminfo,indi_vi(ti,kc)]=v_nmi(mpmimg1,mpmimg2);
             disp(['indi_group_hi_vi: ',PART,'_',LR,' kc= ',num2str(kc-1),'->',num2str(kc),' ',num2str(ti)]);
         end
     end
@@ -62,6 +62,4 @@ function validation_indi_hi_vi(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_N
         end
     end
     fclose(fp);
-
-
 
