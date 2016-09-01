@@ -24,7 +24,7 @@ function validation_indi_cont(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_NU
     end; 
 
     % individual-level continuity
-    indi_cont=zeros(MAX_CL_NUM,sub_num);
+    indi_cont=zeros(sub_num,MAX_CL_NUM);
     for kc=2:MAX_CL_NUM
         parfor ti=1:sub_num
             nii_file=strcat(PWD,'/',sub{ti},'/',PREFIX,'_',sub{ti},'_',PART,'_',LR,'_',METHOD,'/',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',PART,'_',LR,'_',num2str(kc),'_MNI_relabel_group.nii.gz');
@@ -46,7 +46,7 @@ function validation_indi_cont(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_NU
                 cont{i}=tmp1;
                 sum=sum+max(cont{i});
             end
-            indi_cont(kc,ti)=sum/kc;
+            indi_cont(ti,kc)=sum/kc;
             disp(['indi_cont: ',PART,'_',LR,' kc=',num2str(kc),' ',num2str(ti)]);
         end
     end

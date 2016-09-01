@@ -10,7 +10,7 @@ function plot_pairwise(PWD,PART,SUB_LIST,VOX_SIZE,MAX_CL_NUM,LorR)
     sub_num=length(sub);
 
     file=strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',PART,'_',LR,'_index_pairwise.mat');
-    load(file);
+    v=load(file);
     x=2:MAX_CL_NUM;
 
     mat_cv=[];
@@ -19,14 +19,14 @@ function plot_pairwise(PWD,PART,SUB_LIST,VOX_SIZE,MAX_CL_NUM,LorR)
     mat_vi=[];
     mask=triu(ones(sub_num),1); % upper triangular part
     for kc=2:MAX_CL_NUM
-        col_cv=cv(:,:,kc);
+        col_cv=v.cv(:,:,kc);
         mat_cv(:,kc)=col_cv(find(mask));
-        col_dice=dice(:,:,kc);
+        col_dice=v.dice(:,:,kc);
         mat_dice(:,kc)=col_dice(find(mask));
         
-        col_nmi=nminfo(:,:,kc);     
+        col_nmi=v.nminfo(:,:,kc);     
         mat_nmi(:,kc)=col_nmi(find(mask));
-        col_vi=vi(:,:,kc); 
+        col_vi=v.vi(:,:,kc); 
         mat_vi(:,kc)=col_vi(find(mask));
     end
 
@@ -37,19 +37,20 @@ function plot_pairwise(PWD,PART,SUB_LIST,VOX_SIZE,MAX_CL_NUM,LorR)
     hold off;
 
     set(gca,'XTick',x);
-    legend('Dice','NMI','CV','Location','SouthWest');
+    legend('Dice','NMI','CV','Location','SouthEast');
     xlabel('Number of clusters','FontSize',14);ylabel('Indice','FontSize',14);
     title(strcat(PART,'.',LR,' pairwise'),'FontSize',14);
+    set(gcf,'Color','w');
 
     output=strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',PART,'_',LR,'_pairwise.jpg');
-    hgexport(gcf,output,hgexport('factorystyle'),'Format','jpeg');
+    export_fig(output,'-r300','-painters','-nocrop');
 
     close;
 
     % VI with non-significant label
     errorbar(x,mean(mat_vi(:,2:kc)),std(mat_vi(:,2:kc)),'-r','Marker','.');
     for k=2:MAX_CL_NUM-1
-        h=ttest2(vi(:,k),vi(:,k+1),0.05,'left');
+        h=ttest2(v.vi(:,k),v.vi(:,k+1),0.05,'left');
         if h==0
             sigstar({[k,k+1]},[nan]);
         end
@@ -58,9 +59,10 @@ function plot_pairwise(PWD,PART,SUB_LIST,VOX_SIZE,MAX_CL_NUM,LorR)
     set(gca,'XTick',x);
     xlabel('Number of clusters','FontSize',14);ylabel('VI','FontSize',14);
     title(strcat(PART,'.',LR,' pairwise VI'),'FontSize',14);
+    set(gcf,'Color','w');
 
     output=strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',PART,'_',LR,'_pairwise_vi.jpg');
-    hgexport(gcf,output,hgexport('factorystyle'),'Format','jpeg');
+    export_fig(output,'-r300','-painters','-nocrop');
 
     close;
 
