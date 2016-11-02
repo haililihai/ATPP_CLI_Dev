@@ -72,7 +72,7 @@ MAX_CL_NUM=$( echo $line | cut -d ' ' -f6 )
 CL_NUM=$( echo $line | cut -d ' ' -f7 )
 
 # 2. distribute a task to the most available host
-IP=`qhost | awk 'NR>=4 && NR<=30 {print $4/$3,$1}' | sort -n | awk 'NR==1{print $2}'`
+IP=`qhost | grep -v ' - '| awk 'NR>=4 && NR<=30 {print $4/$3,$1}' | sort -n | awk 'NR==1{print $2}'`
 
 # 3. do the processing
 mkdir -p ${WD}/log

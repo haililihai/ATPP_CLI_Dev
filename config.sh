@@ -32,7 +32,7 @@ POOLSIZE=8
 # a step will NOT run if its number is NOT in the following array
 # 0 -- generate the working directory, NEED to modify
 # 1 -- ROI registration, from MNI space to DTI space, using spm batch
-SWITCH=(12)
+SWITCH=(4)
 
 # switch for processing left hemisphere, 1--yes, 0--no
 LEFT=1
@@ -51,7 +51,7 @@ SPM=/DATA/233/hli/toolbox/spm8
 TEMPLATE=${DATA_DIR}/MNI152_T1_1mm_brain.nii
 
 # 2_ROI_calc_coord, NIFTI toolbox directory
-NIFTI=/DATA/233/hli/toolbox
+NIFTI=${PIPELINE}/NIfTI_20130306
 
 # 3_ROI_probtrackx, Number of samples, default 5000
 N_SAMPLES=5000

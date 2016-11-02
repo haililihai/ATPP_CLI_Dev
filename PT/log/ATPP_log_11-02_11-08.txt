@@ -1,0 +1,618 @@
+!!! /DATA/233/hli/PT_1mm@mic203__2016-11-02_10:33:23 !!!
+tee: PT/log/progress_check.txt: No such file or directory
+tee: PT/log/progress_check.txt: No such file or directory
+10:33:23  === 4_ROI_calc_matrix start! ===
+which: no shopt in (/opt/sge/bin/lx24-amd64:/mnt/software/fsl5.0/bin:/usr/local/bin:/bin:/usr/bin:/usr/lib/x86_64-linux-gnu/:/mnt/software/afni64:/mnt/software/matlab/bin)
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2009 The MathWorks, Inc.
+                Version 7.8.0.347 (R2009a) 64-bit (glnxa64)
+                             February 12, 2009
+
+ 
+  To get started, type one of these: helpwin, helpdesk, or demo.
+  For product information, visit www.mathworks.com.
+ 
+Starting matlabpool using the 'local' configuration ... connected to 8 labs.
+{??? Error using ==> parallel_function at 594
+Error in ==> ROI_calc_matrix>(parfor body) at 22
+Unable to read file PT/118932/HCP_118932_/DATA/233/hli/PT_1mm_L_coord.txt: No
+such file or directory.
+
+Error in ==> ROI_calc_matrix at 19
+parfor i = 1:length(SUB);
+} 
+>> >> ??? # 5) ROI parcellation using spectral clustering, to generate 2 to max cluster number subregions
+    |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> ??? if [[ ${SWITCH[@]/_5_/} != ${SWITCH[@]} ]]; then
+          |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> {??? Error using ==> echo
+ M-file not found.
+} 
+>> ??? T="$(date +%s)"
+      |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> ??? ${PIPELINE}/5_ROI_parcellation.sh ${PIPELINE} ${WD} ${PREFIX} ${PART} ${SUB_LIST} ${MAX_CL_NUM} ${POOLSIZE} ${METHOD} ${LEFT} ${RIGHT}
+    |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> ??? T="$(($(date +%s)-T))"
+      |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> {??? Error using ==> echo
+ M-file not found.
+} 
+>> {??? Undefined function or method 'printf' for input arguments of type 'char'.
+} 
+>>  
+ans =
+ 
+    embedded.fi: 0-by-0
+ 
+[]
+
+          DataTypeMode: Fixed-point: binary point scaling
+            Signedness: Signed
+            WordLength: 16
+        FractionLength: 15
+
+             RoundMode: nearest
+          OverflowMode: saturate
+           ProductMode: FullPrecision
+  MaxProductWordLength: 128
+               SumMode: FullPrecision
+      MaxSumWordLength: 128
+         CastBeforeSum: true
+>> >> ??? # 6) transform parcellated ROI from DTI space to MNI space
+    |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> >> ??? if [[ ${SWITCH[@]/_6_/} != ${SWITCH[@]} ]]; then
+          |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+{??? Error using ==> echo
+ M-file not found.
+} 
+>> ??? T="$(date +%s)"
+      |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> >> ??? ${PIPELINE}/6_ROI_toMNI_spm.sh ${PIPELINE} ${WD} ${PREFIX} ${PART} ${SUB_LIST} ${MAX_CL_NUM} ${SPM} ${POOLSIZE} ${TEMPLATE} ${VOX_SIZE} ${METHOD} ${LEFT} ${RIGHT}
+    |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+??? T="$(($(date +%s)-T))"
+      |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> {??? Error using ==> echo
+ M-file not found.
+} 
+>> {??? Undefined function or method 'printf' for input arguments of type 'char'.
+} 
+>>  
+ans =
+ 
+    embedded.fi: 0-by-0
+ 
+[]
+
+          DataTypeMode: Fixed-point: binary point scaling
+            Signedness: Signed
+            WordLength: 16
+        FractionLength: 15
+
+             RoundMode: nearest
+          OverflowMode: saturate
+           ProductMode: FullPrecision
+  MaxProductWordLength: 128
+               SumMode: FullPrecision
+      MaxSumWordLength: 128
+         CastBeforeSum: true
+>> >> ??? # 7) calculate group reference image to prepare for the relabel step
+    |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> >> ??? #	 !!the cluster number CL_NUM you want to parcellate should be set!!
+    |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+??? #    threshold at 0.5
+    |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> >> ??? if [[ ${SWITCH[@]/_7_/} != ${SWITCH[@]} ]]; then
+          |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+{??? Error using ==> echo
+ M-file not found.
+} 
+>> ??? T="$(date +%s)"
+      |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> >> ??? ${PIPELINE}/7_ROI_group_refer.sh ${PIPELINE} ${WD} ${PREFIX} ${PART} ${SUB_LIST} ${MAX_CL_NUM} ${NIFTI} ${METHOD} ${VOX_SIZE} ${GROUP_THRES} ${LEFT} ${RIGHT}
+    |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+??? T="$(($(date +%s)-T))"
+      |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> {??? Error using ==> echo
+ M-file not found.
+} 
+>> {??? Undefined function or method 'printf' for input arguments of type 'char'.
+} 
+>>  
+ans =
+ 
+    embedded.fi: 0-by-0
+ 
+[]
+
+          DataTypeMode: Fixed-point: binary point scaling
+            Signedness: Signed
+            WordLength: 16
+        FractionLength: 15
+
+             RoundMode: nearest
+          OverflowMode: saturate
+           ProductMode: FullPrecision
+  MaxProductWordLength: 128
+               SumMode: FullPrecision
+      MaxSumWordLength: 128
+         CastBeforeSum: true
+>> >> ??? # 8) cluster relabeling according to the group reference image
+    |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> >> ??? if [[ ${SWITCH[@]/_8_/} != ${SWITCH[@]} ]]; then
+          |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+{??? Error using ==> echo
+ M-file not found.
+} 
+>> ??? T="$(date +%s)"
+      |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> >> ??? ${PIPELINE}/8_cluster_relabel.sh ${PIPELINE} ${WD} ${PREFIX} ${PART} ${SUB_LIST} ${MAX_CL_NUM} ${NIFTI} ${POOLSIZE} ${GROUP_THRES} ${METHOD} ${VOX_SIZE} ${LEFT} ${RIGHT}
+    |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+??? T="$(($(date +%s)-T))"
+      |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> {??? Error using ==> echo
+ M-file not found.
+} 
+>> {??? Undefined function or method 'printf' for input arguments of type 'char'.
+} 
+>>  
+ans =
+ 
+    embedded.fi: 0-by-0
+ 
+[]
+
+          DataTypeMode: Fixed-point: binary point scaling
+            Signedness: Signed
+            WordLength: 16
+        FractionLength: 15
+
+             RoundMode: nearest
+          OverflowMode: saturate
+           ProductMode: FullPrecision
+  MaxProductWordLength: 128
+               SumMode: FullPrecision
+      MaxSumWordLength: 128
+         CastBeforeSum: true
+>> >> ??? # 9) generate maximum probability map for ROI and probabilistic maps for each subregion
+    |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> ??? #    default threshold at 0.25
+    |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> >> ??? if [[ ${SWITCH[@]/_9_/} != ${SWITCH[@]} ]]; then
+          |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+{??? Error using ==> echo
+ M-file not found.
+} 
+>> ??? T="$(date +%s)"
+      |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> >> ??? ${PIPELINE}/9_calc_mpm.sh ${PIPELINE} ${WD} ${PREFIX} ${PART} ${SUB_LIST} ${MAX_CL_NUM} ${NIFTI} ${METHOD} ${MPM_THRES} ${VOX_SIZE} ${LEFT} ${RIGHT}
+    |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+??? T="$(($(date +%s)-T))"
+      |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> {??? Error using ==> echo
+ M-file not found.
+} 
+>> {??? Undefined function or method 'printf' for input arguments of type 'char'.
+} 
+>>  
+ans =
+ 
+    embedded.fi: 0-by-0
+ 
+[]
+
+          DataTypeMode: Fixed-point: binary point scaling
+            Signedness: Signed
+            WordLength: 16
+        FractionLength: 15
+
+             RoundMode: nearest
+          OverflowMode: saturate
+           ProductMode: FullPrecision
+  MaxProductWordLength: 128
+               SumMode: FullPrecision
+      MaxSumWordLength: 128
+         CastBeforeSum: true
+>> >> ??? # 10) smooth the mpm image
+    |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> >> ??? if [[ ${SWITCH[@]/_10_/} != ${SWITCH[@]} ]]; then
+          |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+{??? Error using ==> echo
+ M-file not found.
+} 
+>> ??? T="$(date +%s)"
+      |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> >> ??? ${PIPELINE}/10_postprocess_mpm.sh ${PIPELINE} ${WD} ${PART} ${SUB_LIST} ${MAX_CL_NUM} ${NIFTI} ${MPM_THRES} ${VOX_SIZE} ${LEFT} ${RIGHT}
+    |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+??? T="$(($(date +%s)-T))"
+      |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> {??? Error using ==> echo
+ M-file not found.
+} 
+>> {??? Undefined function or method 'printf' for input arguments of type 'char'.
+} 
+>>  
+ans =
+ 
+    embedded.fi: 0-by-0
+ 
+[]
+
+          DataTypeMode: Fixed-point: binary point scaling
+            Signedness: Signed
+            WordLength: 16
+        FractionLength: 15
+
+             RoundMode: nearest
+          OverflowMode: saturate
+           ProductMode: FullPrecision
+  MaxProductWordLength: 128
+               SumMode: FullPrecision
+      MaxSumWordLength: 128
+         CastBeforeSum: true
+>> >> ??? # 11) validation
+    |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> >> ??? if [[ ${SWITCH[@]/_11_/} != ${SWITCH[@]} ]]; then
+          |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+{??? Error using ==> echo
+ M-file not found.
+} 
+>> ??? T="$(date +%s)"
+      |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> >> ??? ${PIPELINE}/11_validation.sh ${PIPELINE} ${WD} ${PREFIX} ${PART} ${SUB_LIST} ${METHOD} ${VOX_SIZE} ${MAX_CL_NUM} ${N_ITER} ${POOLSIZE} ${GROUP_THRES} ${MPM_THRES} ${LEFT} ${RIGHT} ${split_half} ${pairwise} ${leave_one_out} ${cont} ${hi_vi} ${silhouette} ${tpd}
+    |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+??? T="$(($(date +%s)-T))"
+      |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> {??? Error using ==> echo
+ M-file not found.
+} 
+>> {??? Undefined function or method 'printf' for input arguments of type 'char'.
+} 
+>>  
+ans =
+ 
+    embedded.fi: 0-by-0
+ 
+[]
+
+          DataTypeMode: Fixed-point: binary point scaling
+            Signedness: Signed
+            WordLength: 16
+        FractionLength: 15
+
+             RoundMode: nearest
+          OverflowMode: saturate
+           ProductMode: FullPrecision
+  MaxProductWordLength: 128
+               SumMode: FullPrecision
+      MaxSumWordLength: 128
+         CastBeforeSum: true
+>> >> ??? # 12) plot indice
+    |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> >> ??? if [[ ${SWITCH[@]/_12_/} != ${SWITCH[@]} ]]; then
+          |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+{??? Error using ==> echo
+ M-file not found.
+} 
+>> ??? T="$(date +%s)"
+      |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> >> ??? ${PIPELINE}/12_indice_plot.sh ${PIPELINE} ${WD} ${PART} ${SUB_LIST} ${VOX_SIZE} ${MAX_CL_NUM} ${LEFT} ${RIGHT} ${split_half} ${pairwise} ${leave_one_out} ${cont} ${hi_vi} ${silhouette} ${tpd}
+    |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+??? T="$(($(date +%s)-T))"
+      |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> {??? Error using ==> echo
+ M-file not found.
+} 
+>> {??? Undefined function or method 'printf' for input arguments of type 'char'.
+} 
+>>  
+ans =
+ 
+    embedded.fi: 0-by-0
+ 
+[]
+
+          DataTypeMode: Fixed-point: binary point scaling
+            Signedness: Signed
+            WordLength: 16
+        FractionLength: 15
+
+             RoundMode: nearest
+          OverflowMode: saturate
+           ProductMode: FullPrecision
+  MaxProductWordLength: 128
+               SumMode: FullPrecision
+      MaxSumWordLength: 128
+         CastBeforeSum: true
+>> >> ??? # 13) transform subregions from MNI space to DTI space
+    |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> >> ??? if [[ ${SWITCH[@]/_13_/} != ${SWITCH[@]} ]]; then
+          |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+{??? Error using ==> echo
+ M-file not found.
+} 
+>> ??? T="$(date +%s)"
+      |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> >> ??? ${PIPELINE}/13_subregion_toDTI_spm.sh ${PIPELINE} ${WD} ${PART} ${SUB_LIST} ${CL_NUM} ${TEMPLATE} ${VOX_SIZE} ${MPM_THRES} ${POOLSIZE} ${SPM} ${LEFT} ${RIGHT}
+    |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+??? T="$(($(date +%s)-T))"
+      |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> {??? Error using ==> echo
+ M-file not found.
+} 
+>> {??? Undefined function or method 'printf' for input arguments of type 'char'.
+} 
+>>  
+ans =
+ 
+    embedded.fi: 0-by-0
+ 
+[]
+
+          DataTypeMode: Fixed-point: binary point scaling
+            Signedness: Signed
+            WordLength: 16
+        FractionLength: 15
+
+             RoundMode: nearest
+          OverflowMode: saturate
+           ProductMode: FullPrecision
+  MaxProductWordLength: 128
+               SumMode: FullPrecision
+      MaxSumWordLength: 128
+         CastBeforeSum: true
+>> >> ??? # 14) generate probabilistic tractography for each subregion
+    |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> >> ??? #    default 5000 samples for each voxel, WITHOUT distance correction
+    |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+??? if [[ ${SWITCH[@]/_14_/} != ${SWITCH[@]} ]]; then
+          |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> {??? Error using ==> echo
+ M-file not found.
+} 
+>> ??? T="$(date +%s)"
+      |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> >> ??? ${PIPELINE}/14_subregion_probtrackx.sh ${WD} ${DATA_DIR} ${PART} ${SUB_LIST} ${CL_NUM} ${VOX_SIZE} ${MPM_THRES} ${N_SAMPLES} ${DIS_COR} ${LEN_STEP} ${N_STEPS} ${CUR_THRES} ${LEFT} ${RIGHT}
+    |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+??? T="$(($(date +%s)-T))"
+      |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> {??? Error using ==> echo
+ M-file not found.
+} 
+>> {??? Undefined function or method 'printf' for input arguments of type 'char'.
+} 
+>>  
+ans =
+ 
+    embedded.fi: 0-by-0
+ 
+[]
+
+          DataTypeMode: Fixed-point: binary point scaling
+            Signedness: Signed
+            WordLength: 16
+        FractionLength: 15
+
+             RoundMode: nearest
+          OverflowMode: saturate
+           ProductMode: FullPrecision
+  MaxProductWordLength: 128
+               SumMode: FullPrecision
+      MaxSumWordLength: 128
+         CastBeforeSum: true
+>> >> ??? # 15) transform probtrackxs from DTI space to MNI space
+    |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> ??? if [[ ${SWITCH[@]/_15_/} != ${SWITCH[@]} ]]; then
+          |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> {??? Error using ==> echo
+ M-file not found.
+} 
+>> ??? T="$(date +%s)"
+      |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> >> ??? ${PIPELINE}/13_probtrackx_toMNI_spm.sh ${PIPELINE} ${WD} ${PART} ${SUB_LIST} ${CL_NUM} ${TEMPLATE} ${VOX_SIZE} ${MPM_THRES} ${N_SAMPLES} ${P} ${POOLSIZE} ${SPM} ${LEFT} ${RIGHT}
+    |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+??? T="$(($(date +%s)-T))"
+      |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> {??? Error using ==> echo
+ M-file not found.
+} 
+>> {??? Undefined function or method 'printf' for input arguments of type 'char'.
+} 
+>>  
+ans =
+ 
+    embedded.fi: 0-by-0
+ 
+[]
+
+          DataTypeMode: Fixed-point: binary point scaling
+            Signedness: Signed
+            WordLength: 16
+        FractionLength: 15
+
+             RoundMode: nearest
+          OverflowMode: saturate
+           ProductMode: FullPrecision
+  MaxProductWordLength: 128
+               SumMode: FullPrecision
+      MaxSumWordLength: 128
+         CastBeforeSum: true
+>> >> ??? # 16) generate the probabilistic maps of probtrackxs
+    |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> >> ??? if [[ ${SWITCH[@]/_16_/} != ${SWITCH[@]} ]]; then
+          |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+{??? Error using ==> echo
+ M-file not found.
+} 
+>> ??? T="$(date +%s)"
+      |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> >> ??? ${PIPELINE}/16_probtrackx_pm.sh ${WD} ${PART} ${SUB_LIST} ${CL_NUM} ${PM_THRES} ${LEFT} ${RIGHT}
+    |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+??? T="$(($(date +%s)-T))"
+      |
+{Error: The input character is not valid in MATLAB statements or expressions.
+} 
+>> {??? Error using ==> echo
+ M-file not found.
+} 
+>> >> {??? Undefined function or method 'printf' for input arguments of type 'char'.
+} 
+ 
+ans =
+ 
+    embedded.fi: 0-by-0
+ 
+[]
+
+          DataTypeMode: Fixed-point: binary point scaling
+            Signedness: Signed
+            WordLength: 16
+        FractionLength: 15
+
+             RoundMode: nearest
+          OverflowMode: saturate
+           ProductMode: FullPrecision
+  MaxProductWordLength: 128
+               SumMode: FullPrecision
+      MaxSumWordLength: 128
+         CastBeforeSum: true
+>> >> {??? Error using ==> echo
+ M-file not found.
+} 
+>> {??? Error using ==> echo
+Too many input arguments.
+} 
+>> {??? Error using ==> echo
+ M-file not found.
+} 
+>> tee: PT/log/progress_check.txt: No such file or directory
+10:33:58  === 4_ROI_calc_matrix done! ===
+Time elapsed: 00:00:00:35
+
+tee: PT/log/progress_check.txt: No such file or directory
