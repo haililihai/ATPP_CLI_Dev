@@ -86,7 +86,7 @@ if ~exist(outfolder) mkdir(outfolder);end;
 fprintf('Create connection_matrix...\n');
 matrix = con_matrix;
 output = strcat(outfolder,'connection_matrix.mat');
-save(output,'matrix','xyz');
+save(output,'matrix','xyz','-v7.3');
 clear matrix;
 
 
@@ -95,7 +95,7 @@ con_matrix(con_matrix < threshold )=0;
 cor_matrix = con_matrix*con_matrix';
 matrix = cor_matrix;
 output = strcat(outfolder,'correlation_matrix.mat');
-save(output,'matrix','xyz');
+save(output,'matrix','xyz','-v7.3');
 clear matrix;
 
 %% =========================================================== %%

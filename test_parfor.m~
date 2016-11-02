@@ -1,0 +1,6 @@
+N=10;
+dice=zeros(N,2,10);
+matlabpool 5
+
+parfor i=1:N
+    di

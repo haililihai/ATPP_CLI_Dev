@@ -16,11 +16,12 @@ function ROI_group_refer_xmm(PWD,PREFIX,PART,SUB_LIST,MAX_CL_NUM,METHOD,VOX_SIZE
 	end
 
 	defnii = load_untouch_nii(strcat(PWD,'/',SUB{1},'/',PREFIX,'_',SUB{1},'_',PART,'_',LR,'_',METHOD,'/',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',PART,'_',LR,'_',num2str(2),'_MNI.nii.gz'));
-	sumimg = sparse(size(defnii.img));
+	sumimg = zeros(size(defnii.img),'single');
 	for j = 1:subnum 
 		  disp(strcat(SUB{j},'_',LR));
 		  datanii = load_untouch_nii(strcat(PWD,'/',SUB{j},'/',PREFIX,'_',SUB{j},'_',PART,'_',LR,'_',METHOD,'/',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',PART,'_',LR,'_',num2str(2),'_MNI.nii.gz'));
 		  datanii.img(datanii.img>0) = 1;
+		  datanii.img=single(datanii.img);
 		  sumimg = sumimg + datanii.img;
 	end
 
@@ -42,21 +43,22 @@ function ROI_group_refer_xmm(PWD,PREFIX,PART,SUB_LIST,MAX_CL_NUM,METHOD,VOX_SIZE
 for CL_NUM=2:MAX_CL_NUM
 if ~exist(strcat(grouproipath,num2str(VOX_SIZE),'mm_',PART,'_',LR,'_',num2str(CL_NUM),'_',num2str(GROUP_THRES_REAL*100),'_group.nii'))
     disp(strcat(PART,'_',LR,' cluster number_',num2str(CL_NUM),' is running...'));
-    groupmatrix = sparse(ROISIZE,ROISIZE);
+    groupmatrix = zeros(ROISIZE,ROISIZE);
     for j = 1:length(SUB)
 		datanii = load_untouch_nii(strcat(PWD,'/',SUB{j},'/',PREFIX,'_',SUB{j},'_',PART,'_',LR,'_',METHOD,'/',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',PART,'_',LR,'_',num2str(CL_NUM),'_MNI.nii.gz'));
 		dataimg = datanii.img;
+		kimatrix=zeros(ROISIZE,ROISIZE);
 		for ki=1:CL_NUM
-			kimatrix = sparse(ROISIZE,ROISIZE);
+			kimatrix(:)=0;
 			kind = find(dataimg==ki);
 		  	[tf,vind] = ismember(kind,roiindex);
 			kimatrix(vind(vind>0),vind(vind>0)) = 1;
 			groupmatrix = groupmatrix + kimatrix;
 		end	
     end
-    groupmatrix=groupmatrix-spdiags(diag(groupmatrix));
+    groupmatrix=groupmatrix-diag(diag(groupmatrix));
     index=sc3(CL_NUM,groupmatrix);
-    img_f = sparse(size(defnii.img));
+    img_f = zeros(size(defnii.img));
     a=1:1:length(index);
     img_f(roiindex(a)) = index(a);
     defnii.img = img_f;
