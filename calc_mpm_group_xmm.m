@@ -84,7 +84,7 @@ for CL_NUM=2:MAX_CL_NUM
         else
             mean1=connect6mean(prob_cluster(:,:,:,tmp_ind(1)),xi(vi),yi(vi),zi(vi));
             mean2=connect6mean(prob_cluster(:,:,:,tmp_ind(2)),xi(vi),yi(vi),zi(vi));
-            [~,label]=max([mean1,mean2]);
+            [null_var,label]=max([mean1,mean2]);
             mpm_cluster(index(vi))=tmp_ind(label);
         end
     end
