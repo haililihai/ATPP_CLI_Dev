@@ -8,13 +8,12 @@
 # ---- Simple and easy-to-use settings
 #
 # Usage: sh ATPP.sh batch_list.txt
-# 2015.5.10 V1.0
 # Hai Li (hai.li@nlpr.ia.ac.cn)
 
 
 #==============================================================================
 # Prerequisites:
-# 1) Tools: FSL (with FDT toolbox), SGE and MATLAB (with SPM8 and NIfTI toolbox)
+# 1) Tools: FSL (with FDT toolbox), SGE and MATLAB (with SPM8)
 # 2) Data files:
 #    > T1 image for each subject
 #    > b0 image for each subject
@@ -37,6 +36,7 @@
 # Global configuration file
 # Before running the pipeline, you NEED to modify parameters in the file.
 #===============================================================================
+
 source ./config.sh
 
 #====================================================================================
@@ -47,10 +47,12 @@ source ./config.sh
 # - Data directory , e.g. /DATA/233/hli/Data/chengdu
 # - Prefix of data , e.g. CD
 # - List of subjects , e.g. /DATA/233/hli/Data/chengdu/sub_CD.txt
-# - Brain region name , e.g. Amyg
 # - working directory , e.g. /DATA/233/hli/Amyg
+# - Brain region name , e.g. Amyg
 # - Maximum cluster number , e.g. 6
 # - Cluster number , e.g. 3
+#====================================================================================
+
 test -e $1 && BATCH_LIST=$1 || BATCH_LIST=${PIPELINE}/batch_list.txt
 
 
@@ -58,7 +60,9 @@ test -e $1 && BATCH_LIST=$1 || BATCH_LIST=${PIPELINE}/batch_list.txt
 #----------------------------START OF SCRIPT------------------------------------
 #===============================================================================
 
-cat ${PIPELINE}/header.txt
+# show header info 
+cat ${PIPELINE}/header.txt 
+
 while read line
 do
 
@@ -71,17 +75,34 @@ PART=$( echo $line | cut -d ' ' -f5 )
 MAX_CL_NUM=$( echo $line | cut -d ' ' -f6 )
 CL_NUM=$( echo $line | cut -d ' ' -f7 )
 
-# 2. distribute a task to the most available host
-IP=`qhost | grep -v ' - '| awk 'NR>=4 && NR<=30 {print $4/$3,$1}' | sort -n | awk 'NR==1{print $2}'`
+# 2. make a proper bash script 
+
+mkdir -p ${WD}/log
+LOG_DIR=${WD}/log
+
+echo "\
+#!/bin/bash
+#$ -V
+#$ -cwd
+#$ -N ATPP
+#$ -o ${LOG_DIR}
+#$ -e ${LOG_DIR}
+
+bash ${PIPELINE}/pipeline.sh ${PIPELINE} ${WD} ${DATA_DIR} ${PREFIX} ${PART} ${SUB_LIST} ${MAX_CL_NUM} ${CL_NUM} >${LOG_DIR}/ATPP_log_$(date +%m-%d_%H-%M).txt 2>&1"\
+>${LOG_DIR}/ATPP_qsub.sh
 
 # 3. do the processing
-mkdir -p ${WD}/log
-echo "============================================================="
-echo "=============== ATPP running... -- ${PART}@${IP} ==============="
-#ssh mic250 "bash -s " < ${PIPELINE}/pipeline.sh ${PIPELINE} ${WD} ${DATA_DIR} ${PREFIX} ${PART} ${SUB_LIST} ${MAX_CL_NUM} ${CL_NUM} >${WD}/log/ATPP_log_$(date +%m-%d_%H-%M).txt 2>&1 &
-ssh ${IP} "bash -s " < ${PIPELINE}/pipeline.sh ${PIPELINE} ${WD} ${DATA_DIR} ${PREFIX} ${PART} ${SUB_LIST} ${MAX_CL_NUM} ${CL_NUM} >${WD}/log/ATPP_log_$(date +%m-%d_%H-%M).txt 2>&1 &
-#echo ${PIPELINE}/pipeline.sh ${PIPELINE} ${WD} ${DATA_DIR} ${PREFIX} ${PART} ${SUB_LIST} ${MAX_CL_NUM} ${CL_NUM} >${WD}/log/ATPP_log_$(date +%m-%d_%H-%M).txt 2>&1 &
-echo "==== Processing info @ ${WD}/log/ATPP_log_$(date +%m-%d_%H-%M).txt ====" 
-sleep 20s # waiting for a proper host
+echo "=============== ATPP is running for ${PART} ================"
 
-done < ${BATCH_LIST}
+qsub ${WD}/log/ATPP_qsub.sh
+
+echo "========================================================"
+echo "log: ${LOG_DIR}/ATPP_log_$(date +%m-%d_%H-%M).txt" 
+
+# waiting for a proper host
+sleep 3s 
+
+done < ${BATCH_LIST} 
+
+echo "========================================================"
+echo "=== Please type 'qstat' to show status of the job(s) ==="

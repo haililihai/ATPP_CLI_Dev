@@ -16,9 +16,12 @@ CL_NUM=$8
 # fetch the variables
 source ${PIPELINE}/config.sh
 
-# show the host
-echo "!!! ${PART}@$(hostname)__$(date +%F_%T) !!!" |tee -a ${WD}/log/progress_check.txt
+# show header info
+cat ${PIPELINE}/header.txt
 
+# show the exec host
+echo "======== >>> ${PART}@$(hostname)__$(date +%F_%T) <<< ========" |tee -a ${WD}/log/progress_check.txt
+echo ""
 
 #===============================================================================
 #--------------------------------Pipeline---------------------------------------
