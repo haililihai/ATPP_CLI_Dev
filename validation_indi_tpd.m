@@ -11,11 +11,11 @@ function validation_indi_tpd(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_NUM
 
     MASK_L_FILE=strcat(PWD,'/group_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',PART,'_L_roimask_thr',num2str(GROUP_THRES),'.nii.gz');
     MASK_L_NII=load_untouch_nii(MASK_L_FILE);
-    MASK_L=MASK_L_NII.img; 
+    MASK_L=double(MASK_L_NII.img); 
 
     MASK_R_FILE=strcat(PWD,'/group_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',PART,'_R_roimask_thr',num2str(GROUP_THRES),'.nii.gz');
     MASK_R_NII=load_untouch_nii(MASK_R_FILE);
-    MASK_R=MASK_R_NII.img; 
+    MASK_R=double(MASK_R_NII.img); 
 
     % before MATLAB R2013b
     if matlabpool('size')==0

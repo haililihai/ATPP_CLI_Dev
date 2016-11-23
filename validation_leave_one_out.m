@@ -16,7 +16,7 @@ function validation_leave_one_out(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_C
     GROUP_THRES=GROUP_THRES*100;
     MASK_FILE=strcat(PWD,'/group_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',PART,'_',LR,'_roimask_thr',num2str(GROUP_THRES),'.nii.gz');
     MASK_NII=load_untouch_nii(MASK_FILE);
-    MASK=MASK_NII.img; 
+    MASK=double(MASK_NII.img); 
 
     cv=zeros(sub_num,MAX_CL_NUM);
     dice=zeros(sub_num,MAX_CL_NUM);

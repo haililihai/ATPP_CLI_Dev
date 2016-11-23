@@ -13,7 +13,7 @@ function [mpm_cluster]=cluster_mpm_validation(PWD,PREFIX,PART,SUB,METHOD,VOX_SIZ
     end
 
     vnii_ref=load_untouch_nii(strcat(PWD,'/',sub{1},'/',PREFIX,'_',sub{1},'_',PART,'_',LR,'_',METHOD,'/',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',PART,'_',LR,'_',num2str(kc),'_MNI_relabel_group.nii.gz'));
-    ref_img=vnii_ref.img;
+    ref_img=double(vnii_ref.img);
     IMGSIZE=size(ref_img);
     sumimg=zeros(IMGSIZE);
 
@@ -22,9 +22,9 @@ function [mpm_cluster]=cluster_mpm_validation(PWD,PREFIX,PART,SUB,METHOD,VOX_SIZ
         sub_file=strcat(PWD,'/',sub{subi},'/',PREFIX,'_',sub{subi},'_',PART,'_',LR,'_',METHOD,'/',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',PART,'_',LR,'_',num2str(kc),'_MNI_relabel_group.nii.gz');
         vnii=load_untouch_nii(sub_file);
         tha_seg_result= vnii.img;   
-        dataimg=vnii.img;
+        dataimg=double(vnii.img);
         dataimg(dataimg>0)=1;
-        sumimg=sumimg+double(dataimg);
+        sumimg=sumimg+dataimg;
 
     %computing the probabilistic maps
         for ki=1:kc
@@ -54,7 +54,7 @@ function [mpm_cluster]=cluster_mpm_validation(PWD,PREFIX,PART,SUB,METHOD,VOX_SIZ
         else
             mean1=connect6mean(prob_cluster(:,:,:,tmp_ind(1)),xi(vi),yi(vi),zi(vi));
             mean2=connect6mean(prob_cluster(:,:,:,tmp_ind(2)),xi(vi),yi(vi),zi(vi));
-            [~,label]=max([mean1,mean2]);
+            [null_var,label]=max([mean1,mean2]);
             mpm_cluster(index(vi))=tmp_ind(label);
         end
     end

@@ -1,4 +1,4 @@
-function validation_split_half(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_NUM,POOLSIZE,N_ITER,GROUP_THRES,MPM_THRES,LorR)
+function validation_split_half(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_NUM,N_ITER,POOLSIZE,GROUP_THRES,MPM_THRES,LorR)
 % split half strategy
 
     if LorR == 1
@@ -20,7 +20,7 @@ function validation_split_half(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_N
     GROUP_THRES=GROUP_THRES*100;
     MASK_FILE=strcat(PWD,'/group_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',PART,'_',LR,'_roimask_thr',num2str(GROUP_THRES),'.nii.gz');
     MASK_NII=load_untouch_nii(MASK_FILE);
-    MASK=MASK_NII.img; 
+    MASK=double(MASK_NII.img); 
 
     half=floor(sub_num/2);
     
@@ -37,10 +37,10 @@ function validation_split_half(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_N
     for kc=2:MAX_CL_NUM
         list1_sub={};
         list2_sub={};
-        dice_k=zeros(N,1);
-        nmi_k=zeros(N,1);
-        vi_k=zeros(N,1);
-        cv_k=zeros(N,1);
+        dice_k=zeros(N_ITER,1);
+        nmi_k=zeros(N_ITER,1);
+        vi_k=zeros(N_ITER,1);
+        cv_k=zeros(N_ITER,1);
         
         parfor ti=1:N_ITER
             tmp=randperm(sub_num);

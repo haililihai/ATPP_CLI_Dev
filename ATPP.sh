@@ -79,6 +79,7 @@ CL_NUM=$( echo $line | cut -d ' ' -f7 )
 
 mkdir -p ${WD}/log
 LOG_DIR=${WD}/log
+LOG=${LOG_DIR}/ATPP_log_$(date +%m-%d_%H-%M).txt
 
 echo "\
 #!/bin/bash
@@ -88,7 +89,7 @@ echo "\
 #$ -o ${LOG_DIR}
 #$ -e ${LOG_DIR}
 
-bash ${PIPELINE}/pipeline.sh ${PIPELINE} ${WD} ${DATA_DIR} ${PREFIX} ${PART} ${SUB_LIST} ${MAX_CL_NUM} ${CL_NUM} >${LOG_DIR}/ATPP_log_$(date +%m-%d_%H-%M).txt 2>&1"\
+bash ${PIPELINE}/pipeline.sh ${PIPELINE} ${WD} ${DATA_DIR} ${PREFIX} ${PART} ${SUB_LIST} ${MAX_CL_NUM} ${CL_NUM} >>${LOG} 2>${LOG}"\
 >${LOG_DIR}/ATPP_qsub.sh
 
 # 3. do the processing

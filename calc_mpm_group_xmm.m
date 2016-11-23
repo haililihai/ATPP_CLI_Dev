@@ -35,7 +35,7 @@ end
 for CL_NUM=2:MAX_CL_NUM
     %if ~exist(strcat(probpath,num2str(VOX_SIZE),'mm_',PART,'_',LR,'_',num2str(CL_NUM),'_MPM_thr',num2str(MPM_THRES*100),'_group.nii'))
     prob_cluster=zeros([IMGSIZE,CL_NUM]);
-    sumimg = zeros(IMGSIZE,'double');
+    sumimg = zeros(IMGSIZE);
 
     sub_num = length(SUB);
     for i=1:sub_num
@@ -44,7 +44,7 @@ for CL_NUM=2:MAX_CL_NUM
         tha_seg_result= vnii.img;   
         dataimg = vnii.img;
         dataimg(dataimg>0) = 1;
-        sumimg = sumimg + double(dataimg);
+        sumimg = sumimg + dataimg;
 
         %computering the probabilistic maps
         for ki=1:CL_NUM

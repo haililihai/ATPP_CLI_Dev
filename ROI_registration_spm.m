@@ -5,6 +5,18 @@ function ROI_registration_spm(WD,PREFIX,PART,SUB_LIST,POOLSIZE,TEMPLATE,LEFT,ROI
 
 SUB = textread(SUB_LIST,'%s');
 
+% make ROIs be proper datatype, default double
+roi_l=load_untouch_nii(ROI_L);
+roi_l.hdr.dime.datatype=64;
+roi_l.hdr.dime.bitpix=64;
+roi_l.img=double(roi_l.img);
+save_untouch_nii(roi_l,ROI_L);
+roi_r=load_untouch_nii(ROI_R);
+roi_r.hdr.dime.datatype=64;
+roi_r.hdr.dime.bitpix=64;
+roi_r.img=double(roi_r.img);
+save_untouch_nii(roi_r,ROI_R);
+
 if exist(strcat(prefdir,'/../local_scheduler_data'))
 	rmdir(strcat(prefdir,'/../local_scheduler_data'),'s');
 end

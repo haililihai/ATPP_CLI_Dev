@@ -14,6 +14,8 @@ POOLSIZE=$1
 shift
 SPM=$1
 shift
+NIFTI=$1
+shift
 TEMPLATE=$1
 shift
 LEFT=$1
@@ -25,7 +27,7 @@ shift
 ROI_R=$1
  
 
-(matlab -nodisplay -nosplash -r "addpath('${PIPELINE}');addpath('${SPM}');ROI_registration_spm('${WD}','${PREFIX}','${PART}','${SUB_LIST}',${POOLSIZE},'${TEMPLATE}',${LEFT},'${ROI_L}',${RIGHT},'${ROI_R}');exit") &
+(matlab -nodisplay -nosplash -r "addpath('${PIPELINE}');addpath('${SPM}');addpath('${NIFTI}');ROI_registration_spm('${WD}','${PREFIX}','${PART}','${SUB_LIST}',${POOLSIZE},'${TEMPLATE}',${LEFT},'${ROI_L}',${RIGHT},'${ROI_R}');exit") &
 wait
 
 

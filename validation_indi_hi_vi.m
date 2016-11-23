@@ -16,7 +16,7 @@ function validation_indi_hi_vi(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_N
     GROUP_THRES=GROUP_THRES*100;
     MASK_FILE=strcat(PWD,'/group_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',PART,'_',LR,'_roimask_thr',num2str(GROUP_THRES),'.nii.gz');
     MASK_NII=load_untouch_nii(MASK_FILE);
-    MASK=MASK_NII.img;
+    MASK=double(MASK_NII.img);
 
     % before MATLAB R2013b
     if matlabpool('size')==0
