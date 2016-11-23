@@ -79,7 +79,7 @@ CL_NUM=$( echo $line | cut -d ' ' -f7 )
 
 mkdir -p ${WD}/log
 LOG_DIR=${WD}/log
-LOG=${LOG_DIR}/ATPP_log_$(date +%m-%d_%H-%M).txt
+LOG=${LOG_DIR}/ATPP_log_$(date +%m-%d_%H-%M-%S).txt
 
 echo "\
 #!/bin/bash
