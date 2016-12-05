@@ -20,26 +20,27 @@ function validation_indi_silhouette(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX
     % individual-level silhouette
     indi_sil=zeros(sub_num,MAX_CL_NUM);
     parfor ti=1:sub_num
-        sub_ti=ti;
         matrix_file=strcat(PWD,'/',sub{ti},'/',PREFIX,'_',sub{ti},'_',PART,'_',LR,'_matrix/connection_matrix.mat');
         con_matrix=load(matrix_file);
         sum_matrix=sum(con_matrix.matrix,2);
         matrix=con_matrix.matrix./sum_matrix(:,ones(1,size(con_matrix.matrix,2)));
         distance=pdist(con_matrix.matrix,'cosine');
 
+        temp=zeros(1,MAX_CL_NUM);
         for kc=2:MAX_CL_NUM
             nii_file=strcat(PWD,'/',sub{ti},'/',PREFIX,'_',sub{ti},'_',PART,'_',LR,'_',METHOD,'/',PART,'_',LR,'_',num2str(kc),'.nii');
             nii=load_untouch_nii(nii_file);
-            tempimg=nii.img;
+            tempimg=double(nii.img);
             [xx,yy,zz]=size(tempimg);    
             label=zeros(length(con_matrix.xyz),1);
             for n=1:length(con_matrix.xyz)
                 label(n,1)=tempimg(con_matrix.xyz(n,1)+1,con_matrix.xyz(n,2)+1,con_matrix.xyz(n,3)+1);
             end
             s=silhouette([],label,distance);
-            indi_sil(sub_ti,kc)=nanmean(s);
+            temp(kc)=nanmean(s);
             disp(['indi_silhouette: ',PART,'_',LR,' kc=',num2str(kc),' ',num2str(ti)]);
         end
+        indi_sil(ti,:)=temp;
     end
 
 
