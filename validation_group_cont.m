@@ -16,6 +16,8 @@ function validation_group_cont(PWD,PART,SUB_LIST,VOX_SIZE,MAX_CL_NUM,MPM_THRES,L
     % group-level continuity
     group_cont=zeros(1,MAX_CL_NUM);
     for kc=2:MAX_CL_NUM
+        disp(['group_cont: ',PART,'_',LR,' kc=',num2str(kc)]);
+
         mpm_file=strcat(PWD,'/MPM_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',PART,'_',LR,'_',num2str(kc),'_MPM_thr',num2str(MPM_THRES*100),'_group.nii.gz');
         mpm=load_untouch_nii(mpm_file);
         tempimg=double(mpm.img);
@@ -35,7 +37,6 @@ function validation_group_cont(PWD,PART,SUB_LIST,VOX_SIZE,MAX_CL_NUM,MPM_THRES,L
             sum=sum+max(cont{i});
         end
         group_cont(kc)=sum/kc;
-        disp(['group_cont: ',PART,'_',LR,' kc=',num2str(kc)]);
     end
 
     if ~exist(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm')) mkdir(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm'));end

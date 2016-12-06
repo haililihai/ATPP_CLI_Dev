@@ -23,14 +23,18 @@ function validation_indi_tpd(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_NUM
     end; 
 
     indi_tpd=zeros(sub_num,MAX_CL_NUM);
-    for kc=2:MAX_CL_NUM
-        parfor ti=1:sub_num
+    parfor ti=1:sub_num
+        temp_tpd=zeros(1,MAX_CL_NUM);
+
+        for kc=2:MAX_CL_NUM
+            disp(['indi_tpd: ',PART,' kc=',num2str(kc),' ',num2str(ti)]);
+
             mpm_file1=strcat(PWD,'/',sub{ti},'/',PREFIX,'_',sub{ti},'_',PART,'_L_',METHOD,'/',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',PART,'_L_',num2str(kc),'_MNI_relabel_group.nii.gz');
             mpm1=load_untouch_nii(mpm_file1);
-            img1=mpm1.img;
+            img1=double(mpm1.img);
             mpm_file2=strcat(PWD,'/',sub{ti},'/',PREFIX,'_',sub{ti},'_',PART,'_R_',METHOD,'/',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',PART,'_R_',num2str(kc),'_MNI_relabel_group.nii.gz');
             mpm2=load_untouch_nii(mpm_file2);
-            img2=mpm2.img;
+            img2=double(mpm2.img);
             img1=img1.*MASK_L;
             img2=img2.*MASK_R;
 
@@ -72,10 +76,9 @@ function validation_indi_tpd(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_NUM
 
             v_con1=reshape(con1',1,[]);
             v_con2=reshape(con2',1,[]);
-            indi_tpd(ti,kc)=pdist([v_con1;v_con2],'cosine');
-
-            disp(['indi_tpd: ',PART,' kc=',num2str(kc),' ',num2str(ti)]);
+            temp_tpd(kc)=pdist([v_con1;v_con2],'cosine');
         end
+        indi_tpd(ti,:)=temp_tpd;
     end
 
     if ~exist(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm')) mkdir(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm'));end

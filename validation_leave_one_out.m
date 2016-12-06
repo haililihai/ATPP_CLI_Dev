@@ -28,31 +28,40 @@ function validation_leave_one_out(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_C
         matlabpool(POOLSIZE);
     end; 
 
-    for kc=2:MAX_CL_NUM
-        parfor ti=1:sub_num
-            sub1=sub;
-            sub1(ti)=[];
-            dice_m=zeros(kc,1);
+    parfor ti=1:sub_num
+       sub1=sub;
+       sub1(ti)=[];
+
+       temp_cv=zeros(1,MAX_CL_NUM);
+       temp_dice=zeros(1,MAX_CL_NUM);
+       temp_nminfo=zeros(1,MAX_CL_NUM);
+       temp_vi=zeros(1,MAX_CL_NUM);
+
+       for kc=2:MAX_CL_NUM
+            disp(['leave_one_out: ',PART,'_',LR,' kc=',num2str(kc),' ',num2str(ti),'/',num2str(sub_num)]);
             
             vnii_ref_file=strcat(PWD,'/',sub{ti},'/',PREFIX,'_',sub{ti},'_',PART,'_',LR,'_',METHOD,'/',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',PART,'_',LR,'_',num2str(kc),'_MNI_relabel_group.nii.gz');
             vnii_ref=load_untouch_nii(vnii_ref_file);
-            mpm_cluster1=vnii_ref.img;
+            mpm_cluster1=double(vnii_ref.img);
             mpm_cluster2=cluster_mpm_validation(PWD,PREFIX,PART,sub1,METHOD,VOX_SIZE,kc,MPM_THRES,LorR);
             mpm_cluster1=mpm_cluster1.*MASK;
             mpm_cluster2=mpm_cluster2.*MASK;
 
 
             %compute dice coefficent
-            dice(ti,kc)=v_dice(mpm_cluster1,mpm_cluster2,kc);
+            temp_dice(kc)=v_dice(mpm_cluster1,mpm_cluster2,kc);
             
             %compute the normalized mutual information and variation of information
-            [nminfo(ti,kc),vi(ti,kc)]=v_nmi(mpm_cluster1,mpm_cluster2);
+            [temp_nminfo(kc),temp_vi(kc)]=v_nmi(mpm_cluster1,mpm_cluster2);
             
             %compute cramer V
-            cv(ti,kc)=v_cramerv(mpm_cluster1,mpm_cluster2);
-            
-            disp(['leave_one_out: ',PART,'_',LR,' kc=',num2str(kc),' ',num2str(ti),'/',num2str(sub_num)]);
+            temp_cv(kc)=v_cramerv(mpm_cluster1,mpm_cluster2);
         end
+
+        cv(ti,:)=temp_cv;
+        dice(ti,:)=temp_dice;
+        nminfo(ti,:)=temp_nminfo;
+        vi(ti,:)=temp_vi;
     end
     % matlabpool close
 

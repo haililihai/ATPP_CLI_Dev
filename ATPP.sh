@@ -93,17 +93,17 @@ bash ${PIPELINE}/pipeline.sh ${PIPELINE} ${WD} ${DATA_DIR} ${PREFIX} ${PART} ${S
 >${LOG_DIR}/ATPP_qsub.sh
 
 # 3. do the processing
-echo "=============== ATPP is running for ${PART} ================"
+echo "================ ATPP is running for ${PART} ================="
 
 qsub ${WD}/log/ATPP_qsub.sh
 
-echo "========================================================"
-echo "log: ${LOG_DIR}/ATPP_log_$(date +%m-%d_%H-%M).txt" 
+echo "=========================================================="
+echo "log: ${LOG_DIR}/ATPP_log_$(date +%m-%d_%H-%M-%S).txt" 
 
 # waiting for a proper host
 sleep 3s 
 
 done < ${BATCH_LIST} 
 
-echo "========================================================"
-echo "=== Please type 'qstat' to show status of the job(s) ==="
+echo "=========================================================="
+echo "==== Please type 'qstat' to show the status of job(s) ===="

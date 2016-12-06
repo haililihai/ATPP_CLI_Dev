@@ -9,6 +9,8 @@ function validation_group_tpd(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_NU
 
     group_tpd=zeros(1,MAX_CL_NUM);
     for kc=2:MAX_CL_NUM
+        disp(['group_tpd: ',PART, ' kc=',num2str(kc)]);
+
         mpm_file1=strcat(PWD,'/MPM_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',PART,'_L_',num2str(kc),'_MPM_thr',num2str(MPM_THRES*100),'_group.nii.gz');
         mpm1=load_untouch_nii(mpm_file1);
         img1=mpm1.img;
@@ -50,7 +52,6 @@ function validation_group_tpd(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_NU
         v_con2=reshape(con2',1,[]);
         group_tpd(1,kc)=pdist([v_con1;v_con2],'cosine');
 
-        disp(['group_tpd: ',PART, 'kc=',num2str(kc)]);
     end
 
     if ~exist(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm')) mkdir(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm'));end

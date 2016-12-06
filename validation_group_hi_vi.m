@@ -16,6 +16,8 @@ function validation_group_hi_vi(PWD,PART,SUB_LIST,VOX_SIZE,MAX_CL_NUM,MPM_THRES,
     group_hi=zeros(1,MAX_CL_NUM);
     group_vi=zeros(1,MAX_CL_NUM);
     for kc=3:MAX_CL_NUM
+        disp(['group_hi_vi: ',PART,'_',LR,' kc= ',num2str(kc-1),'->',num2str(kc)]);
+
         mpm_file1=strcat(PWD,'/MPM_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',PART,'_',LR,'_',num2str(kc-1),'_MPM_thr',num2str(MPM_THRES*100),'_group.nii.gz');
         mpm1=load_untouch_nii(mpm_file1);
         mpmimg1=mpm1.img;
@@ -36,7 +38,6 @@ function validation_group_hi_vi(PWD,PART,SUB_LIST,VOX_SIZE,MAX_CL_NUM,MPM_THRES,
         group_hi(1,kc) = nanmean(xi);
 
         [nminfo,group_vi(1,kc)]=v_nmi(mpmimg1,mpmimg2);
-        disp(['group_hi_vi: ',PART,'_',LR,' kc= ',num2str(kc-1),'->',num2str(kc)]);
     end
 
     if ~exist(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm')) mkdir(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm'));end

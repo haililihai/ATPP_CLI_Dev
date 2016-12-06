@@ -34,39 +34,38 @@ function validation_split_half(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_N
         matlabpool(POOLSIZE);
     end; 
 
-    for kc=2:MAX_CL_NUM
-        list1_sub={};
-        list2_sub={};
-        dice_k=zeros(N_ITER,1);
-        nmi_k=zeros(N_ITER,1);
-        vi_k=zeros(N_ITER,1);
-        cv_k=zeros(N_ITER,1);
+    parfor ti=1:N_ITER
+        tmp=randperm(sub_num);
+        list1_sub={sub{tmp(1:half)}}';
+        list2_sub={sub{tmp(half+1:sub_num)}}';
         
-        parfor ti=1:N_ITER
-            tmp=randperm(sub_num);
-            list1_sub={sub{tmp(1:half)}}';
-            list2_sub={sub{tmp(half+1:sub_num)}}';
+        temp_dice=zeros(1,MAX_CL_NUM);
+        temp_nmi=zeros(1,MAX_CL_NUM);
+        temp_vi=zeros(1,MAX_CL_NUM);
+        temp_cv=zeros(1,MAX_CL_NUM);
+        
+        for kc=2:MAX_CL_NUM
+            disp(['split_half: ',PART,'_',LR,' kc=',num2str(kc),' ',num2str(ti),'/',num2str(N_ITER)]);
+
             mpm_cluster1=cluster_mpm_validation(PWD,PREFIX,PART,list1_sub,METHOD,VOX_SIZE,kc,MPM_THRES,LorR);
             mpm_cluster2=cluster_mpm_validation(PWD,PREFIX,PART,list2_sub,METHOD,VOX_SIZE,kc,MPM_THRES,LorR);
             mpm_cluster1=mpm_cluster1.*MASK;
             mpm_cluster2=mpm_cluster2.*MASK;
             
             %compute dice coefficent
-            dice_k(ti)=v_dice(mpm_cluster1,mpm_cluster2,kc);
+            temp_dice(kc)=v_dice(mpm_cluster1,mpm_cluster2,kc);
             
             %compute the normalized mutual information and variation of information
-            [nmi_k(ti),vi_k(ti)]=v_nmi(mpm_cluster1,mpm_cluster2);
+            [temp_nmi(kc),temp_vi(kc)]=v_nmi(mpm_cluster1,mpm_cluster2);
             
             %compute cramer V
-            cv_k(ti)=v_cramerv(mpm_cluster1,mpm_cluster2);
-            
-            disp(['split_half: ',PART,'_',LR,' kc=',num2str(kc),' ',num2str(ti),'/',num2str(N_ITER)]);
+            temp_cv(kc)=v_cramerv(mpm_cluster1,mpm_cluster2);
         end
 
-        dice(:,kc)=dice_k;
-        nminfo(:,kc)=nmi_k;
-        vi(:,kc)=vi_k;
-        cv(:,kc)=cv_k;
+        dice(ti,:)=temp_dice;
+        nminfo(ti,:)=temp_nmi;
+        vi(ti,:)=temp_vi;
+        cv(ti,:)=temp_cv;
     end
     
    %matlabpool close

@@ -37,13 +37,15 @@ function validation_pairwise(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_NUM
         for ti=1:sub_num-1
             vnii_ref_file=strcat(PWD,'/',sub{ti},'/',PREFIX,'_',sub{ti},'_',PART,'_',LR,'_',METHOD,'/',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',PART,'_',LR,'_',num2str(kc),'_MNI_relabel_group.nii.gz');
             vnii_ref=load_untouch_nii(vnii_ref_file);
-            mpm_cluster1=vnii_ref.img;
+            mpm_cluster1=double(vnii_ref.img);
             mpm_cluster1=mpm_cluster1.*MASK;
 
             for tn=ti+1:sub_num
+                disp(['pairwise: ',PART,'_',LR,' kc=',num2str(kc),' ',num2str(ti),'<->',num2str(tn)]);
+
                 vnii_ref1_file=strcat(PWD,'/',sub{tn},'/',PREFIX,'_',sub{tn},'_',PART,'_',LR,'_',METHOD,'/',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',PART,'_',LR,'_',num2str(kc),'_MNI_relabel_group.nii.gz');
                 vnii_ref1=load_untouch_nii(vnii_ref1_file);
-                mpm_cluster2=vnii_ref1.img;
+                mpm_cluster2=double(vnii_ref1.img);
                 mpm_cluster2=mpm_cluster2.*MASK;
 
                 %compute dice coefficent
@@ -54,8 +56,6 @@ function validation_pairwise(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_NUM
             
                 %compute cramer V
                 cv_k(ti,tn)=v_cramerv(mpm_cluster1,mpm_cluster2);
-            
-                disp(['pairwise: ',PART,'_',LR,' kc=',num2str(kc),' ',num2str(ti),'<->',num2str(tn)]);
             end
         end
 

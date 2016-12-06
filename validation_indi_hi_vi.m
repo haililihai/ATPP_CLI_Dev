@@ -25,14 +25,19 @@ function validation_indi_hi_vi(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_N
 
     indi_hi=zeros(sub_num,MAX_CL_NUM);
     indi_vi=zeros(sub_num,MAX_CL_NUM);
-    for kc=3:MAX_CL_NUM
-        parfor ti=1:sub_num
+
+    parfor ti=1:sub_num
+        temp_hi=zeros(1,MAX_CL_NUM);
+        temp_vi=zeros(1,MAX_CL_NUM);
+        kc=3:MAX_CL_NUM
+            disp(['indi_group_hi_vi: ',PART,'_',LR,' kc= ',num2str(kc-1),'->',num2str(kc),' ',num2str(ti)]);
+
             mpm_file1=strcat(PWD,'/',sub{ti},'/',PREFIX,'_',sub{ti},'_',PART,'_',LR,'_',METHOD,'/',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',PART,'_',LR,'_',num2str(kc-1),'_MNI_relabel_group.nii.gz');
             mpm1=load_untouch_nii(mpm_file1);
-            mpmimg1=mpm1.img;
+            mpmimg1=double(mpm1.img);
             mpm_file2=strcat(PWD,'/',sub{ti},'/',PREFIX,'_',sub{ti},'_',PART,'_',LR,'_',METHOD,'/',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',PART,'_',LR,'_',num2str(kc),'_MNI_relabel_group.nii.gz');
             mpm2=load_untouch_nii(mpm_file2);
-            mpmimg2=mpm2.img;
+            mpmimg2=double(mpm2.img);
             mpmimg1=mpmimg1.*MASK;
             mpmimg2=mpmimg2.*MASK;
 
@@ -46,10 +51,11 @@ function validation_indi_hi_vi(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_N
                 end
                 xi(i,1) = max(xmatrix(i,:))/sum(xmatrix(i,:));
             end
-            indi_hi(ti,kc) = nanmean(xi);
-            [nminfo,indi_vi(ti,kc)]=v_nmi(mpmimg1,mpmimg2);
-            disp(['indi_group_hi_vi: ',PART,'_',LR,' kc= ',num2str(kc-1),'->',num2str(kc),' ',num2str(ti)]);
+            temp_hi(kc) = nanmean(xi);
+            [nminfo,temp_vi(kc)]=v_nmi(mpmimg1,mpmimg2);
         end
+        indi_hi(ti,:)=temp_hi;
+        indi_vi(ti,:)=temp_vi;
     end
 
     if ~exist(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm')) mkdir(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm'));end

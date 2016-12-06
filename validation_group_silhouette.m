@@ -17,6 +17,8 @@ function validation_group_silhouette(PWD,PART,SUB_LIST,VOX_SIZE,MAX_CL_NUM,MPM_T
     % group-level silhouette
     group_sil=zeros(1,MAX_CL_NUM);
     for kc=2:MAX_CL_NUM
+        disp(['group_silhouette: ',PART,'_',LR,' kc=',num2str(kc)]);
+
         mpm_file=strcat(PWD,'/MPM_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',PART,'_',LR,'_',num2str(kc),'_MPM_thr',num2str(MPM_THRES*100),'_group.nii.gz');
         mpm=load_untouch_nii(mpm_file);
         tempimg=mpm.img;
@@ -38,7 +40,6 @@ function validation_group_silhouette(PWD,PART,SUB_LIST,VOX_SIZE,MAX_CL_NUM,MPM_T
         s=silhouette(data,label);
         %group_sil(1,kc)=mean(s(~isnan(s)));
         group_sil(1,kc)=nanmean(s);
-        disp(['group_silhouette: ',PART,'_',LR,' kc=',num2str(kc)]);
     end
 
 

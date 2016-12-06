@@ -28,6 +28,8 @@ function validation_indi_silhouette(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX
 
         temp=zeros(1,MAX_CL_NUM);
         for kc=2:MAX_CL_NUM
+            disp(['indi_silhouette: ',PART,'_',LR,' kc=',num2str(kc),' ',num2str(ti)]);
+
             nii_file=strcat(PWD,'/',sub{ti},'/',PREFIX,'_',sub{ti},'_',PART,'_',LR,'_',METHOD,'/',PART,'_',LR,'_',num2str(kc),'.nii');
             nii=load_untouch_nii(nii_file);
             tempimg=double(nii.img);
@@ -38,7 +40,6 @@ function validation_indi_silhouette(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX
             end
             s=silhouette([],label,distance);
             temp(kc)=nanmean(s);
-            disp(['indi_silhouette: ',PART,'_',LR,' kc=',num2str(kc),' ',num2str(ti)]);
         end
         indi_sil(ti,:)=temp;
     end

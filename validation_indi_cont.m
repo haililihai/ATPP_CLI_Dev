@@ -25,11 +25,15 @@ function validation_indi_cont(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_NU
 
     % individual-level continuity
     indi_cont=zeros(sub_num,MAX_CL_NUM);
-    for kc=2:MAX_CL_NUM
-        parfor ti=1:sub_num
+
+    parfor ti=1:sub_num
+        temp_cont=zeros(1,MAX_CL_NUM);
+        for kc=2:MAX_CL_NUM
+            disp(['indi_cont: ',PART,'_',LR,' kc=',num2str(kc),' ',num2str(ti)]);
+
             nii_file=strcat(PWD,'/',sub{ti},'/',PREFIX,'_',sub{ti},'_',PART,'_',LR,'_',METHOD,'/',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',PART,'_',LR,'_',num2str(kc),'_MNI_relabel_group.nii.gz');
             nii=load_untouch_nii(nii_file);
-            nii.img=nii.img.*MASK;
+            nii.img=double(nii.img).*MASK;
             tempimg=double(nii.img);
             cont=cell(kc,1);
             sum=0;
@@ -46,9 +50,9 @@ function validation_indi_cont(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_NU
                 cont{i}=tmp1;
                 sum=sum+max(cont{i});
             end
-            indi_cont(ti,kc)=sum/kc;
-            disp(['indi_cont: ',PART,'_',LR,' kc=',num2str(kc),' ',num2str(ti)]);
+            temp_cont(kc)=sum/kc;
         end
+        indi_cont(ti,:)=temp_cont;
     end
 
     if ~exist(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm')) mkdir(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm'));end
