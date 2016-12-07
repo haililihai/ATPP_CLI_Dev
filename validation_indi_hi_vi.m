@@ -29,7 +29,7 @@ function validation_indi_hi_vi(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_N
     parfor ti=1:sub_num
         temp_hi=zeros(1,MAX_CL_NUM);
         temp_vi=zeros(1,MAX_CL_NUM);
-        kc=3:MAX_CL_NUM
+        for kc=3:MAX_CL_NUM
             disp(['indi_group_hi_vi: ',PART,'_',LR,' kc= ',num2str(kc-1),'->',num2str(kc),' ',num2str(ti)]);
 
             mpm_file1=strcat(PWD,'/',sub{ti},'/',PREFIX,'_',sub{ti},'_',PART,'_',LR,'_',METHOD,'/',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',PART,'_',LR,'_',num2str(kc-1),'_MNI_relabel_group.nii.gz');
