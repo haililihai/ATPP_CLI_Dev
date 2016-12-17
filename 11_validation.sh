@@ -1,4 +1,5 @@
 #! /bin/bash
+# produce various validity indices
 
 pipeline=$1
 shift
@@ -43,5 +44,5 @@ shift
 tpd=$1
 
 
-matlab -nodisplay -nosplash -r "addpath('${pipeline}');validation('${WD}','${PREFIX}','${PART}','${SUB}','${METHOD}',${VOX_SIZE},${MAX_CL_NUM},${N_ITER},${POOLSIZE},${GROUP_THRES},${MPM_THRES},${LEFT},${RIGHT},${split_half},${pairwise},${leave_one_out},${cont},${hi_vi},${silhouette},${tpd});exit" 
+${COMMAND_MATLAB} -nodisplay -nosplash -r "addpath('${pipeline}');validation('${WD}','${PREFIX}','${PART}','${SUB}','${METHOD}',${VOX_SIZE},${MAX_CL_NUM},${N_ITER},${POOLSIZE},${GROUP_THRES},${MPM_THRES},${LEFT},${RIGHT},${split_half},${pairwise},${leave_one_out},${cont},${hi_vi},${silhouette},${tpd});exit" 
 

@@ -1,4 +1,4 @@
-function validation(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_NUM,N_ITER,POOLSIZE,GROUP_THRES,MPM_THRES,LEFT,RIGHT,split_half,pairwise,leave_one_out,cont,hi_vi,silhouette,tpd)
+function validation(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_NUM,N_ITER,POOLSIZE,GROUP_THRES,MPM_THRES,LEFT,RIGHT,split_half,pairwise,leave_one_out,cont,hi_vi,sil,tpd)
 
 if split_half==1
 
@@ -47,7 +47,7 @@ if tpd==1
     validation_indi_tpd(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_NUM,POOLSIZE,GROUP_THRES,MPM_THRES);
 end
 
-if silhouette==1
+if sil==1
 
     if LEFT==1
         validation_group_silhouette(PWD,PART,SUB_LIST,VOX_SIZE,MAX_CL_NUM,MPM_THRES,1);
@@ -71,5 +71,10 @@ if cont==1
     end
 end
 
-% close
-matlabpool close
+% close pool
+if exist('parpool')
+    delete(p);
+else
+    matlabpool close;
+end
+

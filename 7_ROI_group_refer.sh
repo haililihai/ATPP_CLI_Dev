@@ -1,4 +1,5 @@
 #! /bin/bash
+# calculate symmetric group reference images to prepare for the relabel step
 
 PIPELINE=$1
 shift
@@ -27,17 +28,17 @@ RIGHT=$1
 
 if [ "${LEFT}" == "1" ] && [ "${RIGHT}" == "0" ]
 then
-	matlab -nodisplay -nosplash -r "addpath('${PIPELINE}');addpath('${NIFTI}');ROI_group_refer_xmm('${WD}','${PREFIX}','${PART}','${SUB_LIST}',${MAX_CL_NUM},'${METHOD}',${VOX_SIZE},${GROUP_THRES},1);exit" &
+	${COMMAND_MATLAB} -nodisplay -nosplash -r "addpath('${PIPELINE}');addpath('${NIFTI}');ROI_group_refer_xmm('${WD}','${PREFIX}','${PART}','${SUB_LIST}',${MAX_CL_NUM},'${METHOD}',${VOX_SIZE},${GROUP_THRES},1);exit" &
 	wait
 elif [ "${LEFT}" == "0" ] && [ "${RIGHT}" == "1" ]
 then
-	matlab -nodisplay -nosplash -r "addpath('${PIPELINE}');addpath('${NIFTI}');ROI_group_refer_xmm('${WD}','${PREFIX}','${PART}','${SUB_LIST}',${MAX_CL_NUM},'${METHOD}',${VOX_SIZE},${GROUP_THRES},0);exit" &
+	${COMMAND_MATLAB} -nodisplay -nosplash -r "addpath('${PIPELINE}');addpath('${NIFTI}');ROI_group_refer_xmm('${WD}','${PREFIX}','${PART}','${SUB_LIST}',${MAX_CL_NUM},'${METHOD}',${VOX_SIZE},${GROUP_THRES},0);exit" &
 	wait
 elif [ "${LEFT}" == "1" ] && [  "${RIGHT}" == "1" ]
 then
-	matlab -nodisplay -nosplash -r "addpath('${PIPELINE}');addpath('${NIFTI}');ROI_group_refer_xmm('${WD}','${PREFIX}','${PART}','${SUB_LIST}',${MAX_CL_NUM},'${METHOD}',${VOX_SIZE},${GROUP_THRES},1);exit" &
-	matlab -nodisplay -nosplash -r "addpath('${PIPELINE}');addpath('${NIFTI}');ROI_group_refer_xmm('${WD}','${PREFIX}','${PART}','${SUB_LIST}',${MAX_CL_NUM},'${METHOD}',${VOX_SIZE},${GROUP_THRES},0);exit" &
+	${COMMAND_MATLAB} -nodisplay -nosplash -r "addpath('${PIPELINE}');addpath('${NIFTI}');ROI_group_refer_xmm('${WD}','${PREFIX}','${PART}','${SUB_LIST}',${MAX_CL_NUM},'${METHOD}',${VOX_SIZE},${GROUP_THRES},1);exit" &
+	${COMMAND_MATLAB} -nodisplay -nosplash -r "addpath('${PIPELINE}');addpath('${NIFTI}');ROI_group_refer_xmm('${WD}','${PREFIX}','${PART}','${SUB_LIST}',${MAX_CL_NUM},'${METHOD}',${VOX_SIZE},${GROUP_THRES},0);exit" &
 	wait
-	matlab -nodisplay -r "addpath('${PIPELINE}');addpath('${NIFTI}');symmetry_group('${WD}','${PART}','${SUB_LIST}',${MAX_CL_NUM},${VOX_SIZE},${GROUP_THRES});exit"
+	${COMMAND_MATLAB} -nodisplay -r "addpath('${PIPELINE}');addpath('${NIFTI}');symmetry_group('${WD}','${PART}','${SUB_LIST}',${MAX_CL_NUM},${VOX_SIZE},${GROUP_THRES});exit"
 	wait
 fi

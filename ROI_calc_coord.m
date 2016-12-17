@@ -4,12 +4,28 @@ function ROI_calc_coord(WD,PREFIX,PART,SUB_LIST,POOLSIZE,LEFT,RIGHT)
 
 SUB = textread(SUB_LIST,'%s');
 
-if exist(strcat(prefdir,'/../local_scheduler_data'))
-	rmdir(strcat(prefdir,'/../local_scheduler_data'),'s');
-end
-matlabpool('local',POOLSIZE)
+% Parallel Computing Toolbox settings
+% 2014a removed findResource, replaced by parcluster
+% 2016b removed matlabpool, replaced by parpool
 
-%parfor
+% modify temporary dir
+temp_dir=tempname();
+mkdir(temp_dir);
+if exist('parcluster')
+	pc=parcluster('local');
+	pc.JobStorageLocation=temp_dir;
+else
+	sched=findResource('scheduler','type','local');
+	sched.DataLocation=temp_dir;
+end
+
+% open pool
+if exist('parpool')
+	p=parpool('local',POOLSIZE);
+else
+	matlabpool('local',POOLSIZE);
+end
+
 parfor i = 1:length(SUB);
 
 	if LEFT == 1
@@ -40,6 +56,12 @@ parfor i = 1:length(SUB);
 	
 	
 end
-matlabpool close
+
+% close pool
+if exist('parpool')
+	delete(p);
+else
+	matlabpool close;
+end
 
 

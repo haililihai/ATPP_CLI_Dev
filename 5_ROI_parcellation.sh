@@ -1,5 +1,5 @@
 #! /bin/bash
-# 2013.12.6 by Hai Li
+# ROI parcellation using spectral clustering, to generate 2 to max cluster number subregion
 
 PIPELINE=$1
 shift
@@ -21,4 +21,4 @@ LEFT=$1
 shift
 RIGHT=$1
 
-matlab -nodisplay -nosplash -r "addpath('${PIPELINE}');ROI_parcellation('${WD}','${PREFIX}','${PART}','${SUB_LIST}',${MAX_CL_NUM},${POOLSIZE},'${METHOD}',${LEFT},${RIGHT});exit"
+${COMMAND_MATLAB} -nodisplay -nosplash -r "addpath('${PIPELINE}');ROI_parcellation('${WD}','${PREFIX}','${PART}','${SUB_LIST}',${MAX_CL_NUM},${POOLSIZE},'${METHOD}',${LEFT},${RIGHT});exit"

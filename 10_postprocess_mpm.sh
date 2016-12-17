@@ -1,5 +1,5 @@
 #! /bin/bash
-# 2013.12.12 by Hai Li
+# smooth the mpm image
 
 PIPELINE=$1
 shift
@@ -21,4 +21,4 @@ LEFT=$1
 shift
 RIGHT=$1
 
-matlab -nodisplay -nosplash -r "addpath('${PIPELINE}');addpath('${NIFTI}');postprocess_mpm_group_xmm('${WD}','${PART}','${SUB_LIST}',${MAX_CL_NUM},${MPM_THRES},${VOX_SIZE},${LEFT},${RIGHT});exit"
+${COMMAND_MATLAB} -nodisplay -nosplash -r "addpath('${PIPELINE}');addpath('${NIFTI}');postprocess_mpm_group_xmm('${WD}','${PART}','${SUB_LIST}',${MAX_CL_NUM},${MPM_THRES},${VOX_SIZE},${LEFT},${RIGHT});exit"

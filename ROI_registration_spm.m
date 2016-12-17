@@ -1,9 +1,11 @@
-function ROI_registration_spm(WD,PREFIX,PART,SUB_LIST,POOLSIZE,TEMPLATE,LEFT,ROI_L,RIGHT,ROI_R)
+function ROI_registration_spm(WD,PREFIX,PART,SUB_LIST,POOLSIZE,TEMPLATE,LEFT,RIGHT)
 %-----------------------------------------------------------------------
 % transform ROIs from MNI space to DTI(b0) space
 %-----------------------------------------------------------------------
 
 SUB = textread(SUB_LIST,'%s');
+ROI_L=[WD,'/ROI/',PART,'_L.nii'];
+ROI_R=[WD,'/ROI/',PART,'_R.nii'];
 
 % make ROIs be proper datatype, default double
 roi_l=load_untouch_nii(ROI_L);
@@ -17,10 +19,28 @@ roi_r.hdr.dime.bitpix=64;
 roi_r.img=double(roi_r.img);
 save_untouch_nii(roi_r,ROI_R);
 
-if exist(strcat(prefdir,'/../local_scheduler_data'))
-	rmdir(strcat(prefdir,'/../local_scheduler_data'),'s');
+
+% Parallel Computing Toolbox settings
+% 2014a removed findResource, replaced by parcluster
+% 2016b removed matlabpool, replaced by parpool
+
+% modify temporary dir
+temp_dir=tempname();
+mkdir(temp_dir);
+if exist('parcluster')
+	pc=parcluster('local');
+	pc.JobStorageLocation=temp_dir;
+else
+	sched=findResource('scheduler','type','local');
+	sched.DataLocation=temp_dir;
 end
-matlabpool('local',POOLSIZE)
+
+% open pool
+if exist('parpool')
+	p=parpool('local',POOLSIZE);
+else
+	matlabpool('local',POOLSIZE);
+end
 
 
 % coregister T1 to b0 space
@@ -52,7 +72,12 @@ if RIGHT == 1
 	matlabbatch=[];
 end
 
-matlabpool close
+% close pool
+if exist('parpool')
+	delete(p);
+else
+	matlabpool close;
+end
 
 
 function spm_coreg_ew(WD,SUB,i)

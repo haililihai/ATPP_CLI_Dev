@@ -1,4 +1,5 @@
 #! /bin/bash
+# generate probabilistic tractography for each voxel in ROI
 
 WD=$1
 shift
@@ -36,17 +37,17 @@ fi
 
 for sub in $(cat ${SUB_LIST})
 do
-	# single voxel probtrackx
+# single voxel probtrackx
 if [ "${LEFT}" == "1" ]; then
-	job_id=$(fsl_sub probtrackx --mode=simple --seedref=${DATA_DIR}/${sub}/DTI.bedpostX/nodif_brain_mask -o ${PART}_L -x ${WD}/${sub}/${PREFIX}_${sub}_${PART}_L_coord.txt -l ${DIS_COR} -c ${CUR_THRES} -S ${N_STEPS} --steplength=${LEN_STEP} -P ${N_SAMPLES} --forcedir --opd -s ${DATA_DIR}/${sub}/DTI.bedpostX/merged -m ${DATA_DIR}/${sub}/DTI.bedpostX/nodif_brain_mask --dir=${WD}/${sub}/${PREFIX}_${sub}_${PART}_L_probtrackx &)
+	job_id=$(${COMMAND_FSLSUB} -l ${WD}/log ${COMMAND_PROBTRACKX} --mode=simple --seedref=${DATA_DIR}/${sub}/DTI.bedpostX/nodif_brain_mask -o ${PART}_L -x ${WD}/${sub}/${PREFIX}_${sub}_${PART}_L_coord.txt -l ${DIS_COR} -c ${CUR_THRES} -S ${N_STEPS} --steplength=${LEN_STEP} -P ${N_SAMPLES} --forcedir --opd -s ${DATA_DIR}/${sub}/DTI.bedpostX/merged -m ${DATA_DIR}/${sub}/DTI.bedpostX/nodif_brain_mask --dir=${WD}/${sub}/${PREFIX}_${sub}_${PART}_L_probtrackx &)
 	echo "${sub}_L probtrackx is running...! job_ID is ${job_id}"
-	mute=$(fsl_sub -j ${job_id} -N running... touch ${WD}/qsub_jobdone/${sub}_L.jobdone)
+	mute=$(${COMMAND_FSLSUB} -j ${job_id} -N running... -l ${WD}/log touch ${WD}/qsub_jobdone/${sub}_L.jobdone)
 fi
 
 if [ "${RIGHT}" == "1" ]; then
-	job_id=$(fsl_sub probtrackx --mode=simple --seedref=${DATA_DIR}/${sub}/DTI.bedpostX/nodif_brain_mask -o ${PART}_R -x ${WD}/${sub}/${PREFIX}_${sub}_${PART}_R_coord.txt -l ${DIS_COR} -c ${CUR_THRES} -S ${N_STEPS} --steplength=${LEN_STEP} -P ${N_SAMPLES} --forcedir --opd -s ${DATA_DIR}/${sub}/DTI.bedpostX/merged -m ${DATA_DIR}/${sub}/DTI.bedpostX/nodif_brain_mask --dir=${WD}/${sub}/${PREFIX}_${sub}_${PART}_R_probtrackx &)
+	job_id=$(${COMMAND_FSLSUB} -l ${WD}/log ${COMMAND_PROBTRACKX} --mode=simple --seedref=${DATA_DIR}/${sub}/DTI.bedpostX/nodif_brain_mask -o ${PART}_R -x ${WD}/${sub}/${PREFIX}_${sub}_${PART}_R_coord.txt -l ${DIS_COR} -c ${CUR_THRES} -S ${N_STEPS} --steplength=${LEN_STEP} -P ${N_SAMPLES} --forcedir --opd -s ${DATA_DIR}/${sub}/DTI.bedpostX/merged -m ${DATA_DIR}/${sub}/DTI.bedpostX/nodif_brain_mask --dir=${WD}/${sub}/${PREFIX}_${sub}_${PART}_R_probtrackx &)
 	echo "${sub}_R probtrackx is running...! job_ID is ${job_id}"
-	mute=$(fsl_sub -j ${job_id} -N running... touch ${WD}/qsub_jobdone/${sub}_R.jobdone)
+	mute=$(${COMMAND_FSLSUB} -j ${job_id} -N running... -l ${WD}/log touch ${WD}/qsub_jobdone/${sub}_R.jobdone)
 fi
 	
 done
@@ -78,4 +79,4 @@ then
 	done	
 fi
 
-echo "=== Finally Probtrackx All Done!! ==="
+echo "=========== Finally Probtrackx All Done!! ==========="

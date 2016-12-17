@@ -1,5 +1,6 @@
 #! /bin/bash
-# 2013.12.5 by Hai Li
+# calculate connectivity matrix between each voxel in ROI and the remain voxels of whole brain 
+# and correlation matrix among voxels in ROI
 
 PIPELINE=$1
 shift
@@ -24,4 +25,4 @@ shift
 RIGHT=$1
 
 
-matlab -nodisplay -nosplash -r "addpath('${PIPELINE}');addpath('${NIFTI}');ROI_calc_matrix('${WD}','${PREFIX}','${PART}','${SUB_LIST}',${POOLSIZE},${VAL_THRES},${DOWN_SIZE},${LEFT},${RIGHT});exit"
+${COMMAND_MATLAB} -nodisplay -nosplash -r "addpath('${PIPELINE}');addpath('${NIFTI}');ROI_calc_matrix('${WD}','${PREFIX}','${PART}','${SUB_LIST}',${POOLSIZE},${VAL_THRES},${DOWN_SIZE},${LEFT},${RIGHT});exit"

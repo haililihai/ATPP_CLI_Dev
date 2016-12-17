@@ -1,5 +1,5 @@
 #! /bin/bash
-# 2013.12.4 by Hai Li
+# calculate ROI coordinates in DTI space
 
 PIPELINE=$1
 shift
@@ -19,4 +19,4 @@ LEFT=$1
 shift
 RIGHT=$1
 
-matlab -nodisplay -nosplash -r "addpath('${PIPELINE}');addpath('${NIFTI}');ROI_calc_coord('${WD}','${PREFIX}','${PART}','${SUB_LIST}','${POOLSIZE}',${LEFT},${RIGHT});exit"
+${COMMAND_MATLAB} -nodisplay -nosplash -r "addpath('${PIPELINE}');addpath('${NIFTI}');ROI_calc_coord('${WD}','${PREFIX}','${PART}','${SUB_LIST}','${POOLSIZE}',${LEFT},${RIGHT});exit"

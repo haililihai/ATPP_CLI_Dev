@@ -1,4 +1,5 @@
 #! /bin/bash
+# cluster relabeling according to the group reference image
 
 PIPELINE=$1
 shift
@@ -26,4 +27,4 @@ LEFT=$1
 shift
 RIGHT=$1
 
-matlab -nodisplay -nosplash -r "addpath('${PIPELINE}');addpath('${NIFTI}');cluster_relabel_group_xmm('${WD}','${PREFIX}','${PART}','${SUB_LIST}',${MAX_CL_NUM},${POOLSIZE},${GROUP_THRES},'${METHOD}',${VOX_SIZE},${LEFT},${RIGHT});exit"
+${COMMAND_MATLAB} -nodisplay -nosplash -r "addpath('${PIPELINE}');addpath('${NIFTI}');cluster_relabel_group_xmm('${WD}','${PREFIX}','${PART}','${SUB_LIST}',${MAX_CL_NUM},${POOLSIZE},${GROUP_THRES},'${METHOD}',${VOX_SIZE},${LEFT},${RIGHT});exit"

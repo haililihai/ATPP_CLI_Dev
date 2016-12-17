@@ -5,11 +5,27 @@ function ROI_toMNI_spm_xmm(WD,PREFIX,PART,SUB_LIST,MAX_CL_NUM,POOLSIZE,TEMPLATE,
 
 SUB = textread(SUB_LIST,'%s');
 
-if exist(strcat(prefdir,'/../local_scheduler_data'))
-	rmdir(strcat(prefdir,'/../local_scheduler_data'),'s');
+% Parallel Computing Toolbox settings
+% 2014a removed findResource, replaced by parcluster
+% 2016b removed matlabpool, replaced by parpool
+
+% modify temporary dir
+temp_dir=tempname();
+mkdir(temp_dir);
+if exist('parcluster')
+	pc=parcluster('local');
+	pc.JobStorageLocation=temp_dir;
+else
+	sched=findResource('scheduler','type','local');
+	sched.DataLocation=temp_dir;
 end
-matlabpool close force local
-matlabpool('local',POOLSIZE)
+
+% open pool
+if exist('parpool')
+	p=parpool('local',POOLSIZE);
+else
+	matlabpool('local',POOLSIZE);
+end
 
 
 if LEFT == 1
@@ -26,8 +42,12 @@ if RIGHT == 1
 	matlabbatch=[];
 end
 
-matlabpool close
-
+% close pool
+if exist('parpool')
+	delete(p);
+else
+	matlabpool close;
+end
 
 
 function spm_norm_ew(WD,SUB,i,PREFIX,PART,MAX_CL_NUM,METHOD,TEMPLATE,VOX_SIZE,LR)
@@ -65,8 +85,3 @@ function spm_norm_ew(WD,SUB,i,PREFIX,PART,MAX_CL_NUM,METHOD,TEMPLATE,VOX_SIZE,LR
 	end
 	
 	disp(strcat(SUB{i},'_',LR,' Done!'));
-	
-	
-
-
-

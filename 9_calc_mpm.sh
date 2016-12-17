@@ -1,4 +1,5 @@
 #! /bin/bash
+# generate maximum probability map for ROI and probabilistic maps for each subregion
 
 PIPELINE=$1
 shift
@@ -24,4 +25,4 @@ LEFT=$1
 shift
 RIGHT=$1
 
-matlab -nodisplay -nosplash -r "addpath('${PIPELINE}');addpath('${NIFTI}');calc_mpm_group_xmm('${WD}','${PREFIX}','${PART}','${SUB_LIST}',${MAX_CL_NUM},'${METHOD}',${MPM_THRES},${VOX_SIZE},${LEFT},${RIGHT});exit"
+${COMMAND_MATLAB} -nodisplay -nosplash -r "addpath('${PIPELINE}');addpath('${NIFTI}');calc_mpm_group_xmm('${WD}','${PREFIX}','${PART}','${SUB_LIST}',${MAX_CL_NUM},'${METHOD}',${MPM_THRES},${VOX_SIZE},${LEFT},${RIGHT});exit"

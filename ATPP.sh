@@ -7,8 +7,9 @@
 # ---- Modular and flexible structure
 # ---- Simple and easy-to-use settings
 #
-# Usage: sh ATPP.sh batch_list.txt
+# Usage: bash ATPP.sh batch_list.txt
 # Hai Li (hai.li@nlpr.ia.ac.cn)
+# ATPP V2.0
 
 
 #==============================================================================
@@ -18,50 +19,75 @@
 #    > T1 image for each subject
 #    > b0 image for each subject
 #    > images preprocessed by FSL(BedpostX) for each subject
-# 3) Directory structure:
+#
+# Directory structure:
 #	  Working_dir
 #     |-- sub1
 #     |   |-- T1_sub1.nii
-#     |   |-- b0_sub1.nii
-#     |-- sub2
+#     |   `-- b0_sub1.nii
 #     |-- ...
 #     |-- subN
+#     |   |-- T1_subN.nii
+#     |   `-- b0_subN.nii
 #     |-- ROI
 #     |   |-- ROI_L.nii
 #     |   `-- ROI_R.nii
 #     `-- log 
 #==============================================================================
 
-#===============================================================================
+# usage function
+show_usage() {
+    cat << EOF
+Automatic Tractography-based Parcellation Pipeline (ATPP)
+    
+    Usage: bash ATPP.sh batch_list.txt
+
+Please refer the instructions in ATPP.sh for detailed info
+EOF
+    exit 1
+}
+
+#==============================================================================
+# batch processing parameter list
+# DO NOT FORGET TO EDIT batch_list.txt to include the appropriate parameters
+#==============================================================================
+# batch_list.txt contains the following 7 parameters in order in each line:
+# - data directory, e.g. /DATA/233/hli/Data/chengdu
+# - prefix of data, such as site, e.g. CD
+# - list of subjects, e.g. /DATA/233/hli/Data/chengdu/sub_CD.txt
+# - working directory, e.g. /DATA/233/hli/Amyg
+# - brain region name, e.g. Amyg
+# - maximum cluster number , e.g. 6
+#==============================================================================
+
+if [ $# -ne 1 ]; then
+    show_usage
+else
+    BATCH_LIST=$1
+fi
+
+
+#==============================================================================
 # Global configuration file
 # Before running the pipeline, you NEED to modify parameters in the file.
-#===============================================================================
+#==============================================================================
 
-source ./config.sh
+if [ -f "./config.sh" ]; then
+	source ./config.sh
+else
+	echo "Cannot find the configuration file!"
+	exit 1
+fi
 
-#====================================================================================
-# batch processing parameter list
-# DO NOT FORGET TO EDIT batch_list.txt itself to include the appropriate parameters
-#====================================================================================
-# batch_list.txt contains the following 7 parameters in order in each line:
-# - Data directory , e.g. /DATA/233/hli/Data/chengdu
-# - Prefix of data , e.g. CD
-# - List of subjects , e.g. /DATA/233/hli/Data/chengdu/sub_CD.txt
-# - working directory , e.g. /DATA/233/hli/Amyg
-# - Brain region name , e.g. Amyg
-# - Maximum cluster number , e.g. 6
-# - Cluster number , e.g. 3
-#====================================================================================
-
-test -e $1 && BATCH_LIST=$1 || BATCH_LIST=${PIPELINE}/batch_list.txt
-
-
-#===============================================================================
-#----------------------------START OF SCRIPT------------------------------------
-#===============================================================================
+#==============================================================================
+#----------------------------START OF SCRIPT-----------------------------------
+#------------NO EDITING BELOW UNLESS YOU KNOW WHAT YOU ARE DOING---------------
+#==============================================================================
 
 # show header info 
-cat ${PIPELINE}/header.txt 
+if [ -f "${PIPELINE}/header.txt" ]; then
+	cat ${PIPELINE}/header.txt 
+fi
 
 while read line
 do
@@ -73,10 +99,8 @@ SUB_LIST=$( echo $line | cut -d ' ' -f3 )
 WD=$( echo $line | cut -d ' ' -f4 )
 PART=$( echo $line | cut -d ' ' -f5 )
 MAX_CL_NUM=$( echo $line | cut -d ' ' -f6 )
-CL_NUM=$( echo $line | cut -d ' ' -f7 )
 
 # 2. make a proper bash script 
-
 mkdir -p ${WD}/log
 LOG_DIR=${WD}/log
 LOG=${LOG_DIR}/ATPP_log_$(date +%m-%d_%H-%M-%S).txt
@@ -85,17 +109,17 @@ echo "\
 #!/bin/bash
 #$ -V
 #$ -cwd
-#$ -N ATPP
+#$ -N ATPP_${PART}
 #$ -o ${LOG_DIR}
 #$ -e ${LOG_DIR}
 
-bash ${PIPELINE}/pipeline.sh ${PIPELINE} ${WD} ${DATA_DIR} ${PREFIX} ${PART} ${SUB_LIST} ${MAX_CL_NUM} ${CL_NUM} >${LOG} 2>&1"\
->${LOG_DIR}/ATPP_qsub.sh
+bash ${PIPELINE}/pipeline.sh ${PIPELINE} ${WD} ${DATA_DIR} ${PREFIX} ${PART} ${SUB_LIST} ${MAX_CL_NUM} >${LOG} 2>&1"\
+>${LOG_DIR}/ATPP_${PART}_qsub.sh
 
-# 3. do the processing
+# 3. submit the task
 echo "================ ATPP is running for ${PART} ================="
 
-qsub ${WD}/log/ATPP_qsub.sh
+${COMMAND_QSUB} ${WD}/log/ATPP_${PART}_qsub.sh
 
 echo "=========================================================="
 echo "log: ${LOG_DIR}/ATPP_log_$(date +%m-%d_%H-%M-%S).txt" 
@@ -107,3 +131,5 @@ done < ${BATCH_LIST}
 
 echo "=========================================================="
 echo "==== Please type 'qstat' to show the status of job(s) ===="
+
+#================================ END =======================================
