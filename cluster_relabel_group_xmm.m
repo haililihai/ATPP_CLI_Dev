@@ -71,10 +71,6 @@ parfor CL_NUM=2:MAX_CL_NUM
                 end
             end
 
-            for ki=1:CL_NUM
-               tmp_overlay(ki,:)=tmp_overlay(ki,:)/sum(tmp_overlay(ki,:));
-            end
-
             [cind,max]=munkres(-tmp_overlay);
 
             tmp_matrix=tha_seg_result;
@@ -82,8 +78,7 @@ parfor CL_NUM=2:MAX_CL_NUM
             for ki=1:CL_NUM
                 tmp_matrix(tha_seg_result==cind(ki))=ki;
             end
-            tha_seg_result=tmp_matrix;
-            vnii.img=tha_seg_result;
+            vnii.img=tmp_matrix;
             save_untouch_nii(vnii,strcat(PWD,'/',SUB{i},'/',PREFIX,'_',SUB{i},'_',PART,'_',LR,'_',METHOD,'/',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',PART,'_',LR,'_',num2str(CL_NUM),'_MNI_relabel_group.nii.gz'));
 
             disp(strcat('relabeled for subject : ',SUB{i},'_',LR,' kc=',num2str(CL_NUM)));

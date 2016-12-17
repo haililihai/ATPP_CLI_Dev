@@ -62,8 +62,12 @@ EOF
 
 if [ $# -ne 1 ]; then
     show_usage
-else
+elif [ -f $1 ]; then 
     BATCH_LIST=$1
+else
+    echo "ERROR: $1 not found!"
+    show_usage
+    exit 1
 fi
 
 
@@ -75,7 +79,7 @@ fi
 if [ -f "./config.sh" ]; then
 	source ./config.sh
 else
-	echo "Cannot find the configuration file!"
+	echo "ERROR: Cannot find the configuration file!"
 	exit 1
 fi
 

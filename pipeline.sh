@@ -110,11 +110,11 @@ fi
 
 # 7) calculate symmetric group reference images to prepare for the relabel step
 if [[ ${SWITCH[@]/_7_/} != ${SWITCH[@]} ]]; then
-echo "$(date +%T)  =========== 7_ROI_group_refer start! ===========" |tee -a ${WD}/log/progress_check.txt
+echo "$(date +%T)  =========== 7_group_refer start! ===========" |tee -a ${WD}/log/progress_check.txt
 T="$(date +%s)"
-${PIPELINE}/7_ROI_group_refer.sh ${PIPELINE} ${WD} ${PREFIX} ${PART} ${SUB_LIST} ${MAX_CL_NUM} ${NIFTI} ${METHOD} ${VOX_SIZE} ${GROUP_THRES} ${LEFT} ${RIGHT}
+${PIPELINE}/7_group_refer.sh ${PIPELINE} ${WD} ${PREFIX} ${PART} ${SUB_LIST} ${MAX_CL_NUM} ${NIFTI} ${METHOD} ${VOX_SIZE} ${GROUP_THRES} ${LEFT} ${RIGHT}
 T="$(($(date +%s)-T))"
-echo "$(date +%T)  =========== 7_ROI_group_refer done! ===========" |tee -a ${WD}/log/progress_check.txt
+echo "$(date +%T)  =========== 7_group_refer done! ===========" |tee -a ${WD}/log/progress_check.txt
 printf "Time elapsed: %02d:%02d:%02d:%02d\n\n" "$((T/86400))" "$((T/3600%24))" "$((T/60%60))" "$((T%60))" |tee -a ${WD}/log/progress_check.txt
 fi
 
@@ -132,7 +132,7 @@ fi
 if [[ ${SWITCH[@]/_9_/} != ${SWITCH[@]} ]]; then
 echo "$(date +%T)  ============= 9_calc_mpm start! ============="  |tee -a ${WD}/log/progress_check.txt
 T="$(date +%s)"
-${PIPELINE}/9_calc_mpm.sh ${PIPELINE} ${WD} ${PREFIX} ${PART} ${SUB_LIST} ${MAX_CL_NUM} ${NIFTI} ${METHOD} ${MPM_THRES} ${VOX_SIZE} ${LEFT} ${RIGHT}
+${PIPELINE}/9_calc_mpm.sh ${PIPELINE} ${WD} ${PREFIX} ${PART} ${SUB_LIST} ${MAX_CL_NUM} ${NIFTI} ${POOLSIZE} ${METHOD} ${MPM_THRES} ${VOX_SIZE} ${LEFT} ${RIGHT}
 T="$(($(date +%s)-T))"
 echo "$(date +%T)  ============= 9_calc_mpm done! =============" |tee -a ${WD}/log/progress_check.txt
 printf "Time elapsed: %02d:%02d:%02d:%02d\n\n" "$((T/86400))" "$((T/3600%24))" "$((T/60%60))" "$((T%60))" |tee -a ${WD}/log/progress_check.txt

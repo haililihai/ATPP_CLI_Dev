@@ -6,7 +6,7 @@ num=length(SUB);
 
 for CL_NUM=2:MAX_CL_NUM
 
-    if ~exist(strcat(PWD,'/',PART,'/','group_',num2str(num),'_',num2str(VOX),'mm/',num2str(VOX),'mm_',PART,'_R_',num2str(CL_NUM),'_',num2str(THRES*100),'_group.nii.gz'))
+    %if ~exist(strcat(PWD,'/',PART,'/','group_',num2str(num),'_',num2str(VOX),'mm/',num2str(VOX),'mm_',PART,'_R_',num2str(CL_NUM),'_',num2str(THRES*100),'_group.nii.gz'))
         nii_L=load_untouch_nii(strcat(PWD,'/group_',num2str(num),'_',num2str(VOX),'mm/',num2str(VOX),'mm_',PART,'_L_',num2str(CL_NUM),'_',num2str(THRES*100),'_group.nii.gz'));
         img_L= nii_L.img;
         nii_R=load_untouch_nii(strcat(PWD,'/group_',num2str(num),'_',num2str(VOX),'mm/',num2str(VOX),'mm_',PART,'_R_',num2str(CL_NUM),'_',num2str(THRES*100),'_group.nii.gz'));
@@ -33,10 +33,6 @@ for CL_NUM=2:MAX_CL_NUM
             end
         end
 
-        for ki=1:CL_NUM
-           overlay(ki,:)=overlay(ki,:)/sum(overlay(ki,:));
-        end
-
         [cind,max]=munkres(-overlay);
 
         tmp_img=img_R;
@@ -50,7 +46,7 @@ for CL_NUM=2:MAX_CL_NUM
         save_untouch_nii(nii_R,strcat(PWD,'/group_',num2str(num),'_',num2str(VOX),'mm/',num2str(VOX),'mm_',PART,'_R_',num2str(CL_NUM),'_',num2str(THRES*100),'_group.nii.gz'));
 
         disp(strcat('symmetrized CL_NUM_',num2str(CL_NUM)));
-    else
-        disp(strcat('symmetrized CL_NUM_',num2str(CL_NUM)));
-    end
+    %else
+    %    disp(strcat('symmetrized CL_NUM_',num2str(CL_NUM)));
+    %end
 end

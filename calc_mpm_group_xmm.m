@@ -1,18 +1,42 @@
-function calc_mpm_group_xmm(PWD,PREFIX,PART,SUB_LIST,MAX_CL_NUM,METHOD,MPM_THRES,VOX_SIZE,LEFT,RIGHT)
+function calc_mpm_group_xmm(PWD,PREFIX,PART,SUB_LIST,MAX_CL_NUM,POOLSIZE,METHOD,MPM_THRES,VOX_SIZE,LEFT,RIGHT)
 % generate the probabilistic maps and the maximum probabilistic map
 
 SUB = textread(SUB_LIST,'%s');
 
+% modify temporary dir
+temp_dir=tempname();
+mkdir(temp_dir);
+if exist('parcluster')
+    pc=parcluster('local');
+    pc.JobStorageLocation=temp_dir;
+else
+    sched=findResource('scheduler','type','local');
+    sched.DataLocation=temp_dir;
+end
+
+% open pool
+if exist('parpool')
+    p=parpool('local',POOLSIZE);
+else
+    matlabpool('local',POOLSIZE);
+end
+
 if LEFT == 1
-    calc_mpm(PWD,PREFIX,PART,SUB,MAX_CL_NUM,METHOD,MPM_THRES,VOX_SIZE,1)
+    calc_mpm(PWD,PREFIX,PART,SUB,MAX_CL_NUM,POOLSIZE,METHOD,MPM_THRES,VOX_SIZE,1)
 end
 
 if RIGHT == 1
-    calc_mpm(PWD,PREFIX,PART,SUB,MAX_CL_NUM,METHOD,MPM_THRES,VOX_SIZE,0)
+    calc_mpm(PWD,PREFIX,PART,SUB,MAX_CL_NUM,POOLSIZE,METHOD,MPM_THRES,VOX_SIZE,0)
 end
 
+% close pool
+if exist('parpool')
+    delete(p);
+else
+    matlabpool close;
+end
 
-function calc_mpm(PWD,PREFIX,PART,SUB,MAX_CL_NUM,METHOD,MPM_THRES,VOX_SIZE,LorR)
+function calc_mpm(PWD,PREFIX,PART,SUB,MAX_CL_NUM,POOLSIZE,METHOD,MPM_THRES,VOX_SIZE,LorR)
     
 if LorR == 1
     LR='L';
@@ -31,8 +55,7 @@ if ~exist(probpath,'dir')
     mkdir(probpath);
 end
 
-
-for CL_NUM=2:MAX_CL_NUM
+parfor CL_NUM=2:MAX_CL_NUM
     %if ~exist(strcat(probpath,num2str(VOX_SIZE),'mm_',PART,'_',LR,'_',num2str(CL_NUM),'_MPM_thr',num2str(MPM_THRES*100),'_group.nii'))
     prob_cluster=zeros([IMGSIZE,CL_NUM]);
     sumimg = zeros(IMGSIZE);
@@ -72,7 +95,7 @@ for CL_NUM=2:MAX_CL_NUM
         vnii.img(index) = (probclki(index)./sumimg(index))*100;
         save_untouch_nii(vnii,filename_re);
     end
-    disp(strcat(' <',PART,'_',LR,'_',num2str(CL_NUM),'> probabilistic maps...'));
+    disp(strcat(' <',PART,'_',LR,'_',num2str(CL_NUM),'> probabilistic maps done!'));
 
     %generate maximum probabilistic map
     mpm_cluster=zeros(IMGSIZE);
@@ -92,9 +115,10 @@ for CL_NUM=2:MAX_CL_NUM
     filename_re2=strcat(probpath,num2str(VOX_SIZE),'mm_',PART,'_',LR,'_',num2str(CL_NUM),'_MPM_thr',num2str(MPM_THRES*100),'_group.nii.gz');
     vnii.img=mpm_cluster;
     save_untouch_nii(vnii,filename_re2);
-    disp(strcat(' <',PART,'_',LR,'_',num2str(CL_NUM),'> maximum probabilistic maps'));
+    disp(strcat(' <',PART,'_',LR,'_',num2str(CL_NUM),'> maximum probabilistic map done!'));
     %end
 end
+
 
 function out=connect6mean(img,i,j,k)
     val=zeros(6,1);
