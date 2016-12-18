@@ -1,4 +1,4 @@
-function calc_mpm_group_xmm(PWD,PREFIX,PART,SUB_LIST,MAX_CL_NUM,POOLSIZE,METHOD,MPM_THRES,VOX_SIZE,LEFT,RIGHT)
+function calc_mpm_group_xmm(PWD,PART,SUB_LIST,MAX_CL_NUM,POOLSIZE,METHOD,MPM_THRES,VOX_SIZE,LEFT,RIGHT)
 % generate the probabilistic maps and the maximum probabilistic map
 
 SUB = textread(SUB_LIST,'%s');
@@ -22,11 +22,11 @@ else
 end
 
 if LEFT == 1
-    calc_mpm(PWD,PREFIX,PART,SUB,MAX_CL_NUM,POOLSIZE,METHOD,MPM_THRES,VOX_SIZE,1)
+    calc_mpm(PWD,PART,SUB,MAX_CL_NUM,POOLSIZE,METHOD,MPM_THRES,VOX_SIZE,1)
 end
 
 if RIGHT == 1
-    calc_mpm(PWD,PREFIX,PART,SUB,MAX_CL_NUM,POOLSIZE,METHOD,MPM_THRES,VOX_SIZE,0)
+    calc_mpm(PWD,PART,SUB,MAX_CL_NUM,POOLSIZE,METHOD,MPM_THRES,VOX_SIZE,0)
 end
 
 % close pool
@@ -36,7 +36,7 @@ else
     matlabpool close;
 end
 
-function calc_mpm(PWD,PREFIX,PART,SUB,MAX_CL_NUM,POOLSIZE,METHOD,MPM_THRES,VOX_SIZE,LorR)
+function calc_mpm(PWD,PART,SUB,MAX_CL_NUM,POOLSIZE,METHOD,MPM_THRES,VOX_SIZE,LorR)
     
 if LorR == 1
     LR='L';
@@ -44,7 +44,7 @@ elseif LorR == 0
     LR='R';
 end
 
-REFER = strcat(PWD,'/',SUB{1},'/',PREFIX,'_',SUB{1},'_',PART,'_',LR,'_',METHOD,'/',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',PART,'_',LR,'_',num2str(2),'_MNI_relabel_group.nii.gz');
+REFER = strcat(PWD,'/',SUB{1},'/',SUB{1},'_',PART,'_',LR,'_',METHOD,'/',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',PART,'_',LR,'_',num2str(2),'_MNI_relabel_group.nii.gz');
 vnii_ref = load_untouch_nii(REFER);
 ref_img=vnii_ref.img;
 IMGSIZE=size(ref_img);
@@ -62,7 +62,7 @@ parfor CL_NUM=2:MAX_CL_NUM
 
     sub_num = length(SUB);
     for i=1:sub_num
-        sub_file=strcat(PWD,'/',SUB{i},'/',PREFIX,'_',SUB{i},'_',PART,'_',LR,'_',METHOD,'/',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',PART,'_',LR,'_',num2str(CL_NUM),'_MNI_relabel_group.nii.gz');
+        sub_file=strcat(PWD,'/',SUB{i},'/',SUB{i},'_',PART,'_',LR,'_',METHOD,'/',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',PART,'_',LR,'_',num2str(CL_NUM),'_MNI_relabel_group.nii.gz');
         vnii=load_untouch_nii(sub_file);
         tha_seg_result= vnii.img;   
         dataimg = vnii.img;

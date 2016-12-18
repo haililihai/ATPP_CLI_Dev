@@ -1,4 +1,4 @@
-function validation_leave_one_out(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_NUM,POOLSIZE,GROUP_THRES,MPM_THRES,LorR)
+function validation_leave_one_out(PWD,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_NUM,POOLSIZE,GROUP_THRES,MPM_THRES,LorR)
 
 if LorR == 1
     LR='L';
@@ -47,10 +47,10 @@ parfor ti=1:sub_num
    for kc=2:MAX_CL_NUM
         disp(['leave_one_out: ',PART,'_',LR,' kc=',num2str(kc),' ',num2str(ti),'/',num2str(sub_num)]);
         
-        vnii_ref_file=strcat(PWD,'/',sub{ti},'/',PREFIX,'_',sub{ti},'_',PART,'_',LR,'_',METHOD,'/',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',PART,'_',LR,'_',num2str(kc),'_MNI_relabel_group.nii.gz');
+        vnii_ref_file=strcat(PWD,'/',sub{ti},'/',sub{ti},'_',PART,'_',LR,'_',METHOD,'/',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',PART,'_',LR,'_',num2str(kc),'_MNI_relabel_group.nii.gz');
         vnii_ref=load_untouch_nii(vnii_ref_file);
         mpm_cluster1=double(vnii_ref.img);
-        mpm_cluster2=cluster_mpm_validation(PWD,PREFIX,PART,sub1,METHOD,VOX_SIZE,kc,MPM_THRES,LorR);
+        mpm_cluster2=cluster_mpm_validation(PWD,PART,sub1,METHOD,VOX_SIZE,kc,MPM_THRES,LorR);
         mpm_cluster1=mpm_cluster1.*MASK;
         mpm_cluster2=mpm_cluster2.*MASK;
 

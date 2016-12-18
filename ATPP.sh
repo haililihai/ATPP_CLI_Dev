@@ -53,7 +53,6 @@ EOF
 #==============================================================================
 # batch_list.txt contains the following 7 parameters in order in each line:
 # - data directory, e.g. /DATA/233/hli/Data/chengdu
-# - prefix of data, such as site, e.g. CD
 # - list of subjects, e.g. /DATA/233/hli/Data/chengdu/sub_CD.txt
 # - working directory, e.g. /DATA/233/hli/Amyg
 # - brain region name, e.g. Amyg
@@ -98,11 +97,10 @@ do
 
 # 1. cut specific parameters from batch_list
 DATA_DIR=$( echo $line | cut -d ' ' -f1 )
-PREFIX=$( echo $line | cut -d ' ' -f2 )
-SUB_LIST=$( echo $line | cut -d ' ' -f3 )
-WD=$( echo $line | cut -d ' ' -f4 )
-PART=$( echo $line | cut -d ' ' -f5 )
-MAX_CL_NUM=$( echo $line | cut -d ' ' -f6 )
+SUB_LIST=$( echo $line | cut -d ' ' -f2 )
+WD=$( echo $line | cut -d ' ' -f3 )
+PART=$( echo $line | cut -d ' ' -f4 )
+MAX_CL_NUM=$( echo $line | cut -d ' ' -f5 )
 
 # 2. make a proper bash script 
 mkdir -p ${WD}/log
@@ -117,7 +115,7 @@ echo "\
 #$ -o ${LOG_DIR}
 #$ -e ${LOG_DIR}
 
-bash ${PIPELINE}/pipeline.sh ${PIPELINE} ${WD} ${DATA_DIR} ${PREFIX} ${PART} ${SUB_LIST} ${MAX_CL_NUM} >${LOG} 2>&1"\
+bash ${PIPELINE}/pipeline.sh ${PIPELINE} ${WD} ${DATA_DIR} ${PART} ${SUB_LIST} ${MAX_CL_NUM} >${LOG} 2>&1"\
 >${LOG_DIR}/ATPP_${PART}_qsub.sh
 
 # 3. submit the task

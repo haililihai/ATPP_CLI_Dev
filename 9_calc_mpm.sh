@@ -5,8 +5,6 @@ PIPELINE=$1
 shift
 WD=$1
 shift
-PREFIX=$1
-shift
 PART=$1
 shift
 SUB_LIST=$1
@@ -27,4 +25,4 @@ LEFT=$1
 shift
 RIGHT=$1
 
-${COMMAND_MATLAB} -nodisplay -nosplash -r "addpath('${PIPELINE}');addpath('${NIFTI}');calc_mpm_group_xmm('${WD}','${PREFIX}','${PART}','${SUB_LIST}',${MAX_CL_NUM},${POOLSIZE},'${METHOD}',${MPM_THRES},${VOX_SIZE},${LEFT},${RIGHT});exit"
+${COMMAND_MATLAB} -nodisplay -nosplash -r "addpath('${PIPELINE}');addpath('${NIFTI}');calc_mpm_group_xmm('${WD}','${PART}','${SUB_LIST}',${MAX_CL_NUM},${POOLSIZE},'${METHOD}',${MPM_THRES},${VOX_SIZE},${LEFT},${RIGHT});exit"

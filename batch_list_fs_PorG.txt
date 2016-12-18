@@ -1,1 +1,0 @@
-/DATA/233/hli/Data/HCP_40 HCP /DATA/233/hli/Data/HCP_40/sub_HCP_10.txt PorG /DATA/233/hli/PorG_HCP 14 10

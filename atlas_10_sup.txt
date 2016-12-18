@@ -1,7 +1,0 @@
-/DATA/233/hli/Data/HCP_40 HCP /DATA/233/hli/BA_fs/sub_HCP_10.txt /DATA/233/hli/BA_fs/Str Str 10 5
-/DATA/233/hli/Data/HCP_40 HCP /DATA/233/hli/BA_fs/sub_HCP_10.txt /DATA/233/hli/BA_fs/Ent Ent 10 5
-/DATA/233/hli/Data/HCP_40 HCP /DATA/233/hli/BA_fs/sub_HCP_10.txt /DATA/233/hli/BA_fs/FuG FuG 10 5
-/DATA/233/hli/Data/HCP_40 HCP /DATA/233/hli/BA_fs/sub_HCP_10.txt /DATA/233/hli/BA_fs/MTG MTG 12 6
-/DATA/233/hli/Data/HCP_40 HCP /DATA/233/hli/BA_fs/sub_HCP_10.txt /DATA/233/hli/BA_fs/PoG PoG 12 5
-/DATA/233/hli/Data/HCP_40 HCP /DATA/233/hli/BA_fs/sub_HCP_10.txt /DATA/233/hli/BA_fs/SPL SPL 12 8
-/DATA/233/hli/Data/HCP_40 HCP /DATA/233/hli/BA_fs/sub_HCP_10.txt /DATA/233/hli/BA_fs/STG STG 12 6

@@ -1,4 +1,4 @@
-function validation_indi_tpd(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_NUM,POOLSIZE,GROUP_THRES,MPM_THRES)
+function validation_indi_tpd(PWD,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_NUM,POOLSIZE,GROUP_THRES,MPM_THRES)
 
 sub=textread(SUB_LIST,'%s');
 sub_num=length(sub);
@@ -36,10 +36,10 @@ parfor ti=1:sub_num
     for kc=2:MAX_CL_NUM
         disp(['indi_tpd: ',PART,' kc=',num2str(kc),' ',num2str(ti)]);
 
-        mpm_file1=strcat(PWD,'/',sub{ti},'/',PREFIX,'_',sub{ti},'_',PART,'_L_',METHOD,'/',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',PART,'_L_',num2str(kc),'_MNI_relabel_group.nii.gz');
+        mpm_file1=strcat(PWD,'/',sub{ti},'/',sub{ti},'_',PART,'_L_',METHOD,'/',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',PART,'_L_',num2str(kc),'_MNI_relabel_group.nii.gz');
         mpm1=load_untouch_nii(mpm_file1);
         img1=double(mpm1.img);
-        mpm_file2=strcat(PWD,'/',sub{ti},'/',PREFIX,'_',sub{ti},'_',PART,'_R_',METHOD,'/',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',PART,'_R_',num2str(kc),'_MNI_relabel_group.nii.gz');
+        mpm_file2=strcat(PWD,'/',sub{ti},'/',sub{ti},'_',PART,'_R_',METHOD,'/',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',PART,'_R_',num2str(kc),'_MNI_relabel_group.nii.gz');
         mpm2=load_untouch_nii(mpm_file2);
         img2=double(mpm2.img);
         img1=img1.*MASK_L;

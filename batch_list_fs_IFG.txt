@@ -1,1 +1,0 @@
-/DATA/233/hli/Data/HCP_40 HCP /DATA/233/hli/Data/HCP_40/sub_HCP_last_30.txt IFG /DATA/233/hli/IFG 12 8

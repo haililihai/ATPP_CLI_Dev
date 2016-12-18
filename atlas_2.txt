@@ -1,5 +1,0 @@
-/DATA/233/hli/Data/HCP_40 HCP /DATA/233/hli/BA_fs/sub_HCP.txt /DATA/233/hli/BA_fs/Str Str 10 4
-/DATA/233/hli/Data/HCP_40 HCP /DATA/233/hli/BA_fs/sub_HCP.txt /DATA/233/hli/BA_fs/Hipp Hipp 5 3
-/DATA/233/hli/Data/HCP_40 HCP /DATA/233/hli/BA_fs/sub_HCP.txt /DATA/233/hli/BA_fs/Ins Ins 12 6
-/DATA/233/hli/Data/HCP_40 HCP /DATA/233/hli/BA_fs/sub_HCP.txt /DATA/233/hli/BA_fs/MFG MFG 12 7
-/DATA/233/hli/Data/HCP_40 HCP /DATA/233/hli/BA_fs/sub_HCP.txt /DATA/233/hli/BA_fs/IPL IPL 12 6

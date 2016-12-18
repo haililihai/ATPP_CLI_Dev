@@ -1,4 +1,4 @@
-function ROI_registration_spm(WD,PREFIX,PART,SUB_LIST,POOLSIZE,TEMPLATE,LEFT,RIGHT)
+function ROI_registration_spm(WD,PART,SUB_LIST,POOLSIZE,TEMPLATE,LEFT,RIGHT)
 %-----------------------------------------------------------------------
 % transform ROIs from MNI space to DTI(b0) space
 %-----------------------------------------------------------------------

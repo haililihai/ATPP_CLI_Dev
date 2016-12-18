@@ -5,8 +5,6 @@ PIPELINE=$1
 shift
 WD=$1
 shift
-PREFIX=$1
-shift
 PART=$1
 shift
 SUB_LIST=$1
@@ -28,16 +26,16 @@ RIGHT=$1
 
 if [ "${LEFT}" == "1" ] && [ "${RIGHT}" == "0" ]
 then
-	${COMMAND_MATLAB} -nodisplay -nosplash -r "addpath('${PIPELINE}');addpath('${NIFTI}');group_refer_xmm('${WD}','${PREFIX}','${PART}','${SUB_LIST}',${MAX_CL_NUM},'${METHOD}',${VOX_SIZE},${GROUP_THRES},1);exit" &
+	${COMMAND_MATLAB} -nodisplay -nosplash -r "addpath('${PIPELINE}');addpath('${NIFTI}');group_refer_xmm('${WD}','${PART}','${SUB_LIST}',${MAX_CL_NUM},'${METHOD}',${VOX_SIZE},${GROUP_THRES},1);exit" &
 	wait
 elif [ "${LEFT}" == "0" ] && [ "${RIGHT}" == "1" ]
 then
-	${COMMAND_MATLAB} -nodisplay -nosplash -r "addpath('${PIPELINE}');addpath('${NIFTI}');group_refer_xmm('${WD}','${PREFIX}','${PART}','${SUB_LIST}',${MAX_CL_NUM},'${METHOD}',${VOX_SIZE},${GROUP_THRES},0);exit" &
+	${COMMAND_MATLAB} -nodisplay -nosplash -r "addpath('${PIPELINE}');addpath('${NIFTI}');group_refer_xmm('${WD}','${PART}','${SUB_LIST}',${MAX_CL_NUM},'${METHOD}',${VOX_SIZE},${GROUP_THRES},0);exit" &
 	wait
 elif [ "${LEFT}" == "1" ] && [  "${RIGHT}" == "1" ]
 then
-	${COMMAND_MATLAB} -nodisplay -nosplash -r "addpath('${PIPELINE}');addpath('${NIFTI}');group_refer_xmm('${WD}','${PREFIX}','${PART}','${SUB_LIST}',${MAX_CL_NUM},'${METHOD}',${VOX_SIZE},${GROUP_THRES},1);exit" &
-	${COMMAND_MATLAB} -nodisplay -nosplash -r "addpath('${PIPELINE}');addpath('${NIFTI}');group_refer_xmm('${WD}','${PREFIX}','${PART}','${SUB_LIST}',${MAX_CL_NUM},'${METHOD}',${VOX_SIZE},${GROUP_THRES},0);exit" &
+	${COMMAND_MATLAB} -nodisplay -nosplash -r "addpath('${PIPELINE}');addpath('${NIFTI}');group_refer_xmm('${WD}','${PART}','${SUB_LIST}',${MAX_CL_NUM},'${METHOD}',${VOX_SIZE},${GROUP_THRES},1);exit" &
+	${COMMAND_MATLAB} -nodisplay -nosplash -r "addpath('${PIPELINE}');addpath('${NIFTI}');group_refer_xmm('${WD}','${PART}','${SUB_LIST}',${MAX_CL_NUM},'${METHOD}',${VOX_SIZE},${GROUP_THRES},0);exit" &
 	wait
 	${COMMAND_MATLAB} -nodisplay -r "addpath('${PIPELINE}');addpath('${NIFTI}');symmetry_group('${WD}','${PART}','${SUB_LIST}',${MAX_CL_NUM},${VOX_SIZE},${GROUP_THRES});exit"
 	wait

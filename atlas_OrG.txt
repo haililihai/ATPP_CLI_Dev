@@ -1,1 +1,0 @@
-/DATA/233/hli/Data/HCP_40 HCP /DATA/233/hli/Data/HCP_40/sub_HCP.txt /DATA/233/hli/BA_fs/OrG OrG 12 6

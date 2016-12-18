@@ -1,4 +1,0 @@
-/DATA/233/hli/Data/HCP_40 HCP /DATA/233/hli/Data/HCP_40/sub_HCP_10.txt PCL /DATA/233/hli/BA_fs/PCL 12 6
-/DATA/233/hli/Data/HCP_40 HCP /DATA/233/hli/Data/HCP_40/sub_HCP_10.txt PCL /DATA/233/hli/BA_fs/PCL 12 7
-/DATA/233/hli/Data/HCP_40 HCP /DATA/233/hli/Data/HCP_40/sub_HCP_10.txt PCL /DATA/233/hli/BA_fs/PCL 12 8
-/DATA/233/hli/Data/HCP_40 HCP /DATA/233/hli/Data/HCP_40/sub_HCP_10.txt IPL /DATA/233/hli/BA_fs/IPL 12 8

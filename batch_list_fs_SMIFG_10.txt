@@ -1,3 +1,0 @@
-/DATA/233/hli/Data/HCP_40 HCP /DATA/233/hli/Data/HCP_40/sub_HCP_10.txt SFG /DATA/233/hli/BA_fs/SFG 12 8
-/DATA/233/hli/Data/HCP_40 HCP /DATA/233/hli/Data/HCP_40/sub_HCP_10.txt MFG /DATA/233/hli/BA_fs/MFG 12 6
-/DATA/233/hli/Data/HCP_40 HCP /DATA/233/hli/Data/HCP_40/sub_HCP_10.txt IFG /DATA/233/hli/fs_IFG 12 8

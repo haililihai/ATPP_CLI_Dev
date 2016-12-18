@@ -1,4 +1,4 @@
-function validation_group_tpd(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_NUM,MPM_THRES)
+function validation_group_tpd(PWD,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_NUM,MPM_THRES)
 
     sub=textread(SUB_LIST,'%s');
     sub_num=length(sub);

@@ -1,4 +1,4 @@
-function ROI_calc_matrix(PWD,PREFIX,PART,SUB_LIST,POOLSIZE,VAL_THRES,DOWN_SIZE,LEFT,RIGHT)
+function ROI_calc_matrix(PWD,PART,SUB_LIST,POOLSIZE,VAL_THRES,DOWN_SIZE,LEFT,RIGHT)
 % calculate the connectivity and correlation matrix
 % load_nii_hdr modified to support .gz files
 
@@ -34,17 +34,17 @@ end
 parfor i = 1:length(SUB);
 
 	if LEFT == 1
-	coord_L = load(strcat(PWD,'/',SUB{i},'/',PREFIX,'_',SUB{i},'_',PART,'_L_coord.txt'));
-	imgfolder_L = strcat(PWD,'/',SUB{i},'/',PREFIX,'_',SUB{i},'_',PART,'_L_probtrackx');
-	outfolder_L = strcat(PWD,'/',SUB{i},'/',PREFIX,'_',SUB{i},'_',PART,'_L_matrix/');
+	coord_L = load(strcat(PWD,'/',SUB{i},'/',SUB{i},'_',PART,'_L_coord.txt'));
+	imgfolder_L = strcat(PWD,'/',SUB{i},'/',SUB{i},'_',PART,'_L_probtrackx');
+	outfolder_L = strcat(PWD,'/',SUB{i},'/',SUB{i},'_',PART,'_L_matrix/');
 	if ~exist(outfolder_L) mkdir(outfolder_L);end
  	f_Create_Matrix_v3(imgfolder_L,outfolder_L,coord_L,threshold,resampflag,NewVoxSize,method);
 	end
 
 	if RIGHT == 1
-	coord_R = load(strcat(PWD,'/',SUB{i},'/',PREFIX,'_',SUB{i},'_',PART,'_R_coord.txt'));
-	imgfolder_R = strcat(PWD,'/',SUB{i},'/',PREFIX,'_',SUB{i},'_',PART,'_R_probtrackx');
-	outfolder_R = strcat(PWD,'/',SUB{i},'/',PREFIX,'_',SUB{i},'_',PART,'_R_matrix/');
+	coord_R = load(strcat(PWD,'/',SUB{i},'/',SUB{i},'_',PART,'_R_coord.txt'));
+	imgfolder_R = strcat(PWD,'/',SUB{i},'/',SUB{i},'_',PART,'_R_probtrackx');
+	outfolder_R = strcat(PWD,'/',SUB{i},'/',SUB{i},'_',PART,'_R_matrix/');
 	if ~exist(outfolder_R) mkdir(outfolder_R);end
 	f_Create_Matrix_v3(imgfolder_R,outfolder_R,coord_R,threshold,resampflag,NewVoxSize,method);
 	end

@@ -1,4 +1,4 @@
-function group_refer_xmm(PWD,PREFIX,PART,SUB_LIST,MAX_CL_NUM,METHOD,VOX_SIZE,GROUP_THRES,LorR)
+function group_refer_xmm(PWD,PART,SUB_LIST,MAX_CL_NUM,METHOD,VOX_SIZE,GROUP_THRES,LorR)
 % group REFER
 
 SUB = textread(SUB_LIST,'%s');
@@ -15,11 +15,11 @@ else
 	GROUP_THRES_REAL=GROUP_THRES;
 end
 
-defnii = load_untouch_nii(strcat(PWD,'/',SUB{1},'/',PREFIX,'_',SUB{1},'_',PART,'_',LR,'_',METHOD,'/',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',PART,'_',LR,'_',num2str(2),'_MNI.nii.gz'));
+defnii = load_untouch_nii(strcat(PWD,'/',SUB{1},'/',SUB{1},'_',PART,'_',LR,'_',METHOD,'/',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',PART,'_',LR,'_',num2str(2),'_MNI.nii.gz'));
 sumimg = zeros(size(defnii.img));
 for j = 1:subnum 
 	  disp(strcat(SUB{j},'_',LR));
-	  datanii = load_untouch_nii(strcat(PWD,'/',SUB{j},'/',PREFIX,'_',SUB{j},'_',PART,'_',LR,'_',METHOD,'/',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',PART,'_',LR,'_',num2str(2),'_MNI.nii.gz'));
+	  datanii = load_untouch_nii(strcat(PWD,'/',SUB{j},'/',SUB{j},'_',PART,'_',LR,'_',METHOD,'/',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',PART,'_',LR,'_',num2str(2),'_MNI.nii.gz'));
 	  datanii.img(datanii.img>0) = 1;
 	  datanii.img=datanii.img;
 	  sumimg = sumimg + datanii.img;
@@ -44,7 +44,7 @@ for CL_NUM=2:MAX_CL_NUM
     	disp(strcat(PART,'_',LR,' cluster number_',num2str(CL_NUM),' is running...'));
 	    groupmatrix = zeros(ROISIZE,ROISIZE);
 	    for j = 1:length(SUB)
-			datanii = load_untouch_nii(strcat(PWD,'/',SUB{j},'/',PREFIX,'_',SUB{j},'_',PART,'_',LR,'_',METHOD,'/',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',PART,'_',LR,'_',num2str(CL_NUM),'_MNI.nii.gz'));
+			datanii = load_untouch_nii(strcat(PWD,'/',SUB{j},'/',SUB{j},'_',PART,'_',LR,'_',METHOD,'/',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',PART,'_',LR,'_',num2str(CL_NUM),'_MNI.nii.gz'));
 			dataimg = datanii.img;
 			kimatrix=zeros(ROISIZE,ROISIZE);
 			for ki=1:CL_NUM

@@ -1,4 +1,4 @@
-function validation_split_half(PWD,PREFIX,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_NUM,N_ITER,POOLSIZE,GROUP_THRES,MPM_THRES,LorR)
+function validation_split_half(PWD,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_NUM,N_ITER,POOLSIZE,GROUP_THRES,MPM_THRES,LorR)
 % split half strategy
 
 if LorR == 1
@@ -69,8 +69,8 @@ parfor ti=1:N_ITER
     for kc=2:MAX_CL_NUM
         disp(['split_half: ',PART,'_',LR,' kc=',num2str(kc),' ',num2str(ti),'/',num2str(N_ITER)]);
 
-        mpm_cluster1=cluster_mpm_validation(PWD,PREFIX,PART,list1_sub,METHOD,VOX_SIZE,kc,MPM_THRES,LorR);
-        mpm_cluster2=cluster_mpm_validation(PWD,PREFIX,PART,list2_sub,METHOD,VOX_SIZE,kc,MPM_THRES,LorR);
+        mpm_cluster1=cluster_mpm_validation(PWD,PART,list1_sub,METHOD,VOX_SIZE,kc,MPM_THRES,LorR);
+        mpm_cluster2=cluster_mpm_validation(PWD,PART,list2_sub,METHOD,VOX_SIZE,kc,MPM_THRES,LorR);
         mpm_cluster1=mpm_cluster1.*MASK;
         mpm_cluster2=mpm_cluster2.*MASK;
         
