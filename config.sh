@@ -10,7 +10,7 @@
 #===============================================================================
 
 # pipeline directory
-PIPELINE=/DATA/233/hli/ATPP_test
+PIPELINE=/DATA/233/hli/ATPP_CLI_Dev
 
 # ROI directory which contains ROI files, e.g., Amyg_L.nii
 ROI_DIR=/DATA/233/hli/test/ROI
