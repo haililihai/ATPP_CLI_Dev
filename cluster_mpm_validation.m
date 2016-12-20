@@ -1,4 +1,4 @@
-function [mpm_cluster]=cluster_mpm_validation(PWD,PART,SUB,METHOD,VOX_SIZE,kc,MPM_THRES,LorR)
+function [mpm_cluster]=cluster_mpm_validation(PWD,ROI,SUB,METHOD,VOX_SIZE,kc,MPM_THRES,LorR)
 
     if LorR == 1
         LR='L';
@@ -12,14 +12,14 @@ function [mpm_cluster]=cluster_mpm_validation(PWD,PART,SUB,METHOD,VOX_SIZE,kc,MP
         MPM_THRES=0.25;
     end
 
-    vnii_ref=load_untouch_nii(strcat(PWD,'/',sub{1},'/',sub{1},'_',PART,'_',LR,'_',METHOD,'/',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',PART,'_',LR,'_',num2str(kc),'_MNI_relabel_group.nii.gz'));
+    vnii_ref=load_untouch_nii(strcat(PWD,'/',sub{1},'/',sub{1},'_',ROI,'_',LR,'_',METHOD,'/',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',ROI,'_',LR,'_',num2str(kc),'_MNI_relabel_group.nii.gz'));
     ref_img=double(vnii_ref.img);
     IMGSIZE=size(ref_img);
     sumimg=zeros(IMGSIZE);
 
     prob_cluster=zeros([IMGSIZE,kc]);
     for subi=1:sub_num
-        sub_file=strcat(PWD,'/',sub{subi},'/',sub{subi},'_',PART,'_',LR,'_',METHOD,'/',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',PART,'_',LR,'_',num2str(kc),'_MNI_relabel_group.nii.gz');
+        sub_file=strcat(PWD,'/',sub{subi},'/',sub{subi},'_',ROI,'_',LR,'_',METHOD,'/',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',ROI,'_',LR,'_',num2str(kc),'_MNI_relabel_group.nii.gz');
         vnii=load_untouch_nii(sub_file);
         tha_seg_result= vnii.img;   
         dataimg=double(vnii.img);
