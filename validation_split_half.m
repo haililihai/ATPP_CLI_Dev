@@ -1,4 +1,4 @@
-function validation_split_half(PWD,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_NUM,N_ITER,POOLSIZE,GROUP_THRES,MPM_THRES,LorR)
+function validation_split_half(PWD,ROI,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_NUM,N_ITER,POOLSIZE,GROUP_THRES,MPM_THRES,LorR)
 % split half strategy
 
 if LorR == 1
@@ -18,7 +18,7 @@ if ~exist('MPM_THRES','var') | isempty(MPM_THRES)
 end
 
 GROUP_THRES=GROUP_THRES*100;
-MASK_FILE=strcat(PWD,'/group_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',PART,'_',LR,'_roimask_thr',num2str(GROUP_THRES),'.nii.gz');
+MASK_FILE=strcat(PWD,'/group_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',ROI,'_',LR,'_roimask_thr',num2str(GROUP_THRES),'.nii.gz');
 MASK_NII=load_untouch_nii(MASK_FILE);
 MASK=double(MASK_NII.img); 
 
@@ -67,10 +67,10 @@ parfor ti=1:N_ITER
     temp_cv=zeros(1,MAX_CL_NUM);
     
     for kc=2:MAX_CL_NUM
-        disp(['split_half: ',PART,'_',LR,' kc=',num2str(kc),' ',num2str(ti),'/',num2str(N_ITER)]);
+        disp(['split_half: ',ROI,'_',LR,' kc=',num2str(kc),' ',num2str(ti),'/',num2str(N_ITER)]);
 
-        mpm_cluster1=cluster_mpm_validation(PWD,PART,list1_sub,METHOD,VOX_SIZE,kc,MPM_THRES,LorR);
-        mpm_cluster2=cluster_mpm_validation(PWD,PART,list2_sub,METHOD,VOX_SIZE,kc,MPM_THRES,LorR);
+        mpm_cluster1=cluster_mpm_validation(PWD,ROI,list1_sub,METHOD,VOX_SIZE,kc,MPM_THRES,LorR);
+        mpm_cluster2=cluster_mpm_validation(PWD,ROI,list2_sub,METHOD,VOX_SIZE,kc,MPM_THRES,LorR);
         mpm_cluster1=mpm_cluster1.*MASK;
         mpm_cluster2=mpm_cluster2.*MASK;
         
@@ -94,9 +94,9 @@ end
 if ~exist(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm')) 
     mkdir(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm'));
 end
-save(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',PART,'_',LR,'_index_split_half.mat'),'dice','nminfo','cv','vi');
+save(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',ROI,'_',LR,'_index_split_half.mat'),'dice','nminfo','cv','vi');
 
-fp=fopen(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',PART,'_',LR,'_index_split_half.txt'),'at');
+fp=fopen(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',ROI,'_',LR,'_index_split_half.txt'),'at');
 if fp
     for kc=2:MAX_CL_NUM
         fprintf(fp,'%s','cluster num = ');

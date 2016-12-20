@@ -1,4 +1,4 @@
-function validation_group_silhouette(PWD,PART,SUB_LIST,VOX_SIZE,MAX_CL_NUM,MPM_THRES,LorR)
+function validation_group_silhouette(PWD,ROI,SUB_LIST,VOX_SIZE,MAX_CL_NUM,MPM_THRES,LorR)
 
     if LorR == 1
         LR='L';
@@ -17,9 +17,9 @@ function validation_group_silhouette(PWD,PART,SUB_LIST,VOX_SIZE,MAX_CL_NUM,MPM_T
     % group-level silhouette
     group_sil=zeros(1,MAX_CL_NUM);
     for kc=2:MAX_CL_NUM
-        disp(['group_silhouette: ',PART,'_',LR,' kc=',num2str(kc)]);
+        disp(['group_silhouette: ',ROI,'_',LR,' kc=',num2str(kc)]);
 
-        mpm_file=strcat(PWD,'/MPM_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',PART,'_',LR,'_',num2str(kc),'_MPM_thr',num2str(MPM_THRES*100),'_group.nii.gz');
+        mpm_file=strcat(PWD,'/MPM_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',ROI,'_',LR,'_',num2str(kc),'_MPM_thr',num2str(MPM_THRES*100),'_group.nii.gz');
         mpm=load_untouch_nii(mpm_file);
         tempimg=mpm.img;
         [xx,yy,zz]=size(tempimg);
@@ -44,9 +44,9 @@ function validation_group_silhouette(PWD,PART,SUB_LIST,VOX_SIZE,MAX_CL_NUM,MPM_T
 
 
     if ~exist(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm')) mkdir(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm'));end
-    save(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',PART,'_',LR,'_index_group_silhouette.mat'),'group_sil');
+    save(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',ROI,'_',LR,'_index_group_silhouette.mat'),'group_sil');
 
-    fp=fopen(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',PART,'_',LR,'_index_group_silhouette.txt'),'at');
+    fp=fopen(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',ROI,'_',LR,'_index_group_silhouette.txt'),'at');
     if fp
         for kc=2:MAX_CL_NUM
             fprintf(fp,'cluster_num: %d\naverage_group_silhouette: %f\n\n',kc,group_sil(kc));

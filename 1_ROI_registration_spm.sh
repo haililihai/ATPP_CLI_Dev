@@ -5,7 +5,7 @@ PIPELINE=$1
 shift
 WD=$1
 shift
-PART=$1
+ROI=$1
 shift
 SUB_LIST=$1
 shift
@@ -23,18 +23,18 @@ RIGHT=$1
 
 source ${PIPELINE}/config.sh
 
-${COMMAND_MATLAB} -nodisplay -nosplash -r "addpath('${PIPELINE}');addpath('${SPM}');addpath('${NIFTI}');ROI_registration_spm('${WD}','${PART}','${SUB_LIST}',${POOLSIZE},'${TEMPLATE}',${LEFT},${RIGHT});exit"
+${COMMAND_MATLAB} -nodisplay -nosplash -r "addpath('${PIPELINE}');addpath('${SPM}');addpath('${NIFTI}');ROI_registration_spm('${WD}','${ROI}','${SUB_LIST}',${POOLSIZE},'${TEMPLATE}',${LEFT},${RIGHT});exit"
 
 
 for sub in `cat ${SUB_LIST}`
 do
 	if [ "${LEFT}" == "1" ]; then
-		mv ${WD}/${sub}/w${PART}_L.nii ${WD}/${sub}/${sub}_${PART}_L_DTI.nii
-		${COMMAND_FSLCHFILETYPE} NIFTI_GZ ${WD}/${sub}/${sub}_${PART}_L_DTI
+		mv ${WD}/${sub}/w${ROI}_L.nii ${WD}/${sub}/${sub}_${ROI}_L_DTI.nii
+		gzip ${WD}/${sub}/${sub}_${ROI}_L_DTI.nii
 	fi
 	if [ "${RIGHT}" == "1" ]; then
-		mv ${WD}/${sub}/w${PART}_R.nii ${WD}/${sub}/${sub}_${PART}_R_DTI.nii
-		${COMMAND_FSLCHFILETYPE} NIFTI_GZ ${WD}/${sub}/${sub}_${PART}_R_DTI
+		mv ${WD}/${sub}/w${ROI}_R.nii ${WD}/${sub}/${sub}_${ROI}_R_DTI.nii
+        gzip ${WD}/${sub}/${sub}_${ROI}_R_DTI.nii
 	fi
 done
 

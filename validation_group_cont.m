@@ -1,4 +1,4 @@
-function validation_group_cont(PWD,PART,SUB_LIST,VOX_SIZE,MAX_CL_NUM,MPM_THRES,LorR)
+function validation_group_cont(PWD,ROI,SUB_LIST,VOX_SIZE,MAX_CL_NUM,MPM_THRES,LorR)
 
     if LorR == 1
         LR='L';
@@ -16,9 +16,9 @@ function validation_group_cont(PWD,PART,SUB_LIST,VOX_SIZE,MAX_CL_NUM,MPM_THRES,L
     % group-level continuity
     group_cont=zeros(1,MAX_CL_NUM);
     for kc=2:MAX_CL_NUM
-        disp(['group_cont: ',PART,'_',LR,' kc=',num2str(kc)]);
+        disp(['group_cont: ',ROI,'_',LR,' kc=',num2str(kc)]);
 
-        mpm_file=strcat(PWD,'/MPM_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',PART,'_',LR,'_',num2str(kc),'_MPM_thr',num2str(MPM_THRES*100),'_group.nii.gz');
+        mpm_file=strcat(PWD,'/MPM_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',ROI,'_',LR,'_',num2str(kc),'_MPM_thr',num2str(MPM_THRES*100),'_group.nii.gz');
         mpm=load_untouch_nii(mpm_file);
         tempimg=double(mpm.img);
         cont=cell(kc,1);
@@ -40,9 +40,9 @@ function validation_group_cont(PWD,PART,SUB_LIST,VOX_SIZE,MAX_CL_NUM,MPM_THRES,L
     end
 
     if ~exist(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm')) mkdir(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm'));end
-    save(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',PART,'_',LR,'_index_group_continuity.mat'),'group_cont');
+    save(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',ROI,'_',LR,'_index_group_continuity.mat'),'group_cont');
 
-    fp=fopen(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',PART,'_',LR,'_index_group_continuity.txt'),'at');
+    fp=fopen(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',ROI,'_',LR,'_index_group_continuity.txt'),'at');
     if fp
         for kc=2:MAX_CL_NUM
             fprintf(fp,'cluster_num: %d\ngroup_continuity: %f\n\n',kc,group_cont(kc));

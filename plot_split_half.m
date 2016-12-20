@@ -1,4 +1,4 @@
-function plot_split_half(PWD,PART,SUB_LIST,VOX_SIZE,MAX_CL_NUM,LorR)
+function plot_split_half(PWD,ROI,SUB_LIST,VOX_SIZE,MAX_CL_NUM,LorR)
 
 if LorR == 1
     LR='L';
@@ -9,7 +9,7 @@ end
 sub=textread(SUB_LIST,'%s');
 sub_num=length(sub);
 
-file=strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',PART,'_',LR,'_index_split_half.mat');
+file=strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',ROI,'_',LR,'_index_split_half.mat');
 v=load(file);
 x=2:MAX_CL_NUM;
 
@@ -29,10 +29,10 @@ hold off;
 set(gca,'XTick',x);
 legend('Dice','NMI','CV','Location','SouthEast');
 xlabel('Number of clusters','FontSize',14);ylabel('Indice','FontSize',14);
-title(strcat(PART,'.',LR,' split half'),'FontSize',14);
+title(strcat(ROI,'.',LR,' split half'),'FontSize',14);
 set(gcf,'Color','w');
 
-output=strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',PART,'_',LR,'_split_half.jpg');
+output=strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',ROI,'_',LR,'_split_half.jpg');
 export_fig(output,'-r300','-painters','-nocrop');
 
 close;
@@ -50,10 +50,10 @@ end
 
 set(gca,'XTick',x);
 xlabel('Number of clusters','FontSize',14);ylabel('VI','FontSize',14);
-title(strcat(PART,'.',LR,' split half VI'),'FontSize',14);
+title(strcat(ROI,'.',LR,' split half VI'),'FontSize',14);
 set(gcf,'Color','w');
 
-output=strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',PART,'_',LR,'_split_half_vi.jpg');
+output=strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',ROI,'_',LR,'_split_half_vi.jpg');
 export_fig(output,'-r300','-painters','-nocrop');
 
 close;

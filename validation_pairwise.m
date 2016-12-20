@@ -1,4 +1,4 @@
-function validation_pairwise(PWD,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_NUM,POOLSIZE,GROUP_THRES,MPM_THRES,LorR)
+function validation_pairwise(PWD,ROI,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_NUM,POOLSIZE,GROUP_THRES,MPM_THRES,LorR)
 
 if LorR == 1
     LR='L';
@@ -14,7 +14,7 @@ if ~exist('MPM_THRES','var') | isempty(MPM_THRES)
 end
 
 GROUP_THRES=GROUP_THRES*100;
-MASK_FILE=strcat(PWD,'/group_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',PART,'_',LR,'_roimask_thr',num2str(GROUP_THRES),'.nii.gz');
+MASK_FILE=strcat(PWD,'/group_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',ROI,'_',LR,'_roimask_thr',num2str(GROUP_THRES),'.nii.gz');
 MASK_NII=load_untouch_nii(MASK_FILE);
 MASK=double(MASK_NII.img); 
 
@@ -42,15 +42,15 @@ parfor kc=2:MAX_CL_NUM
     cv_k=zeros(sub_num,sub_num);
 
     for ti=1:sub_num-1
-        vnii_ref_file=strcat(PWD,'/',sub{ti},'/',sub{ti},'_',PART,'_',LR,'_',METHOD,'/',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',PART,'_',LR,'_',num2str(kc),'_MNI_relabel_group.nii.gz');
+        vnii_ref_file=strcat(PWD,'/',sub{ti},'/',sub{ti},'_',ROI,'_',LR,'_',METHOD,'/',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',ROI,'_',LR,'_',num2str(kc),'_MNI_relabel_group.nii.gz');
         vnii_ref=load_untouch_nii(vnii_ref_file);
         mpm_cluster1=double(vnii_ref.img);
         mpm_cluster1=mpm_cluster1.*MASK;
 
         for tn=ti+1:sub_num
-            disp(['pairwise: ',PART,'_',LR,' kc=',num2str(kc),' ',num2str(ti),'<->',num2str(tn)]);
+            disp(['pairwise: ',ROI,'_',LR,' kc=',num2str(kc),' ',num2str(ti),'<->',num2str(tn)]);
 
-            vnii_ref1_file=strcat(PWD,'/',sub{tn},'/',sub{tn},'_',PART,'_',LR,'_',METHOD,'/',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',PART,'_',LR,'_',num2str(kc),'_MNI_relabel_group.nii.gz');
+            vnii_ref1_file=strcat(PWD,'/',sub{tn},'/',sub{tn},'_',ROI,'_',LR,'_',METHOD,'/',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',ROI,'_',LR,'_',num2str(kc),'_MNI_relabel_group.nii.gz');
             vnii_ref1=load_untouch_nii(vnii_ref1_file);
             mpm_cluster2=double(vnii_ref1.img);
             mpm_cluster2=mpm_cluster2.*MASK;
@@ -76,9 +76,9 @@ end
 if ~exist(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm'))
     mkdir(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm'));
 end
-save(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',PART,'_',LR,'_index_pairwise.mat'),'dice','nminfo','cv','vi');
+save(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',ROI,'_',LR,'_index_pairwise.mat'),'dice','nminfo','cv','vi');
 
-fp=fopen(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',PART,'_',LR,'_index_pairwise.txt'),'at');
+fp=fopen(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',ROI,'_',LR,'_index_pairwise.txt'),'at');
 if fp
     for kc=2:MAX_CL_NUM
         col_cv=cv(:,:,kc);

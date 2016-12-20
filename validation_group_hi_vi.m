@@ -1,4 +1,4 @@
-function validation_group_hi_vi(PWD,PART,SUB_LIST,VOX_SIZE,MAX_CL_NUM,MPM_THRES,LorR)
+function validation_group_hi_vi(PWD,ROI,SUB_LIST,VOX_SIZE,MAX_CL_NUM,MPM_THRES,LorR)
 
     if LorR == 1
         LR='L';
@@ -16,12 +16,12 @@ function validation_group_hi_vi(PWD,PART,SUB_LIST,VOX_SIZE,MAX_CL_NUM,MPM_THRES,
     group_hi=zeros(1,MAX_CL_NUM);
     group_vi=zeros(1,MAX_CL_NUM);
     for kc=3:MAX_CL_NUM
-        disp(['group_hi_vi: ',PART,'_',LR,' kc= ',num2str(kc-1),'->',num2str(kc)]);
+        disp(['group_hi_vi: ',ROI,'_',LR,' kc= ',num2str(kc-1),'->',num2str(kc)]);
 
-        mpm_file1=strcat(PWD,'/MPM_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',PART,'_',LR,'_',num2str(kc-1),'_MPM_thr',num2str(MPM_THRES*100),'_group.nii.gz');
+        mpm_file1=strcat(PWD,'/MPM_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',ROI,'_',LR,'_',num2str(kc-1),'_MPM_thr',num2str(MPM_THRES*100),'_group.nii.gz');
         mpm1=load_untouch_nii(mpm_file1);
         mpmimg1=mpm1.img;
-        mpm_file2=strcat(PWD,'/MPM_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',PART,'_',LR,'_',num2str(kc),'_MPM_thr',num2str(MPM_THRES*100),'_group.nii.gz');
+        mpm_file2=strcat(PWD,'/MPM_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',ROI,'_',LR,'_',num2str(kc),'_MPM_thr',num2str(MPM_THRES*100),'_group.nii.gz');
         mpm2=load_untouch_nii(mpm_file2);
         mpmimg2=mpm2.img;
 
@@ -41,9 +41,9 @@ function validation_group_hi_vi(PWD,PART,SUB_LIST,VOX_SIZE,MAX_CL_NUM,MPM_THRES,
     end
 
     if ~exist(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm')) mkdir(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm'));end
-    save(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',PART,'_',LR,'_index_group_hi.mat'),'group_hi','group_vi');
+    save(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',ROI,'_',LR,'_index_group_hi.mat'),'group_hi','group_vi');
 
-    fp=fopen(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',PART,'_',LR,'_index_group_hi_vi.txt'),'at');
+    fp=fopen(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',ROI,'_',LR,'_index_group_hi_vi.txt'),'at');
     if fp
         for kc=3:MAX_CL_NUM
             fprintf(fp,'cluster_num: %d -> %d \ngroup_hierarchy_index: %f\ngroup_variation_of_info: %f\n\n',kc-1,kc,group_hi(1,kc),group_vi(1,kc));

@@ -5,7 +5,7 @@ pipeline=$1
 shift
 WD=$1
 shift
-PART=$1
+ROI=$1
 shift
 SUB=$1
 shift
@@ -42,5 +42,5 @@ shift
 tpd=$1
 
 
-${COMMAND_MATLAB} -nodisplay -nosplash -r "addpath('${pipeline}');validation('${WD}','${PART}','${SUB}','${METHOD}',${VOX_SIZE},${MAX_CL_NUM},${N_ITER},${POOLSIZE},${GROUP_THRES},${MPM_THRES},${LEFT},${RIGHT},${split_half},${pairwise},${leave_one_out},${cont},${hi_vi},${silhouette},${tpd});exit" 
+${COMMAND_MATLAB} -nodisplay -nosplash -r "addpath('${pipeline}');validation('${WD}','${ROI}','${SUB}','${METHOD}',${VOX_SIZE},${MAX_CL_NUM},${N_ITER},${POOLSIZE},${GROUP_THRES},${MPM_THRES},${LEFT},${RIGHT},${split_half},${pairwise},${leave_one_out},${cont},${hi_vi},${silhouette},${tpd});exit" 
 

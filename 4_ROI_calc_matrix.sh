@@ -6,7 +6,7 @@ PIPELINE=$1
 shift
 WD=$1
 shift
-PART=$1
+ROI=$1
 shift
 SUB_LIST=$1
 shift
@@ -23,4 +23,4 @@ shift
 RIGHT=$1
 
 
-${COMMAND_MATLAB} -nodisplay -nosplash -r "addpath('${PIPELINE}');addpath('${NIFTI}');ROI_calc_matrix('${WD}','${PART}','${SUB_LIST}',${POOLSIZE},${VAL_THRES},${DOWN_SIZE},${LEFT},${RIGHT});exit"
+${COMMAND_MATLAB} -nodisplay -nosplash -r "addpath('${PIPELINE}');addpath('${NIFTI}');ROI_calc_matrix('${WD}','${ROI}','${SUB_LIST}',${POOLSIZE},${VAL_THRES},${DOWN_SIZE},${LEFT},${RIGHT});exit"

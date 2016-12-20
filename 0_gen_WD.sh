@@ -22,7 +22,7 @@ WD=$1
 shift
 DATA_DIR=$1
 shift
-PART=$1
+ROI=$1
 shift
 SUB_LIST=$1
 shift
@@ -33,11 +33,11 @@ mkdir -p ${WD}/ROI
 mkdir -p ${WD}/log
 
 # unzip ROIs if they are in gz format 
-gunzip ${ROI_DIR}/${PART}_L.nii.gz
-gunzip ${ROI_DIR}/${PART}_R.nii.gz
+gunzip ${ROI_DIR}/${ROI}_L.nii.gz
+gunzip ${ROI_DIR}/${ROI}_R.nii.gz
 
 # copy ROIs from ROI_DIR to ROI directory in working directory
-cp -vrt ${WD}/ROI ${ROI_DIR}/${PART}_L.nii ${ROI_DIR}/${PART}_R.nii
+cp -vrt ${WD}/ROI ${ROI_DIR}/${ROI}_L.nii ${ROI_DIR}/${ROI}_R.nii
 
 # copy T1 and b0 files from DATA_DIR for each subject
 for sub in `cat ${SUB_LIST}`

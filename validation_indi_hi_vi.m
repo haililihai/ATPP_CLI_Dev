@@ -1,4 +1,4 @@
-function validation_indi_hi_vi(PWD,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_NUM,POOLSIZE,GROUP_THRES,MPM_THRES,LorR)
+function validation_indi_hi_vi(PWD,ROI,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_NUM,POOLSIZE,GROUP_THRES,MPM_THRES,LorR)
 
 if LorR == 1
     LR='L';
@@ -14,7 +14,7 @@ if ~exist('MPM_THRES','var') | isempty(MPM_THRES)
 end
 
 GROUP_THRES=GROUP_THRES*100;
-MASK_FILE=strcat(PWD,'/group_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',PART,'_',LR,'_roimask_thr',num2str(GROUP_THRES),'.nii.gz');
+MASK_FILE=strcat(PWD,'/group_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',ROI,'_',LR,'_roimask_thr',num2str(GROUP_THRES),'.nii.gz');
 MASK_NII=load_untouch_nii(MASK_FILE);
 MASK=double(MASK_NII.img);
 
@@ -37,12 +37,12 @@ parfor ti=1:sub_num
     temp_hi=zeros(1,MAX_CL_NUM);
     temp_vi=zeros(1,MAX_CL_NUM);
     for kc=3:MAX_CL_NUM
-        disp(['indi_group_hi_vi: ',PART,'_',LR,' kc= ',num2str(kc-1),'->',num2str(kc),' ',num2str(ti)]);
+        disp(['indi_group_hi_vi: ',ROI,'_',LR,' kc= ',num2str(kc-1),'->',num2str(kc),' ',num2str(ti)]);
 
-        mpm_file1=strcat(PWD,'/',sub{ti},'/',sub{ti},'_',PART,'_',LR,'_',METHOD,'/',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',PART,'_',LR,'_',num2str(kc-1),'_MNI_relabel_group.nii.gz');
+        mpm_file1=strcat(PWD,'/',sub{ti},'/',sub{ti},'_',ROI,'_',LR,'_',METHOD,'/',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',ROI,'_',LR,'_',num2str(kc-1),'_MNI_relabel_group.nii.gz');
         mpm1=load_untouch_nii(mpm_file1);
         mpmimg1=double(mpm1.img);
-        mpm_file2=strcat(PWD,'/',sub{ti},'/',sub{ti},'_',PART,'_',LR,'_',METHOD,'/',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',PART,'_',LR,'_',num2str(kc),'_MNI_relabel_group.nii.gz');
+        mpm_file2=strcat(PWD,'/',sub{ti},'/',sub{ti},'_',ROI,'_',LR,'_',METHOD,'/',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',ROI,'_',LR,'_',num2str(kc),'_MNI_relabel_group.nii.gz');
         mpm2=load_untouch_nii(mpm_file2);
         mpmimg2=double(mpm2.img);
         mpmimg1=mpmimg1.*MASK;
@@ -66,9 +66,9 @@ parfor ti=1:sub_num
 end
 
 if ~exist(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm')) mkdir(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm'));end
-save(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',PART,'_',LR,'_index_indi_hi.mat'),'indi_hi','indi_vi');
+save(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',ROI,'_',LR,'_index_indi_hi.mat'),'indi_hi','indi_vi');
 
-fp=fopen(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',PART,'_',LR,'_index_indi_hi_vi.txt'),'at');
+fp=fopen(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',ROI,'_',LR,'_index_indi_hi_vi.txt'),'at');
 if fp
     for kc=3:MAX_CL_NUM
         fprintf(fp,'cluster_num: %d -> %d\navg_indi_hi: %f\nstd_indi_hi: %f\nmedian_indi_hi: %f\navg_indi_vi: %f\nstd_indi_vi: %f\nmedian_indi_vi: %f\n\n',kc-1,kc,nanmean(indi_hi(:,kc)),nanstd(indi_hi(:,kc)),nanmedian(indi_hi(:,kc)),nanmean(indi_vi(:,kc)),nanstd(indi_vi(:,kc)),nanmedian(indi_vi(:,kc)));

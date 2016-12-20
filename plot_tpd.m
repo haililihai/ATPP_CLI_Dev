@@ -1,11 +1,11 @@
-function plot_tpd(PWD,PART,SUB_LIST,VOX_SIZE,MAX_CL_NUM)
+function plot_tpd(PWD,ROI,SUB_LIST,VOX_SIZE,MAX_CL_NUM)
 
 sub=textread(SUB_LIST,'%s');
 sub_num=length(sub);
 
-file1=strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',PART,'_index_group_tpd.mat');
+file1=strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',ROI,'_index_group_tpd.mat');
 v1=load(file1);
-file2=strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',PART,'_index_indi_tpd.mat');
+file2=strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',ROI,'_index_indi_tpd.mat');
 v2=load(file2);
 x=2:MAX_CL_NUM;
 
@@ -20,10 +20,10 @@ hold off;
 set(gca,'XTick',x);
 legend('group TpD','indi TpD','Location','SouthEast');
 xlabel('Number of clusters','FontSize',14);ylabel('Indice','FontSize',14);
-title(strcat(PART,'.TpD index'),'FontSize',14);
+title(strcat(ROI,'.TpD index'),'FontSize',14);
 set(gcf,'Color','w');
 
-output=strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',PART,'_tpd.jpg');
+output=strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',ROI,'_tpd.jpg');
 export_fig(output,'-r300','-painters','-nocrop');
 
 close;

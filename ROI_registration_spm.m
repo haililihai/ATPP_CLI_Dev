@@ -1,11 +1,11 @@
-function ROI_registration_spm(WD,PART,SUB_LIST,POOLSIZE,TEMPLATE,LEFT,RIGHT)
+function ROI_registration_spm(WD,ROI,SUB_LIST,POOLSIZE,TEMPLATE,LEFT,RIGHT)
 %-----------------------------------------------------------------------
 % transform ROIs from MNI space to DTI(b0) space
 %-----------------------------------------------------------------------
 
 SUB = textread(SUB_LIST,'%s');
-ROI_L=[WD,'/ROI/',PART,'_L.nii'];
-ROI_R=[WD,'/ROI/',PART,'_R.nii'];
+ROI_L=[WD,'/ROI/',ROI,'_L.nii'];
+ROI_R=[WD,'/ROI/',ROI,'_R.nii'];
 
 % make ROIs be proper datatype, default double
 roi_l=load_untouch_nii(ROI_L);

@@ -1,4 +1,4 @@
-function symmetry_group(PWD,PART,SUB_LIST,MAX_CL_NUM,VOX,THRES)
+function symmetry_group(PWD,ROI,SUB_LIST,MAX_CL_NUM,VOX,THRES)
 % relabel the cluster among the subjects
 
 SUB = textread(SUB_LIST,'%s');
@@ -6,10 +6,10 @@ num=length(SUB);
 
 for CL_NUM=2:MAX_CL_NUM
 
-    %if ~exist(strcat(PWD,'/',PART,'/','group_',num2str(num),'_',num2str(VOX),'mm/',num2str(VOX),'mm_',PART,'_R_',num2str(CL_NUM),'_',num2str(THRES*100),'_group.nii.gz'))
-        nii_L=load_untouch_nii(strcat(PWD,'/group_',num2str(num),'_',num2str(VOX),'mm/',num2str(VOX),'mm_',PART,'_L_',num2str(CL_NUM),'_',num2str(THRES*100),'_group.nii.gz'));
+    %if ~exist(strcat(PWD,'/',ROI,'/','group_',num2str(num),'_',num2str(VOX),'mm/',num2str(VOX),'mm_',ROI,'_R_',num2str(CL_NUM),'_',num2str(THRES*100),'_group.nii.gz'))
+        nii_L=load_untouch_nii(strcat(PWD,'/group_',num2str(num),'_',num2str(VOX),'mm/',num2str(VOX),'mm_',ROI,'_L_',num2str(CL_NUM),'_',num2str(THRES*100),'_group.nii.gz'));
         img_L= nii_L.img;
-        nii_R=load_untouch_nii(strcat(PWD,'/group_',num2str(num),'_',num2str(VOX),'mm/',num2str(VOX),'mm_',PART,'_R_',num2str(CL_NUM),'_',num2str(THRES*100),'_group.nii.gz'));
+        nii_R=load_untouch_nii(strcat(PWD,'/group_',num2str(num),'_',num2str(VOX),'mm/',num2str(VOX),'mm_',ROI,'_R_',num2str(CL_NUM),'_',num2str(THRES*100),'_group.nii.gz'));
         img_R= nii_R.img;
         [xr,yr,zr]=size(img_R);
         img_R_mirror=img_R;
@@ -42,8 +42,8 @@ for CL_NUM=2:MAX_CL_NUM
         end
         nii_R.img=tmp_img;
 
-        movefile(strcat(PWD,'/group_',num2str(num),'_',num2str(VOX),'mm/',num2str(VOX),'mm_',PART,'_R_',num2str(CL_NUM),'_',num2str(THRES*100),'_group.nii.gz'),strcat(PWD,'/group_',num2str(num),'_',num2str(VOX),'mm/',num2str(VOX),'mm_',PART,'_R_',num2str(CL_NUM),'_',num2str(THRES*100),'_group.nii.gz.old'));
-        save_untouch_nii(nii_R,strcat(PWD,'/group_',num2str(num),'_',num2str(VOX),'mm/',num2str(VOX),'mm_',PART,'_R_',num2str(CL_NUM),'_',num2str(THRES*100),'_group.nii.gz'));
+        movefile(strcat(PWD,'/group_',num2str(num),'_',num2str(VOX),'mm/',num2str(VOX),'mm_',ROI,'_R_',num2str(CL_NUM),'_',num2str(THRES*100),'_group.nii.gz'),strcat(PWD,'/group_',num2str(num),'_',num2str(VOX),'mm/',num2str(VOX),'mm_',ROI,'_R_',num2str(CL_NUM),'_',num2str(THRES*100),'_group.nii.gz.old'));
+        save_untouch_nii(nii_R,strcat(PWD,'/group_',num2str(num),'_',num2str(VOX),'mm/',num2str(VOX),'mm_',ROI,'_R_',num2str(CL_NUM),'_',num2str(THRES*100),'_group.nii.gz'));
 
         disp(strcat('symmetrized CL_NUM_',num2str(CL_NUM)));
     %else

@@ -99,7 +99,7 @@ do
 DATA_DIR=$( echo $line | cut -d ' ' -f1 )
 SUB_LIST=$( echo $line | cut -d ' ' -f2 )
 WD=$( echo $line | cut -d ' ' -f3 )
-PART=$( echo $line | cut -d ' ' -f4 )
+ROI=$( echo $line | cut -d ' ' -f4 )
 MAX_CL_NUM=$( echo $line | cut -d ' ' -f5 )
 
 # 2. make a proper bash script 
@@ -111,17 +111,17 @@ echo "\
 #!/bin/bash
 #$ -V
 #$ -cwd
-#$ -N ATPP_${PART}
+#$ -N ATPP_${ROI}
 #$ -o ${LOG_DIR}
 #$ -e ${LOG_DIR}
 
-bash ${PIPELINE}/pipeline.sh ${PIPELINE} ${WD} ${DATA_DIR} ${PART} ${SUB_LIST} ${MAX_CL_NUM} >${LOG} 2>&1"\
->${LOG_DIR}/ATPP_${PART}_qsub.sh
+bash ${PIPELINE}/pipeline.sh ${PIPELINE} ${WD} ${DATA_DIR} ${ROI} ${SUB_LIST} ${MAX_CL_NUM} >${LOG} 2>&1"\
+>${LOG_DIR}/ATPP_${ROI}_qsub.sh
 
 # 3. submit the task
-echo "================ ATPP is running for ${PART} ================="
+echo "================ ATPP is running for ${ROI} ================="
 
-${COMMAND_QSUB} ${WD}/log/ATPP_${PART}_qsub.sh
+${COMMAND_QSUB} ${WD}/log/ATPP_${ROI}_qsub.sh
 
 echo "=========================================================="
 echo "log: ${LOG_DIR}/ATPP_log_$(date +%m-%d_%H-%M-%S).txt" 

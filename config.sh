@@ -24,7 +24,7 @@ POOLSIZE=7
 
 # switches for each step,
 # a step will NOT run if its number is NOT in the following array
-SWITCH=(0 1 2 3 4 5 6 7 8 9 10 11 12)
+SWITCH=(12)
 
 # switch for processing left hemisphere, 1--yes, 0--no
 LEFT=1
@@ -81,26 +81,26 @@ MPM_THRES=0.25
 # 11_validation, the number of iteration, default 100
 N_ITER=100
 
-# 11_validation, the switch of various validity indices, 1--yes, 0--no
+# 11_validation, the switch of calculating CV/Dice/NMI using split_half strategy, 1--yes, 0--no
 split_half=1;
 
-# 11_validation, the switch of various validity indices, 1--yes, 0--no
+# 11_validation, the switch of calculating CV/Dice/NMI using pairwise strategy, 1--yes, 0--no
 pairwise=1;
 
-# 11_validation, the switch of various validity indices, 1--yes, 0--no
+# 11_validation, the switch of calculating CV/Dice/NMI using leave_one_out strategy, 1--yes, 0--no
 leave_one_out=1;
 
-# 11_validation, the switch of various validity indices, 1--yes, 0--no
-cont=1;
-
-# 11_validation, the switch of various validity indices, 1--yes, 0--no
+# 11_validation, the switch of calculating hierachical index (hi) and variation of information (vi) index, 1--yes, 0--no
 hi_vi=1;
 
-# 11_validation, the switch of various validity indices, 1--yes, 0--no
+# 11_validation, the switch of calculating topology distance (TpD) index, 1--yes, 0--no
+tpd=1;
+
+# 11_validation, the switch of calculating silhouette index, 1--yes, 0--no
 silhouette=1;
 
-# 11_validation, the switch of various validity indices, 1--yes, 0--no
-tpd=1;
+# 11_validation, the switch of calculating continuity index, 1--yes, 0--no
+cont=1;
 
 
 #===============================================================================
@@ -138,11 +138,3 @@ else
 	echo "Commmand 'probtrackx' is not found! Please set it in config.sh!"
 	exit 1
 fi	
-
-# absolute path of command fslchfiltype
-if command -v fslchfiletype > /dev/null 2>&1; then
-	export COMMAND_FSLCHFILETYPE=$(command -v fslchfiletype)
-else
-	echo "Commmand 'fslchfiletype' is not found! Please set it in config.sh!"
-	exit 1
-fi

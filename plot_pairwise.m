@@ -1,4 +1,4 @@
-function plot_pairwise(PWD,PART,SUB_LIST,VOX_SIZE,MAX_CL_NUM,LorR)
+function plot_pairwise(PWD,ROI,SUB_LIST,VOX_SIZE,MAX_CL_NUM,LorR)
 
 if LorR == 1
     LR='L';
@@ -9,7 +9,7 @@ end
 sub=textread(SUB_LIST,'%s');
 sub_num=length(sub);
 
-file=strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',PART,'_',LR,'_index_pairwise.mat');
+file=strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',ROI,'_',LR,'_index_pairwise.mat');
 v=load(file);
 x=2:MAX_CL_NUM;
 
@@ -39,10 +39,10 @@ hold off;
 set(gca,'XTick',x);
 legend('Dice','NMI','CV','Location','SouthEast');
 xlabel('Number of clusters','FontSize',14);ylabel('Indice','FontSize',14);
-title(strcat(PART,'.',LR,' pairwise'),'FontSize',14);
+title(strcat(ROI,'.',LR,' pairwise'),'FontSize',14);
 set(gcf,'Color','w');
 
-output=strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',PART,'_',LR,'_pairwise.jpg');
+output=strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',ROI,'_',LR,'_pairwise.jpg');
 export_fig(output,'-r300','-painters','-nocrop');
 
 close;
@@ -58,10 +58,10 @@ end
 
 set(gca,'XTick',x);
 xlabel('Number of clusters','FontSize',14);ylabel('VI','FontSize',14);
-title(strcat(PART,'.',LR,' pairwise VI'),'FontSize',14);
+title(strcat(ROI,'.',LR,' pairwise VI'),'FontSize',14);
 set(gcf,'Color','w');
 
-output=strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',PART,'_',LR,'_pairwise_vi.jpg');
+output=strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',ROI,'_',LR,'_pairwise_vi.jpg');
 export_fig(output,'-r300','-painters','-nocrop');
 
 close;

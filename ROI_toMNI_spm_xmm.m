@@ -1,4 +1,4 @@
-function ROI_toMNI_spm_xmm(WD,PART,SUB_LIST,MAX_CL_NUM,POOLSIZE,TEMPLATE,VOX_SIZE,METHOD,LEFT,RIGHT)
+function ROI_toMNI_spm_xmm(WD,ROI,SUB_LIST,MAX_CL_NUM,POOLSIZE,TEMPLATE,VOX_SIZE,METHOD,LEFT,RIGHT)
 %-----------------------------------------------------------------------
 % transform ROIs from DTI(b0) space to MNI space
 %-----------------------------------------------------------------------
@@ -30,14 +30,14 @@ end
 
 if LEFT == 1
 	parfor i=1:length(SUB)
-		spm_norm_ew(WD,SUB,i,PART,MAX_CL_NUM,METHOD,TEMPLATE,VOX_SIZE,'L')
+		spm_norm_ew(WD,SUB,i,ROI,MAX_CL_NUM,METHOD,TEMPLATE,VOX_SIZE,'L')
 	end
 	matlabbatch=[];
 end
 
 if RIGHT == 1
 	parfor i=1:length(SUB)
-		spm_norm_ew(WD,SUB,i,PART,MAX_CL_NUM,METHOD,TEMPLATE,VOX_SIZE,'R')
+		spm_norm_ew(WD,SUB,i,ROI,MAX_CL_NUM,METHOD,TEMPLATE,VOX_SIZE,'R')
 	end
 	matlabbatch=[];
 end
@@ -50,12 +50,12 @@ else
 end
 
 
-function spm_norm_ew(WD,SUB,i,PART,MAX_CL_NUM,METHOD,TEMPLATE,VOX_SIZE,LR)
+function spm_norm_ew(WD,SUB,i,ROI,MAX_CL_NUM,METHOD,TEMPLATE,VOX_SIZE,LR)
 	sourcepath=strcat(WD,'/',SUB{i});
 	disp(sourcepath);
 	sourceimg=strcat(sourcepath,'/rT1_',SUB{i},'.nii');
 	for N=2:MAX_CL_NUM
-		resampleimg{N}=strcat(sourcepath,'/',SUB{i},'_',PART,'_',LR,'_',METHOD,'/',PART,'_',LR,'_',num2str(N),'.nii');
+		resampleimg{N}=strcat(sourcepath,'/',SUB{i},'_',ROI,'_',LR,'_',METHOD,'/',ROI,'_',LR,'_',num2str(N),'.nii');
 	end
 
 	spm('defaults','fmri');

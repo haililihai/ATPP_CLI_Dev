@@ -1,4 +1,4 @@
-function validation_indi_tpd(PWD,PART,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_NUM,POOLSIZE,GROUP_THRES,MPM_THRES)
+function validation_indi_tpd(PWD,ROI,SUB_LIST,METHOD,VOX_SIZE,MAX_CL_NUM,POOLSIZE,GROUP_THRES,MPM_THRES)
 
 sub=textread(SUB_LIST,'%s');
 sub_num=length(sub);
@@ -9,11 +9,11 @@ end
 
 GROUP_THRES=GROUP_THRES*100;
 
-MASK_L_FILE=strcat(PWD,'/group_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',PART,'_L_roimask_thr',num2str(GROUP_THRES),'.nii.gz');
+MASK_L_FILE=strcat(PWD,'/group_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',ROI,'_L_roimask_thr',num2str(GROUP_THRES),'.nii.gz');
 MASK_L_NII=load_untouch_nii(MASK_L_FILE);
 MASK_L=double(MASK_L_NII.img); 
 
-MASK_R_FILE=strcat(PWD,'/group_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',PART,'_R_roimask_thr',num2str(GROUP_THRES),'.nii.gz');
+MASK_R_FILE=strcat(PWD,'/group_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',ROI,'_R_roimask_thr',num2str(GROUP_THRES),'.nii.gz');
 MASK_R_NII=load_untouch_nii(MASK_R_FILE);
 MASK_R=double(MASK_R_NII.img); 
 
@@ -34,12 +34,12 @@ parfor ti=1:sub_num
     temp_tpd=zeros(1,MAX_CL_NUM);
 
     for kc=2:MAX_CL_NUM
-        disp(['indi_tpd: ',PART,' kc=',num2str(kc),' ',num2str(ti)]);
+        disp(['indi_tpd: ',ROI,' kc=',num2str(kc),' ',num2str(ti)]);
 
-        mpm_file1=strcat(PWD,'/',sub{ti},'/',sub{ti},'_',PART,'_L_',METHOD,'/',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',PART,'_L_',num2str(kc),'_MNI_relabel_group.nii.gz');
+        mpm_file1=strcat(PWD,'/',sub{ti},'/',sub{ti},'_',ROI,'_L_',METHOD,'/',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',ROI,'_L_',num2str(kc),'_MNI_relabel_group.nii.gz');
         mpm1=load_untouch_nii(mpm_file1);
         img1=double(mpm1.img);
-        mpm_file2=strcat(PWD,'/',sub{ti},'/',sub{ti},'_',PART,'_R_',METHOD,'/',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',PART,'_R_',num2str(kc),'_MNI_relabel_group.nii.gz');
+        mpm_file2=strcat(PWD,'/',sub{ti},'/',sub{ti},'_',ROI,'_R_',METHOD,'/',num2str(VOX_SIZE),'mm/',num2str(VOX_SIZE),'mm_',ROI,'_R_',num2str(kc),'_MNI_relabel_group.nii.gz');
         mpm2=load_untouch_nii(mpm_file2);
         img2=double(mpm2.img);
         img1=img1.*MASK_L;
@@ -89,9 +89,9 @@ parfor ti=1:sub_num
 end
 
 if ~exist(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm')) mkdir(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm'));end
-save(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',PART,'_index_indi_tpd.mat'),'indi_tpd');
+save(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',ROI,'_index_indi_tpd.mat'),'indi_tpd');
 
-fp=fopen(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',PART,'_index_indi_tpd.txt'),'at');
+fp=fopen(strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',ROI,'_index_indi_tpd.txt'),'at');
 if fp
     for kc=2:MAX_CL_NUM
         fprintf(fp,'cluster_num: %d \navg_indi_tpd: %f\nstd_indi_tpd: %f\nmedian_indi_tpd: %f\n\n',kc,nanmean(indi_tpd(:,kc)),nanstd(indi_tpd(:,kc)),nanmedian(indi_tpd(:,kc)));

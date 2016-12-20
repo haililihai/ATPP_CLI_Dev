@@ -1,4 +1,4 @@
-function plot_sil(PWD,PART,SUB_LIST,VOX_SIZE,MAX_CL_NUM,LorR)
+function plot_sil(PWD,ROI,SUB_LIST,VOX_SIZE,MAX_CL_NUM,LorR)
 
 if LorR == 1
     LR='L';
@@ -9,9 +9,9 @@ end
 sub=textread(SUB_LIST,'%s');
 sub_num=length(sub);
 
-file1=strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',PART,'_',LR,'_index_group_silhouette.mat');
+file1=strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',ROI,'_',LR,'_index_group_silhouette.mat');
 v1=load(file1);
-file2=strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',PART,'_',LR,'_index_indi_silhouette.mat');
+file2=strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',ROI,'_',LR,'_index_indi_silhouette.mat');
 v2=load(file2);
 x=2:MAX_CL_NUM;
 
@@ -26,10 +26,10 @@ hold off;
 set(gca,'XTick',x);
 legend('group silhouette','indi silhoutte','Location','SouthEast');
 xlabel('Number of clusters','FontSize',14);ylabel('Indice','FontSize',14);
-title(strcat(PART,'.',LR,' silhouette index'),'FontSize',14);
+title(strcat(ROI,'.',LR,' silhouette index'),'FontSize',14);
 set(gcf,'Color','w');
 
-output=strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',PART,'_',LR,'_silhouette.jpg');
+output=strcat(PWD,'/validation_',num2str(sub_num),'_',num2str(VOX_SIZE),'mm/',ROI,'_',LR,'_silhouette.jpg');
 export_fig(output,'-r300','-painters','-nocrop');
 
 close;
