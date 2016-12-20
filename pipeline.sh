@@ -6,21 +6,25 @@
 
 PIPELINE=$1
 shift
+CONFIG=$1
+shift
+HEADER=$1
+shift
 WD=$1
 shift 
 DATA_DIR=$1
 shift
-ROI=$1
-shift
 SUB_LIST=$1
+shift
+ROI=$1
 shift
 MAX_CL_NUM=$1
 
 # fetch the variables
-source ${PIPELINE}/config.sh
+source ${CONFIG}
 
 # show header info
-cat ${PIPELINE}/header.txt
+cat ${HEADER}
 
 # show the exec host
 echo "========= >>> ${ROI}@$(hostname)__$(date +%F_%T) <<< =========" |tee -a ${WD}/log/progress_check.txt

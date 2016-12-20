@@ -106,6 +106,7 @@ MAX_CL_NUM=$( echo $line | cut -d ' ' -f5 )
 mkdir -p ${WD}/log
 LOG_DIR=${WD}/log
 LOG=${LOG_DIR}/ATPP_log_$(date +%m-%d_%H-%M-%S).txt
+CONFIG=${PIPELINE}/config.sh
 
 echo "\
 #!/bin/bash
@@ -115,7 +116,7 @@ echo "\
 #$ -o ${LOG_DIR}
 #$ -e ${LOG_DIR}
 
-bash ${PIPELINE}/pipeline.sh ${PIPELINE} ${WD} ${DATA_DIR} ${ROI} ${SUB_LIST} ${MAX_CL_NUM} >${LOG} 2>&1"\
+bash ${PIPELINE}/pipeline.sh ${CONFIG} >${LOG} 2>&1"\
 >${LOG_DIR}/ATPP_${ROI}_qsub.sh
 
 # 3. submit the task
